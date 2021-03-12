@@ -32,6 +32,7 @@ namespace THSRCrawler
             {
                 endpoints.MapGet("/", async context =>
                 {
+                    new Crawler().init();
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
