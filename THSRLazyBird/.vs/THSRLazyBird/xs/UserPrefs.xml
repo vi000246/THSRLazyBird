@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}|Default">
+  <MonoDevelop.Ide.ItemProperties.THSRLazyBird PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.THSRCrawler PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../THSRCrawler/RequestClient.cs">
+    <Files>
+      <File FileName="../THSRCrawler/Crawler.cs" Line="1" Column="1" />
+      <File FileName="../THSRCrawler/RequestClient.cs" Line="13" Column="33" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="THSRLazyBird" expanded="True">
+            <Node name="THSRCrawler" expanded="True">
+              <Node name="RequestClient.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="39" column="1" />
+      <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="40" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

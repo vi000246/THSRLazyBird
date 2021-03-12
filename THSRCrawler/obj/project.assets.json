@@ -763,34 +763,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yich.lin\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/linyicyun/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Projects\\Github\\THSRLazyBird\\THSRCrawler\\THSRCrawler.csproj",
+      "projectUniqueName": "/Users/linyicyun/THSRLazyBird/THSRCrawler/THSRCrawler.csproj",
       "projectName": "THSRCrawler",
-      "projectPath": "F:\\Projects\\Github\\THSRLazyBird\\THSRCrawler\\THSRCrawler.csproj",
-      "packagesPath": "C:\\Users\\yich.lin\\.nuget\\packages\\",
-      "outputPath": "F:\\Projects\\Github\\THSRLazyBird\\THSRCrawler\\obj\\",
+      "projectPath": "/Users/linyicyun/THSRLazyBird/THSRCrawler/THSRCrawler.csproj",
+      "packagesPath": "/Users/linyicyun/.nuget/packages/",
+      "outputPath": "/Users/linyicyun/THSRLazyBird/THSRCrawler/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "F:\\Projects\\NuGet.Config",
-        "C:\\Users\\yich.lin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/linyicyun/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -836,7 +826,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }
