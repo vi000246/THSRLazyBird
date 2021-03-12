@@ -1,3 +1,8 @@
+Bug:
+目前遇到的bug是重定向問題，
+要在postman開啟allow redirect
+才能正確取得cookie
+
 需求:
 翻頁的邏輯，能否一次載入全部車次
 schedule job

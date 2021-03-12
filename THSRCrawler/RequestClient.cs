@@ -17,7 +17,8 @@ namespace THSRCrawler
         {
             _client = new RestClient(BaseUrl);
             _client.CookieContainer = new System.Net.CookieContainer();
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            _client.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0";
+            _client.FollowRedirects = false;
         }
 
         public void Login()
@@ -32,16 +33,11 @@ namespace THSRCrawler
 
         private T Execute<T>(RestRequest request)
         {
-            request.AddCookie("JSESSIONID", "");
-            request.AddCookie("IRS-SESSION", "");
-            request.AddCookie("THSRC-IRS", "");
-            request.AddCookie("name", "value");
-            request.AddCookie("ak_bmsc", "");
-            request.AddCookie("bm_sv", "");
-            request.AddHeader("Accept", "*/*");
+            request.AddHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
             request.AddHeader("Accept-Encoding", "gzip, deflate, br");
-            request.AddHeader("Accept-Language", "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,und;q=0.6,ko;q=0.5");
-            request.AddHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36");
+            request.AddHeader("Accept-Language", "zh-TW,zh;q=0.8,en-US;q=0.5,en;q=0.3");
+            IRestResponse response2 = _client.Execute(request);
+            int numericStatusCode = (int)response2.StatusCode;
             var response = _client.Execute<T>(request);
             if (response.ErrorException != null)
             {
