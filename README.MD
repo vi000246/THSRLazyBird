@@ -1,7 +1,5 @@
 Bug:
-目前遇到的bug是重定向問題，
-要在postman開啟allow redirect
-才能正確取得cookie
+目前遇到response 中文編碼亂碼問題
 
 需求:
 翻頁的邏輯，能否一次載入全部車次
