@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ux0ySrAdWyH1cFNdyT7UCzKId2YbyYIuZO8ecD6nfiOaBCvMWesji38xtR77k2J8QM1OhENsQIN1N9N/d/ZkiQ==",
+  "dgSpecHash": "h7LyBY+qnQ/BSspjhHm6gaG1jRoslERAaFY07j4HE4VMBWqUcQh82dKCnFgwMuIRp4DqoARrK+OeGk48dJAmxQ==",
   "success": true,
   "projectFilePath": "/Users/linyicyun/THSRLazyBird/THSRCrawler/THSRCrawler.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,7 @@
     "/Users/linyicyun/.nuget/packages/hangfire.aspnetcore/1.7.19/hangfire.aspnetcore.1.7.19.nupkg.sha512",
     "/Users/linyicyun/.nuget/packages/hangfire.core/1.7.19/hangfire.core.1.7.19.nupkg.sha512",
     "/Users/linyicyun/.nuget/packages/hangfire.sqlserver/1.7.19/hangfire.sqlserver.1.7.19.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.netcore.platforms/2.0.0/microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "/Users/linyicyun/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "/Users/linyicyun/.nuget/packages/microsoft.win32.registry/4.4.0/microsoft.win32.registry.4.4.0.nupkg.sha512",
     "/Users/linyicyun/.nuget/packages/newtonsoft.json/11.0.1/newtonsoft.json.11.0.1.nupkg.sha512",
     "/Users/linyicyun/.nuget/packages/restsharp/106.11.7/restsharp.106.11.7.nupkg.sha512",
@@ -19,7 +19,7 @@
     "/Users/linyicyun/.nuget/packages/system.data.sqlclient/4.4.0/system.data.sqlclient.4.4.0.nupkg.sha512",
     "/Users/linyicyun/.nuget/packages/system.security.accesscontrol/4.4.0/system.security.accesscontrol.4.4.0.nupkg.sha512",
     "/Users/linyicyun/.nuget/packages/system.security.principal.windows/4.4.0/system.security.principal.windows.4.4.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/system.text.encoding.codepages/4.4.0/system.text.encoding.codepages.4.4.0.nupkg.sha512"
+    "/Users/linyicyun/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

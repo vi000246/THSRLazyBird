@@ -9,11 +9,19 @@ namespace THSRCrawler
 {
     public class Crawler
     {
-        RequestClient client = new RequestClient();
+
         //測試用訂位代號 03352429 
-        public void init()
+
+        private readonly RequestClient _requestClient;
+        public Crawler(RequestClient requestClient)
         {
-           client.Login(); 
+            _requestClient = requestClient;
+            
+        }
+
+        public void Login()
+        {
+            _requestClient.Login();
         }
 
         //變更行程
