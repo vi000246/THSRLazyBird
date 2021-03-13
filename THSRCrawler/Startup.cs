@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -26,10 +27,13 @@ namespace THSRCrawler
                 {
                     return true;
                 },
+                //關掉自動redirect，因為第一次request會回傳302  要再get一次才會是正確的html content
                 AllowAutoRedirect = false,
                 CookieContainer = new System.Net.CookieContainer(),
-                
-        });
+                //表頭有gzip 要解壓
+                AutomaticDecompression = DecompressionMethods.GZip
+
+            });
             services.AddTransient<RequestClient>();
             services.AddTransient<Crawler>();
             

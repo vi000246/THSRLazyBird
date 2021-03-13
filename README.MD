@@ -1,5 +1,5 @@
 Bug:
-目前遇到response 中文編碼亂碼問題
+
 
 需求:
 翻頁的邏輯，能否一次載入全部車次
@@ -13,6 +13,7 @@ login timeout ，retry的機制
 能否multiple login
 能直接用line 掃qrcode就接到line notify嗎
 需要DB嗎(for schedule job，儲存參數)
+要能支援多組訂位代號
 
 URL分析:
 

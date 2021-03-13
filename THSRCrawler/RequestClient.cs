@@ -36,19 +36,18 @@ namespace THSRCrawler
         public async void Login()
         {
             //這是登入頁面，還沒登入
-            //var loginRequest = new RestRequest("/IMINT/",Method.GET);
             //loginRequest.AddParameter("wicket:bookmarkablePage",":tw.com.mitac.webapp.thsr.viewer.History", ParameterType.QueryStringWithoutEncode);
-            var LoginPage = await Execute("https://irs.thsrc.com.tw/IMINT");
-            var abc = 123;
-
+            var LoginPage = await GetHTML("https://irs.thsrc.com.tw/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
         }
 
-        private async Task<string> Execute(string url)
+
+
+        private async Task<string> GetHTML(string url)
         {
             var httpRequestMessage = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri(url),
+                RequestUri = new Uri(Uri.EscapeUriString(url)),
                 Headers = {
                     { "Accept-Encoding", "gzip, deflate, br" },
                     { HttpRequestHeader.ContentType.ToString(), "text/html;charset=UTF-8" },
@@ -64,20 +63,14 @@ namespace THSRCrawler
             {
                 response = _client.Send(Clone(httpRequestMessage));
             }
-            //編碼1
-            var buffer = response.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult();
-            var byteArray = buffer.ToArray();
-            var responseString = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
 
-            //設定編碼2
             var contentType = response.Content.Headers.ContentType;
             if (string.IsNullOrEmpty(contentType.CharSet))
             {
                 contentType.CharSet = "utf-8";
             }
             var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            //var result = JsonConvert.DeserializeObject<T>(content);
-
+            
             return content;
 
         }

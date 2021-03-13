@@ -3,11 +3,11 @@
   <MonoDevelop.Ide.ItemProperties.THSRCrawler PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="../THSRCrawler/RequestClient.cs">
     <Files>
-      <File FileName="../THSRCrawler/Crawler.cs" Line="16" Column="1" IsPinned="True" />
-      <File FileName="../THSRCrawler/RequestClient.cs" Line="37" Column="1" />
-      <File FileName="../THSRCrawler/Startup.cs" Line="20" Column="15" />
-      <File FileName="../THSRCrawler/Program.cs" Line="33" Column="1" />
+      <File FileName="../THSRCrawler/Crawler.cs" Line="16" Column="22" IsPinned="True" />
+      <File FileName="../THSRCrawler/Startup.cs" Line="29" Column="42" />
+      <File FileName="../THSRCrawler/Program.cs" Line="21" Column="1" />
       <File FileName="../THSRCrawler/Logger.cs" Line="1" Column="1" />
+      <File FileName="../THSRCrawler/RequestClient.cs" Line="72" Column="20" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,7 +20,11 @@
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
+        <State>
+          <Value>content</Value>
+          <Value>responseString</Value>
+          <Value>JsonArrayAttribute</Value>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
@@ -28,9 +32,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="52" column="1" />
-      <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="37" column="1" />
-      <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="51" column="1" />
+      <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="81" column="1" />
+      <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="74" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
