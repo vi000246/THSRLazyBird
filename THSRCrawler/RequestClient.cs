@@ -51,6 +51,7 @@ namespace THSRCrawler
                 RequestUri = new Uri(url),
                 Headers = {
                     { "Accept-Encoding", "gzip, deflate, br" },
+                    { HttpRequestHeader.ContentType.ToString(), "text/html;charset=UTF-8" },
                     { HttpRequestHeader.Accept.ToString(), "*/*" },
                     { "Accept-Language", "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,und;q=0.6,ko;q=0.5" },
 
@@ -76,8 +77,6 @@ namespace THSRCrawler
             }
             var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             //var result = JsonConvert.DeserializeObject<T>(content);
-
-            string json = JsonConvert.DeserializeObject(content).ToString();
 
             return content;
 
