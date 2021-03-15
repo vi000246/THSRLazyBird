@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json.example" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json.example" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Hangfire" Version="1.7.19" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />

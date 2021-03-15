@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace THSRCrawler
 {
@@ -36,7 +37,7 @@ namespace THSRCrawler
             });
             services.AddTransient<RequestClient>();
             services.AddTransient<Crawler>();
-            
+            services.AddTransient<Config>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

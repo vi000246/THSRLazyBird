@@ -10,7 +10,6 @@ namespace THSRCrawler
     public class Crawler
     {
 
-        //測試用訂位代號 03352429 
 
         private readonly RequestClient _requestClient;
         public Crawler(RequestClient requestClient)
@@ -18,10 +17,19 @@ namespace THSRCrawler
             _requestClient = requestClient;
             
         }
+        public void init()
+        {
+            _requestClient.LoginTicketHistoryPage();
+        }
 
         public void Login()
         {
-            _requestClient.Login();
+            _requestClient.LoginPage();
+        }
+
+        public void LoginTicketHistoryPage()
+        {
+            _requestClient.LoginTicketHistoryPage();
         }
 
         //變更行程

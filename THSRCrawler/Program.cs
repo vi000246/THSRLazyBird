@@ -23,7 +23,7 @@ namespace THSRCrawler
                 {
                     var myDependency = services.GetRequiredService<Crawler>();
                     //入口寫在這裡
-                    myDependency.Login();
+                    myDependency.init();
                 }
                 catch (Exception ex)
                 {

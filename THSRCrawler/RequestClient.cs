@@ -17,36 +17,41 @@ namespace THSRCrawler
 
         private readonly HttpClient _client;
         private readonly IHttpClientFactory _clientFactory;
+        private readonly Config _config;
 
-        public RequestClient(IHttpClientFactory clientFactory)
+        public RequestClient(IHttpClientFactory clientFactory,Config config)
         {
             _clientFactory = clientFactory;
 
             _client = _clientFactory.CreateClient("HttpClientWithSSLUntrusted");
             _client.BaseAddress = new Uri(BaseUrl);
-
-            //_client.CookieContainer = new System.Net.CookieContainer();
-            //_client.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0";
-            //_client.FollowRedirects = false;
-            //_client.MaxRedirects = 1;
-            //ignore ssl error , for debug tool
-            //_client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            _config = config;
         }
 
-        public async void Login()
+        public async void LoginPage()
         {
-            //這是登入頁面，還沒登入
-            //loginRequest.AddParameter("wicket:bookmarkablePage",":tw.com.mitac.webapp.thsr.viewer.History", ParameterType.QueryStringWithoutEncode);
             var LoginPage = await GetHTML("https://irs.thsrc.com.tw/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
+        }
+
+        public async void LoginTicketHistoryPage()
+        {
+            var config = _config.GetOrders();
         }
 
 
 
         private async Task<string> GetHTML(string url)
         {
+            var httpRequestMessage = requestBuilder(url,HttpMethod.Get);
+            var response = _client.Send(httpRequestMessage);
+            return responseParse(httpRequestMessage, response);
+        }
+
+        private HttpRequestMessage requestBuilder(string url, HttpMethod method)
+        {
             var httpRequestMessage = new HttpRequestMessage
             {
-                Method = HttpMethod.Get,
+                Method = method,
                 RequestUri = new Uri(Uri.EscapeUriString(url)),
                 Headers = {
                     { "Accept-Encoding", "gzip, deflate, br" },
@@ -56,7 +61,11 @@ namespace THSRCrawler
 
                 }
             };
-            var response = _client.Send(httpRequestMessage);
+            return httpRequestMessage;
+        }
+
+        private string responseParse(HttpRequestMessage httpRequestMessage, HttpResponseMessage response)
+        {
             int numericStatusCode = (int)response.StatusCode;
             //重定向302回應要再送一次request
             if (numericStatusCode == 302)
@@ -70,7 +79,7 @@ namespace THSRCrawler
                 contentType.CharSet = "utf-8";
             }
             var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            
+
             return content;
 
         }

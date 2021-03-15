@@ -521,9 +521,6 @@
       "System.Text.Encoding.CodePages/5.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
