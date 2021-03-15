@@ -48,9 +48,9 @@ namespace THSRCrawler
                 // new KeyValuePair<string, string>("idInputRadio", "radio10")
                 // });
                 var content = new List<KeyValuePair<string, string>>();
-                // content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("idInputRadio:rocId"), order.IdCard));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("idInputRadio:rocId"), order.IdCard));
                 content.Add(new KeyValuePair<string, string>("orderId", order.OrderId));
-                // content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:idPnrInputRadio"), "radio18"));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:idPnrInputRadio"), "radio18"));
                 content.Add(new KeyValuePair<string, string>("idInputRadio", "radio10"));
                 var url = "https://irs.thsrc.com.tw/IMINT/?wicket:interface=:6:HistoryForm::IFormSubmitListener";
                 var html =await PostForm(url, content);
