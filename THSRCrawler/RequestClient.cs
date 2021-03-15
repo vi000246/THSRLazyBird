@@ -28,6 +28,7 @@ namespace THSRCrawler
             _client = _clientFactory.CreateClient("HttpClientWithSSLUntrusted");
             _client.BaseAddress = new Uri(BaseUrl);
             _config = config;
+            _client.DefaultRequestHeaders.Connection.Add("Keep-Alive");
         }
 
         public async void LoginPage()
@@ -62,7 +63,6 @@ namespace THSRCrawler
         private async Task<string> PostForm(string url,dynamic content)
         {
             var httpRequestMessage = requestBuilder(url, HttpMethod.Post, content);
-            // httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             var response = _client.Send(httpRequestMessage);
             return responseParse(httpRequestMessage, response);
         }
@@ -93,9 +93,10 @@ namespace THSRCrawler
                     { "Accept-Encoding", "gzip, deflate, br" },
                     { HttpRequestHeader.ContentType.ToString(), contentType },
                     { HttpRequestHeader.Accept.ToString(), "*/*" },
+                    { "Origin", "https://irs.thsrc.com.tw" },
                     { "Accept-Language", "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,und;q=0.6,ko;q=0.5" },
                 },
-                Content = HttpContent
+                Content = HttpContent,
             };
 
             

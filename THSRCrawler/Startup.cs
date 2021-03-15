@@ -32,8 +32,8 @@ namespace THSRCrawler
                 AllowAutoRedirect = false,
                 CookieContainer = new System.Net.CookieContainer(),
                 //表頭有gzip 要解壓
-                AutomaticDecompression = DecompressionMethods.GZip
-
+                AutomaticDecompression = DecompressionMethods.GZip,
+                UseCookies = true,
             });
             services.AddTransient<RequestClient>();
             services.AddTransient<Crawler>();
