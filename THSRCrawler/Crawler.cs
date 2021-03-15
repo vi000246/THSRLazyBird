@@ -19,7 +19,8 @@ namespace THSRCrawler
         }
         public void init()
         {
-            _requestClient.LoginTicketHistoryPage();
+            Login();
+            LoginTicketHistoryPage();
         }
 
         public void Login()

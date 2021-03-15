@@ -40,14 +40,20 @@ namespace THSRCrawler
             var orders = _config.GetOrders();
             foreach (var order in orders)
             {
+                // var requestContent = new FormUrlEncodedContent(new[]
+                // {
+                // new KeyValuePair<string, string>("idInputRadio:rocId", order.IdCard),
+                // new KeyValuePair<string, string>("orderId", order.OrderId),
+                // new KeyValuePair<string, string>("SelectPNRView:idPnrInputRadio", "radio18"),
+                // new KeyValuePair<string, string>("idInputRadio", "radio10")
+                // });
                 var content = new List<KeyValuePair<string, string>>();
-                content.Add(new KeyValuePair<string, string>("idInputRadio:rocId", order.IdCard));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("idInputRadio:rocId"), order.IdCard));
                 content.Add(new KeyValuePair<string, string>("orderId", order.OrderId));
-                content.Add(new KeyValuePair<string, string>("SelectPNRView:idPnrInputRadio", "radio18"));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:idPnrInputRadio"), "radio18"));
                 content.Add(new KeyValuePair<string, string>("idInputRadio", "radio10"));
-
                 var url = "https://irs.thsrc.com.tw/IMINT/?wicket:interface=:6:HistoryForm::IFormSubmitListener";
-                var html = PostForm(url,content);
+                var html =await PostForm(url, content);
 
             }
 
@@ -56,7 +62,7 @@ namespace THSRCrawler
         private async Task<string> PostForm(string url,dynamic content)
         {
             var httpRequestMessage = requestBuilder(url, HttpMethod.Post, content);
-            httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+            // httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             var response = _client.Send(httpRequestMessage);
             return responseParse(httpRequestMessage, response);
         }
@@ -71,21 +77,28 @@ namespace THSRCrawler
 
         private HttpRequestMessage requestBuilder(string url, HttpMethod method,dynamic content = null)
         {
+            var contentType = "text/html;charset=UTF-8";
+            FormUrlEncodedContent HttpContent = null;
+            if (content != null)
+            {
+                contentType = "application/x-www-form-urlencoded";
+                HttpContent = new FormUrlEncodedContent(content);
+            }
+
             var httpRequestMessage = new HttpRequestMessage
             {
                 Method = method,
                 RequestUri = new Uri(Uri.EscapeUriString(url)),
                 Headers = {
                     { "Accept-Encoding", "gzip, deflate, br" },
-                    { HttpRequestHeader.ContentType.ToString(), "text/html;charset=UTF-8" },
+                    { HttpRequestHeader.ContentType.ToString(), contentType },
                     { HttpRequestHeader.Accept.ToString(), "*/*" },
                     { "Accept-Language", "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,und;q=0.6,ko;q=0.5" },
                 },
+                Content = HttpContent
             };
 
-            if(content != null)
-                httpRequestMessage.Content = new FormUrlEncodedContent(content);
-
+            
             return httpRequestMessage;
         }
 

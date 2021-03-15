@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,25 +15,24 @@ namespace THSRCrawler
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
-            using (var serviceScope = host.Services.CreateScope())
+            try
             {
+                var host = CreateHostBuilder(args).Build();
+                using var serviceScope = host.Services.CreateScope();
                 var services = serviceScope.ServiceProvider;
 
-                try
-                {
-                    var myDependency = services.GetRequiredService<Crawler>();
-                    //入口寫在這裡
-                    myDependency.init();
-                }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred.");
-                }
+                var myDependency = services.GetRequiredService<Crawler>();
+                //入口寫在這裡
+                myDependency.init();
+                host.Run();
+
             }
-            //還不用run host，先註解掉
-            //host.Run();
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                throw;
+            }
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

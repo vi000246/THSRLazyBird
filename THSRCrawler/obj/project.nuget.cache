@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mOUxO0dH9KZKslfXiNyaSyqPz3UI7eSDOhvk9FTOylgA47IN6qz5QXdwkRZClgHYfwNljUnFV/RWVNDZbgCgfg==",
+  "dgSpecHash": "9+BrJBuzci3S/Efrxp+ScRnXpCQObAsbPlQ2LlbOTx7/2VdARUgJXdoxfY0frVO2zL3egKl6rUnf5Py4t1+xnQ==",
   "success": true,
   "projectFilePath": "F:\\Projects\\Github\\THSRLazyBird\\THSRCrawler\\THSRCrawler.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\yich.lin\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\yich.lin\\.nuget\\packages\\microsoft.win32.registry\\4.4.0\\microsoft.win32.registry.4.4.0.nupkg.sha512",
     "C:\\Users\\yich.lin\\.nuget\\packages\\newtonsoft.json\\11.0.1\\newtonsoft.json.11.0.1.nupkg.sha512",
+    "C:\\Users\\yich.lin\\.nuget\\packages\\nlog\\4.7.8\\nlog.4.7.8.nupkg.sha512",
     "C:\\Users\\yich.lin\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

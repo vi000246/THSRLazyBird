@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[1.7.19, )"
             },
+            "NLog": {
+              "target": "Package",
+              "version": "[4.7.8, )"
+            },
             "RestSharp": {
               "target": "Package",
               "version": "[106.11.7, )"
