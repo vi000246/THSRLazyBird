@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -35,9 +37,29 @@ namespace THSRCrawler
 
         public async void LoginTicketHistoryPage()
         {
-            var config = _config.GetOrders();
+            var orders = _config.GetOrders();
+            foreach (var order in orders)
+            {
+                var content = new List<KeyValuePair<string, string>>();
+                content.Add(new KeyValuePair<string, string>("idInputRadio:rocId", order.IdCard));
+                content.Add(new KeyValuePair<string, string>("orderId", order.OrderId));
+                content.Add(new KeyValuePair<string, string>("SelectPNRView:idPnrInputRadio", "radio18"));
+                content.Add(new KeyValuePair<string, string>("idInputRadio", "radio10"));
+
+                var url = "https://irs.thsrc.com.tw/IMINT/?wicket:interface=:6:HistoryForm::IFormSubmitListener";
+                var html = PostForm(url,content);
+
+            }
+
         }
 
+        private async Task<string> PostForm(string url,dynamic content)
+        {
+            var httpRequestMessage = requestBuilder(url, HttpMethod.Post, content);
+            httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+            var response = _client.Send(httpRequestMessage);
+            return responseParse(httpRequestMessage, response);
+        }
 
 
         private async Task<string> GetHTML(string url)
@@ -47,7 +69,7 @@ namespace THSRCrawler
             return responseParse(httpRequestMessage, response);
         }
 
-        private HttpRequestMessage requestBuilder(string url, HttpMethod method)
+        private HttpRequestMessage requestBuilder(string url, HttpMethod method,dynamic content = null)
         {
             var httpRequestMessage = new HttpRequestMessage
             {
@@ -58,19 +80,25 @@ namespace THSRCrawler
                     { HttpRequestHeader.ContentType.ToString(), "text/html;charset=UTF-8" },
                     { HttpRequestHeader.Accept.ToString(), "*/*" },
                     { "Accept-Language", "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,und;q=0.6,ko;q=0.5" },
-
-                }
+                },
             };
+
+            if(content != null)
+                httpRequestMessage.Content = new FormUrlEncodedContent(content);
+
             return httpRequestMessage;
         }
 
         private string responseParse(HttpRequestMessage httpRequestMessage, HttpResponseMessage response)
         {
             int numericStatusCode = (int)response.StatusCode;
-            //重定向302回應要再送一次request
+            //重定向302，需要再發送一次request
             if (numericStatusCode == 302)
             {
-                response = _client.Send(Clone(httpRequestMessage));
+                var request = Clone(httpRequestMessage);
+                //302的表頭會有要redirect的url,要再重送一次request到這個url
+                request.RequestUri = response.Headers.Location;
+                response = _client.Send(request);
             }
 
             var contentType = response.Content.Headers.ContentType;
