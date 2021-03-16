@@ -12,15 +12,21 @@ namespace THSRCrawler
 
 
         private readonly RequestClient _requestClient;
-        public Crawler(RequestClient requestClient)
+        private readonly Config _config;
+        public Crawler(RequestClient requestClient, Config config)
         {
             _requestClient = requestClient;
-            
+            _config = config;
+
         }
         public void init()
         {
-            Login();
-            LoginTicketHistoryPage();
+            var orders = _config.GetOrders();
+            foreach (var order in orders)
+            {
+                Login();
+                LoginTicketHistoryPage(order.IdCard,order.OrderId);
+            }
         }
 
         public void Login()
@@ -28,9 +34,9 @@ namespace THSRCrawler
             _requestClient.LoginPage();
         }
 
-        public void LoginTicketHistoryPage()
+        public void LoginTicketHistoryPage(string IdCard,string OrderId)
         {
-            _requestClient.LoginTicketHistoryPage();
+            _requestClient.LoginTicketHistoryPage(IdCard,OrderId);
         }
 
         //變更行程

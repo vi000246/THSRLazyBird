@@ -36,11 +36,8 @@ namespace THSRCrawler
             var LoginPage = await GetHTML("https://irs.thsrc.com.tw/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
         }
 
-        public async void LoginTicketHistoryPage()
+        public async void LoginTicketHistoryPage(string IdCard,string OrderId)
         {
-            var orders = _config.GetOrders();
-            foreach (var order in orders)
-            {
                 // var requestContent = new FormUrlEncodedContent(new[]
                 // {
                 // new KeyValuePair<string, string>("idInputRadio:rocId", order.IdCard),
@@ -49,15 +46,12 @@ namespace THSRCrawler
                 // new KeyValuePair<string, string>("idInputRadio", "radio10")
                 // });
                 var content = new List<KeyValuePair<string, string>>();
-                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("idInputRadio:rocId"), order.IdCard));
-                content.Add(new KeyValuePair<string, string>("orderId", order.OrderId));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("idInputRadio:rocId"), IdCard));
+                content.Add(new KeyValuePair<string, string>("orderId", OrderId));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:idPnrInputRadio"), "radio18"));
                 content.Add(new KeyValuePair<string, string>("idInputRadio", "radio10"));
                 var url = "https://irs.thsrc.com.tw/IMINT/?wicket:interface=:6:HistoryForm::IFormSubmitListener";
                 var html =await PostForm(url, content);
-
-            }
-
         }
 
         private async Task<string> PostForm(string url,dynamic content)
