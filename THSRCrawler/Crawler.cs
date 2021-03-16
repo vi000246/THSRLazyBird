@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using RestSharp;
 
 namespace THSRCrawler
@@ -13,15 +14,15 @@ namespace THSRCrawler
 
         private readonly RequestClient _requestClient;
         private readonly Config _config;
-        public Crawler(RequestClient requestClient, Config config)
+        public Crawler(RequestClient requestClient, IOptions<Config> config)
         {
             _requestClient = requestClient;
-            _config = config;
+            _config = config.Value;
 
         }
         public void init()
         {
-            var orders = _config.GetOrders();
+            var orders = _config.ticketOrders;
             foreach (var order in orders)
             {
                 Login();
@@ -39,8 +40,20 @@ namespace THSRCrawler
             _requestClient.LoginTicketHistoryPage(IdCard,OrderId);
         }
 
-        //變更行程
-        //取得可用車次列表
-        //重新訂票
+        public void GetAllAvailableTickets()
+        {
+            //取得所有可用車次
+        }
+
+        public void FindMatchTickets()
+        {
+            //取得符合條件的車票
+        }
+
+        public void ChangeOrderTickets()
+        {
+            //變更行程至指定的時段
+        }
+
     }
 }

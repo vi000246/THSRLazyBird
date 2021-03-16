@@ -89,3 +89,4 @@ F:\Projects\Github\THSRLazyBird\THSRCrawler\obj\Debug\net5.0\THSRCrawler.pdb
 F:\Projects\Github\THSRLazyBird\THSRCrawler\obj\Debug\net5.0\THSRCrawler.genruntimeconfig.cache
 F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\NLog.dll
 F:\Projects\Github\THSRLazyBird\THSRCrawler\obj\Debug\net5.0\THSRCrawler.csprojAssemblyReference.cache
+F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\DNTScheduler.Core.dll

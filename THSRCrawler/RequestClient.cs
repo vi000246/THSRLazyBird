@@ -38,13 +38,6 @@ namespace THSRCrawler
 
         public async void LoginTicketHistoryPage(string IdCard,string OrderId)
         {
-                // var requestContent = new FormUrlEncodedContent(new[]
-                // {
-                // new KeyValuePair<string, string>("idInputRadio:rocId", order.IdCard),
-                // new KeyValuePair<string, string>("orderId", order.OrderId),
-                // new KeyValuePair<string, string>("SelectPNRView:idPnrInputRadio", "radio18"),
-                // new KeyValuePair<string, string>("idInputRadio", "radio10")
-                // });
                 var content = new List<KeyValuePair<string, string>>();
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("idInputRadio:rocId"), IdCard));
                 content.Add(new KeyValuePair<string, string>("orderId", OrderId));

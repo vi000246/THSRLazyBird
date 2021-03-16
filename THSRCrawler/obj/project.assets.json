@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "DNTScheduler.Core/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/DNTScheduler.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/DNTScheduler.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Hangfire/1.7.19": {
         "type": "package",
         "dependencies": {
@@ -271,6 +283,21 @@
     }
   },
   "libraries": {
+    "DNTScheduler.Core/1.2.0": {
+      "sha512": "rrEoY5c26SfijFTObWnlPtWGCdhin+ajInUeHi4LLOix0zxG9qdcgqDeg+bcfjInVKiYLp13yMnj1tTHcfp2yg==",
+      "type": "package",
+      "path": "dntscheduler.core/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dntscheduler.core.1.2.0.nupkg.sha512",
+        "dntscheduler.core.nuspec",
+        "lib/net5.0/DNTScheduler.Core.dll",
+        "lib/net5.0/DNTScheduler.Core.xml",
+        "lib/netcoreapp3.1/DNTScheduler.Core.dll",
+        "lib/netcoreapp3.1/DNTScheduler.Core.xml"
+      ]
+    },
     "Hangfire/1.7.19": {
       "sha512": "SZgqQg1Eo0q1tCEMjZZ1jQyjyuRDKcd9INUdScZhrF2kEgIM8MBDESXVKLlMegaXLYHW5pjbUE0KgLjeZ1m5sg==",
       "type": "package",
@@ -794,6 +821,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "DNTScheduler.Core >= 1.2.0",
       "Hangfire >= 1.7.19",
       "NLog >= 4.7.8",
       "RestSharp >= 106.11.7",
@@ -847,6 +875,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "DNTScheduler.Core": {
+            "target": "Package",
+            "version": "[1.2.0, )"
+          },
           "Hangfire": {
             "target": "Package",
             "version": "[1.7.19, )"

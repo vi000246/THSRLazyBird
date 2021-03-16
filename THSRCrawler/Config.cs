@@ -3,30 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace THSRCrawler
 {
     public class Config
     {
-        private readonly IConfiguration _config;
-        public Config(IConfiguration config)
-        {
-            _config = config;
-        }
+        public List<TicketOrders> ticketOrders { get; set; }
+        public bool IsEnableSchedule { get; set; }
 
-        public List<(string IdCard, string OrderId)> GetOrders()
-        {
-            var orders = _config.GetSection("TicketOrders")
-                .GetChildren()
-                .ToList()
-                .Select(x =>
-                    (
-                        x.GetValue<string>("IDCard"),
-                        x.GetValue<string>("OrderId")
-                    )
-                )
-                .ToList<(string IdCard, string OrderId)>();
-            return orders;
-        }
+    }
+
+    public class TicketOrders
+    {
+        public string IdCard { get; set; }
+        public string OrderId { get; set; }
     }
 }

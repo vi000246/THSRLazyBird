@@ -7,14 +7,13 @@
     }
   },
   "AllowedHosts": "*",
-  "TicketOrders": [
-    {
-      "IDCard": "A12345678",
-      "OrderId": "03819584"
-    },
-    {
-      "IDCard": "B112233456",
-      "OrderId": "012345678"
-    }
-  ] 
+  "Config": {
+    "TicketOrders": [
+      {
+        "IDCard": "身份證字號",
+        "OrderId": "訂位代號"
+      }
+    ],
+    "IsEnableSchedule": true
+  }
 }

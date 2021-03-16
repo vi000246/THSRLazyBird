@@ -9,12 +9,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using DNTScheduler.Core;
 using Microsoft.Extensions.Configuration;
 
 namespace THSRCrawler
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+
+        }
+        public IConfiguration Configuration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -35,6 +42,19 @@ namespace THSRCrawler
                 AutomaticDecompression = DecompressionMethods.GZip,
                 UseCookies = true,
             });
+
+            //schedule設定
+            services.AddDNTScheduler(options =>
+            {
+                // 好像是用來讓heroku之類的server keep alive的
+                // options.AddPingTask(siteRootUrl: "https://localhost:5001");
+
+                options.AddScheduledTask<ScheduleJob>(utcNow => utcNow.Second == 1);
+            });
+            //config註冊
+            var configSection =
+                Configuration.GetSection("Config");
+            services.Configure<Config>(configSection);
             services.AddTransient<RequestClient>();
             services.AddTransient<Crawler>();
             services.AddTransient<Config>();
@@ -43,6 +63,8 @@ namespace THSRCrawler
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseDNTScheduler();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
