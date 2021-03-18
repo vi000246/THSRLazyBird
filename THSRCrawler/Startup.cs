@@ -41,7 +41,7 @@ namespace THSRCrawler
                     return true;
                 },
                 //關掉自動redirect，因為第一次request會回傳302  要再get一次才會是正確的html content
-                AllowAutoRedirect = false,
+                AllowAutoRedirect = true,
                 CookieContainer = container,
                 //表頭有gzip 要解壓
                 AutomaticDecompression = DecompressionMethods.GZip,
@@ -63,6 +63,7 @@ namespace THSRCrawler
             services.AddTransient<RequestClient>();
             services.AddTransient<Crawler>();
             services.AddTransient<Config>();
+            services.AddTransient<HTMLParser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

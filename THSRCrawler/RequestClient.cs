@@ -17,6 +17,8 @@ namespace THSRCrawler
 {
     /// <summary>
     /// 用來儲放跟http request有關的邏輯
+    /// note:在用抓包工具時，記得先把brwoser cookie清掉，抓到的封包才是最準的，不然會有cache,會debug老半天
+    /// note2:強烈懷疑網址中的interface=:1:  的數字是有意義的，如果取不到正確response，可以查查這個參數
     /// </summary>
     public class RequestClient
     {
@@ -38,26 +40,79 @@ namespace THSRCrawler
             _client.DefaultRequestHeaders.Connection.Add("Keep-Alive");
             _cookieContainer = cookieContainer;
         }
-
-        public async void LoginPage()
+        
+        //第一次進到頁面,取得相關cookie
+        public void LoginPage()
         {
-            var LoginPage = await GetHTML("/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
+            var LoginPage = GetHTML("/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
         }
 
         //輸入訂位代號跟身份證字號，取得訂位紀錄
         public async void LoginTicketHistoryPage(string IdCard,string OrderId)
         {
                 var content = new List<KeyValuePair<string, string>>();
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryForm:hf:0"), ""));
+                content.Add(new KeyValuePair<string, string>("idInputRadio", "radio10"));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("idInputRadio:rocId"), IdCard));
                 content.Add(new KeyValuePair<string, string>("orderId", OrderId));
+                content.Add(new KeyValuePair<string, string>("SubmitButton", "登入查詢"));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:idPnrInputRadio"), "radio18"));
-                content.Add(new KeyValuePair<string, string>("idInputRadio", "radio10"));
-            //看起來url只要有jssessionid就給過了，不需要真的加上jssessionid的cookie
-                var url = $"/IMINT/;jsessionid={_cookieContainer.GetCookies(new Uri(BaseUrl)).FirstOrDefault(x=>x.Name == "JSSESSIONID")}?wicket:interface=:0:HistoryForm::IFormSubmitListener";
-                var html =await PostForm(url, content);
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:idPnrInputRadio:rocPnrId"), ""));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:selectStartStation"), ""));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:selectDestinationStation"), ""));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:toTimeInputField"), "2021/03/18"));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:toTrainIDInputField"), ""));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:divCaptcha:securityCode"), ""));
+                var cookies = _cookieContainer.GetCookies(new Uri(BaseUrl+"IMINT"));
+                var url = $"/IMINT/;{cookies.FirstOrDefault(x=>x.Name == "JSESSIONID")}?wicket:interface=:0:HistoryForm::IFormSubmitListener";
+                var html = PostForm(url, content);
         }
 
-        private async Task<string> PostForm(string url,dynamic content)
+        //輸入要更改的日期跟時間,取得該時段的車票
+
+        public string GetModifyTripHTML()
+        {
+            GoToModifyTripForm();
+            var content = new List<KeyValuePair<string, string>>();
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS1Form:hf:0"), ""));
+            content.Add(new KeyValuePair<string, string>("bookingMethod", "radio10"));
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeInputField"), "2021/04/14"));
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeTable"), "1000A"));
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTrainIDInputField"), ""));
+            content.Add(new KeyValuePair<string, string>("SubmitButton", "開始查詢"));
+            var cookies = _cookieContainer.GetCookies(new Uri(BaseUrl + "IMINT"));
+            var url = $"/IMINT/?wicket:interface=:2:HistoryDetailsModifyTripS1Form::IFormSubmitListener";
+            var html = PostForm(url, content);
+            return html;
+        }
+
+        //取得變更行程頁面，更晚的車票
+        public string ModifyTrip_NextPage()
+        {
+            var html = GetHTML("/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form:TrainQueryDataViewPanel:PreAndLaterTrainContainer:laterTrainLink::IBehaviorListener&wicket:behaviorId=0&random=0.6036634629572775");
+            return html;
+        }
+
+        //取得變更行程頁面，更早的車票
+        public string ModifyTrip_PrevPage()
+        {
+            var html = GetHTML("/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form:TrainQueryDataViewPanel:PreAndLaterTrainContainer:laterTrainLink::IBehaviorListener&wicket:behaviorId=0&random=0.6036634629572775");
+            return html;
+        }
+
+        private void GoToModifyTripForm()
+        {
+            //先到變更行程的頁面踩點一下
+            var clickChangtTripButton = new List<KeyValuePair<string, string>>();
+            clickChangtTripButton.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsForm:hf:0"), ""));
+            clickChangtTripButton.Add(new KeyValuePair<string, string>("ShowCarDiff", "1"));
+            clickChangtTripButton.Add(new KeyValuePair<string, string>("isStudentInfo", "0"));
+            clickChangtTripButton.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TicketProcessButtonPanel:ModifyTripButton"), "變更行程"));
+            var modifyTripPage = PostForm("/IMINT/?wicket:interface=:1:HistoryDetailsForm::IFormSubmitListener", clickChangtTripButton);
+
+        }
+
+        private string PostForm(string url,dynamic content)
         {
             var httpRequestMessage = requestBuilder(url, HttpMethod.Post, content);
             var response = GetResponseAndSetCookie(httpRequestMessage);
@@ -65,7 +120,7 @@ namespace THSRCrawler
         }
 
 
-        private async Task<string> GetHTML(string url)
+        private string GetHTML(string url)
         {
             var httpRequestMessage = requestBuilder(url,HttpMethod.Get);
             var response = GetResponseAndSetCookie(httpRequestMessage);
@@ -100,15 +155,6 @@ namespace THSRCrawler
         private string responseParse(HttpRequestMessage httpRequestMessage, HttpResponseMessage response)
         {
             int numericStatusCode = (int)response.StatusCode;
-            //重定向302，需要再發送一次request
-            if (numericStatusCode == 302)
-            {
-                var request = Clone(httpRequestMessage);
-                //302的表頭會有要redirect的url,要再重送一次request到這個url
-                request.RequestUri = response.Headers.Location;
-                response = GetResponseAndSetCookie(request);
-            }
-
             var contentType = response.Content.Headers.ContentType;
             if (string.IsNullOrEmpty(contentType.CharSet))
             {
@@ -124,33 +170,14 @@ namespace THSRCrawler
         private HttpResponseMessage GetResponseAndSetCookie(HttpRequestMessage request)
         {
             var response = _client.Send(request);
-            // var cookieHeaders = response.Headers.Where(pair => pair.Key == "Set-Cookie");
+            var cookieHeaders = response.Headers.Where(pair => pair.Key == "Set-Cookie");
             // foreach (var value in cookieHeaders.SelectMany(header => header.Value))
             // {
-            //     _cookieContainer.SetCookies(request.RequestUri, value);
             // }
 
             return response;
         }
 
-        public static HttpRequestMessage Clone(HttpRequestMessage request)
-        {
-            var clone = new HttpRequestMessage(request.Method, request.RequestUri)
-            {
-                Content = request.Content,
-                Version = request.Version
-            };
-            foreach (KeyValuePair<string, object> prop in request.Properties)
-            {
-                clone.Properties.Add(prop);
-            }
-            foreach (KeyValuePair<string, IEnumerable<string>> header in request.Headers)
-            {
-                clone.Headers.TryAddWithoutValidation(header.Key, header.Value);
-            }
-
-            return clone;
-        }
 
     }
 }

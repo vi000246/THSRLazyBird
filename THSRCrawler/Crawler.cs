@@ -17,10 +17,12 @@ namespace THSRCrawler
 
         private readonly RequestClient _requestClient;
         private readonly Config _config;
-        public Crawler(RequestClient requestClient, IOptions<Config> config)
+        private readonly HTMLParser _htmlParser;
+        public Crawler(RequestClient requestClient, IOptions<Config> config, HTMLParser htmlParser)
         {
             _requestClient = requestClient;
             _config = config.Value;
+            _htmlParser = htmlParser;
 
         }
         public void init()
@@ -30,6 +32,8 @@ namespace THSRCrawler
             {
                 Login();
                 LoginTicketHistoryPage(order.IdCard,order.OrderId);
+                var html = GetModifyTripHTML();
+                var nextPageHtml = ModifyTrip_NextPage();
             }
         }
 
@@ -41,6 +45,16 @@ namespace THSRCrawler
         public void LoginTicketHistoryPage(string IdCard,string OrderId)
         {
             _requestClient.LoginTicketHistoryPage(IdCard,OrderId);
+        }
+
+        public string GetModifyTripHTML()
+        {
+            return _requestClient.GetModifyTripHTML();
+        }
+
+        public string ModifyTrip_NextPage()
+        {
+            return _requestClient.ModifyTrip_NextPage();
         }
 
         public void GetAllAvailableTickets()
