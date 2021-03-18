@@ -8,6 +8,9 @@ using RestSharp;
 
 namespace THSRCrawler
 {
+    /// <summary>
+    /// 用來儲放crawler的整個流程
+    /// </summary>
     public class Crawler
     {
 
