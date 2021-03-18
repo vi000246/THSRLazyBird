@@ -27,6 +27,7 @@ namespace THSRCrawler
         private readonly Config _config;
         private readonly CookieContainer _cookieContainer;
 
+
         public RequestClient(IHttpClientFactory clientFactory,Config config,CookieContainer cookieContainer)
         {
             _clientFactory = clientFactory;
@@ -51,7 +52,8 @@ namespace THSRCrawler
                 content.Add(new KeyValuePair<string, string>("orderId", OrderId));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:idPnrInputRadio"), "radio18"));
                 content.Add(new KeyValuePair<string, string>("idInputRadio", "radio10"));
-                var url = "/IMINT/?wicket:interface=:6:HistoryForm::IFormSubmitListener";
+            //看起來url只要有jssessionid就給過了，不需要真的加上jssessionid的cookie
+                var url = $"/IMINT/;jsessionid={_cookieContainer.GetCookies(new Uri(BaseUrl)).FirstOrDefault(x=>x.Name == "JSSESSIONID")}?wicket:interface=:0:HistoryForm::IFormSubmitListener";
                 var html =await PostForm(url, content);
         }
 
@@ -118,7 +120,7 @@ namespace THSRCrawler
 
         }
 
-        //看起來程式有幫忙handle cookie了，不需要這段
+        //debug用，看有沒有回傳需要的cookie
         private HttpResponseMessage GetResponseAndSetCookie(HttpRequestMessage request)
         {
             var response = _client.Send(request);
