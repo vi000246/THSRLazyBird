@@ -90,3 +90,4 @@ F:\Projects\Github\THSRLazyBird\THSRCrawler\obj\Debug\net5.0\THSRCrawler.genrunt
 F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\NLog.dll
 F:\Projects\Github\THSRLazyBird\THSRCrawler\obj\Debug\net5.0\THSRCrawler.csprojAssemblyReference.cache
 F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\DNTScheduler.Core.dll
+F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\AngleSharp.dll

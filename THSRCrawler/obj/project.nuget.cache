@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Wwa1/Eh8llsqC5A99yx+sBuKCUdtRrzfQvFP2B2DQYYoZVyVbD4uxd2vg9upa8L/qcNIothjWnXzQmzecZYeMg==",
+  "dgSpecHash": "6WAGzxyPWMo9iu+U+mguURHDmL+7okmZgaH6uYqQwS//6clEGVQB2MbrKEYId/biKOTNVwH+9gw0BWscYIhClw==",
   "success": true,
   "projectFilePath": "F:\\Projects\\Github\\THSRLazyBird\\THSRCrawler\\THSRCrawler.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\yich.lin\\.nuget\\packages\\anglesharp\\1.0.0-alpha-819\\anglesharp.1.0.0-alpha-819.nupkg.sha512",
     "C:\\Users\\yich.lin\\.nuget\\packages\\dntscheduler.core\\1.2.0\\dntscheduler.core.1.2.0.nupkg.sha512",
     "C:\\Users\\yich.lin\\.nuget\\packages\\hangfire\\1.7.19\\hangfire.1.7.19.nupkg.sha512",
     "C:\\Users\\yich.lin\\.nuget\\packages\\hangfire.aspnetcore\\1.7.19\\hangfire.aspnetcore.1.7.19.nupkg.sha512",

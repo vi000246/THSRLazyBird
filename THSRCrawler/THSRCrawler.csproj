@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="1.0.0-alpha-819" />
     <PackageReference Include="DNTScheduler.Core" Version="1.2.0" />
     <PackageReference Include="Hangfire" Version="1.7.19" />
     <PackageReference Include="NLog" Version="4.7.8" />

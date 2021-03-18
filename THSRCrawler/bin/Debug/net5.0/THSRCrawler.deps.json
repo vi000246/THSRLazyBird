@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "THSRCrawler/1.0.0": {
         "dependencies": {
+          "AngleSharp": "1.0.0-alpha-819",
           "DNTScheduler.Core": "1.2.0",
           "Hangfire": "1.7.19",
           "NLog": "4.7.8",
@@ -327,6 +328,20 @@
         },
         "compile": {
           "THSRCrawler.dll": {}
+        }
+      },
+      "AngleSharp/1.0.0-alpha-819": {
+        "dependencies": {
+          "System.Text.Encoding.CodePages": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AngleSharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AngleSharp.dll": {}
         }
       },
       "DNTScheduler.Core/1.2.0": {
@@ -2252,6 +2267,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AngleSharp/1.0.0-alpha-819": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wXb0K+xVf/mwtHRGhuSDGNPPDRP7jwo0/QSb5xrCdAZiR5fr2kPW26AxYpyrLLRn3mdLifQ58/74JRR7KVSMZw==",
+      "path": "anglesharp/1.0.0-alpha-819",
+      "hashPath": "anglesharp.1.0.0-alpha-819.nupkg.sha512"
     },
     "DNTScheduler.Core/1.2.0": {
       "type": "package",

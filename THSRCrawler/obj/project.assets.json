@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "AngleSharp/1.0.0-alpha-819": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Encoding.CodePages": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AngleSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AngleSharp.dll": {}
+        }
+      },
       "DNTScheduler.Core/1.2.0": {
         "type": "package",
         "compile": {
@@ -283,6 +295,27 @@
     }
   },
   "libraries": {
+    "AngleSharp/1.0.0-alpha-819": {
+      "sha512": "wXb0K+xVf/mwtHRGhuSDGNPPDRP7jwo0/QSb5xrCdAZiR5fr2kPW26AxYpyrLLRn3mdLifQ58/74JRR7KVSMZw==",
+      "type": "package",
+      "path": "anglesharp/1.0.0-alpha-819",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "anglesharp.1.0.0-alpha-819.nupkg.sha512",
+        "anglesharp.nuspec",
+        "lib/net46/AngleSharp.dll",
+        "lib/net46/AngleSharp.xml",
+        "lib/net461/AngleSharp.dll",
+        "lib/net461/AngleSharp.xml",
+        "lib/net472/AngleSharp.dll",
+        "lib/net472/AngleSharp.xml",
+        "lib/netstandard1.3/AngleSharp.dll",
+        "lib/netstandard1.3/AngleSharp.xml",
+        "lib/netstandard2.0/AngleSharp.dll",
+        "lib/netstandard2.0/AngleSharp.xml"
+      ]
+    },
     "DNTScheduler.Core/1.2.0": {
       "sha512": "rrEoY5c26SfijFTObWnlPtWGCdhin+ajInUeHi4LLOix0zxG9qdcgqDeg+bcfjInVKiYLp13yMnj1tTHcfp2yg==",
       "type": "package",
@@ -821,6 +854,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "AngleSharp >= 1.0.0-alpha-819",
       "DNTScheduler.Core >= 1.2.0",
       "Hangfire >= 1.7.19",
       "NLog >= 4.7.8",
@@ -875,6 +909,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "AngleSharp": {
+            "target": "Package",
+            "version": "[1.0.0-alpha-819, )"
+          },
           "DNTScheduler.Core": {
             "target": "Package",
             "version": "[1.2.0, )"

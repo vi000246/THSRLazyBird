@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AngleSharp.Html.Parser;
 using DNTScheduler.Core;
 using Microsoft.Extensions.Configuration;
 
@@ -64,6 +65,7 @@ namespace THSRCrawler
             services.AddTransient<Crawler>();
             services.AddTransient<Config>();
             services.AddTransient<HTMLParser>();
+            services.AddTransient<IHtmlParser,HtmlParser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

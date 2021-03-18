@@ -33,6 +33,7 @@ namespace THSRCrawler
                 Login();
                 LoginTicketHistoryPage(order.IdCard,order.OrderId);
                 var html = GetModifyTripHTML();
+                _htmlParser.GetTripsPerPage(html);
                 var nextPageHtml = ModifyTrip_NextPage();
             }
         }
