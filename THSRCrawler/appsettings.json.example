@@ -8,18 +8,21 @@
   },
   "AllowedHosts": "*",
   "Config": {
+    "//TicketOrders": "可以放多筆訂位代號",
     "TicketOrders": [
       {
         "IDCard": "身份證字號",
         "OrderId": "訂位代號",
-        "TripToDate": "預計出發日期 格式yyyy/mm/dd",
-        "TripEndDate": "預計回程日期 格式yyyy/mm/dd",
-        "TripToTime": "預計出發時間 格式(HHMM) 每30分鐘為單位，24hr制，ex 1100 1130 1500 1730",
-        "TripBackTime": "預計抵達時間，格式同上"
+        "TargetDate": {
+          "TripToDate": "預計出發日期 格式yyyy/mm/dd",
+          "TripBackDate": "預計回程日期 格式yyyy/mm/dd",
+          "TripToTime": "預計出發時間 格式(HH:MM) 每30分鐘為單位，24hr制，ex 00:00、 05:00、 12:30、 17:30、 22:00",
+          "TripBackTime": "預計抵達時間，格式同上"
+        }
       }
     ],
     "IsEnableSchedule": true,
-    "//MaxETA": "該車次最大的行車時間，單位(分鐘)，設太小的話會搜尋不到車次", 
-    "MaxETA" :  120
+    "//MaxETA": "該車次最大的行車時間，單位(分鐘)，設太小的話會搜尋不到車次",
+    "MaxETA": 120
   }
 }

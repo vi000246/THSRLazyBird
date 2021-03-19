@@ -16,8 +16,6 @@ namespace THSRCrawler
     /// </summary>
     public class Crawler
     {
-
-
         private readonly RequestClient _requestClient;
         private readonly Config _config;
         private readonly HTMLParser _htmlParser;
@@ -42,54 +40,34 @@ namespace THSRCrawler
                     return;
                 }
 
-                ModifyTrip(Models.ModifyTripType.To);
+                ModifyTrip(Models.ModifyTripType.To, order);
                 if (orderInfo.isRoundTrip)
                 {
-                    ModifyTrip(Models.ModifyTripType.Back);
+                    ModifyTrip(Models.ModifyTripType.Back, order);
                 }
 
             }
         }
 
-        public void GoTo_search_order_page()
-        {
-            _requestClient.GoTo_search_order_page();
-        }
-
         public Models.orderPageInfo post_search_order_form(string IdCard,string OrderId)
         {
-            GoTo_search_order_page();
+            _requestClient.GoTo_search_order_page();
             var html =  _requestClient.post_search_order_form(IdCard,OrderId);
             var orderInfo = _htmlParser.GetOrderInformation(html);
             return orderInfo;
         }
 
-        public string ModifyTrip(Models.ModifyTripType tripType)
+        public string ModifyTrip(Models.ModifyTripType tripType,TicketOrders order)
         {
             var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
             //判斷去/回程是否可更改
 
 
-            var html = _requestClient.post_search_trip_form(tripType);
-            var trips = _htmlParser.GetTripsPerPage(html, _requestClient.GetTripType());
-            //找出符合的行程
+            var html = _requestClient.post_search_trip_form(tripType,order);
+            var trips = _htmlParser.GetTripsPerPageAndHandleError(html, tripType);
+            //找出符合的行程,需要比對目前的行程，不能越改越爛
             //變更行程
             return "";
-        }
-
-        public string ModifyTrip_NextPage()
-        {
-            return _requestClient.GoTo_ModifyTrip_NextPage();
-        }
-
-        public void FindMatchTickets()
-        {
-            //取得符合條件的車票
-        }
-
-        public void ChangeOrderTickets()
-        {
-            //變更行程至指定的時段
         }
 
     }

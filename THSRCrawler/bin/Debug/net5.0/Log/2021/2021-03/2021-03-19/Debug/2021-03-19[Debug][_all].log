@@ -10,3 +10,10 @@
 [16:39:59.6035][Microsoft.Hosting.Lifetime][Info] - Content root path: F:\Projects\Github\THSRLazyBird\THSRCrawler 
 [16:40:01.4623][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/19 上午 08:40:01. 
 [16:40:01.4652][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/19 上午 08:40:01. 
+[18:10:08.1339][THSRCrawler.Program][Error] - No parameterless constructor defined for type 'THSRCrawler.Config'. 
+[18:16:31.1760][THSRCrawler.ModifyTripJob][Fatal] - 訂位代號:04480571 設定檔Date欄位格式錯誤，Date:800P 必須為yyyy/mm/dd 
+[18:16:31.2642][THSRCrawler.Program][Error] - 訂位代號:04480571 設定檔Date欄位格式錯誤，Date:800P 必須為yyyy/mm/dd 
+[18:18:14.5907][THSRCrawler.ModifyTripJob][Fatal] - 訂位代號:04480571 設定檔Date欄位格式錯誤，Date:800P 必須為yyyy/mm/dd 
+[18:18:14.6748][THSRCrawler.Program][Error] - 訂位代號:04480571 設定檔Date欄位格式錯誤，Date:800P 必須為yyyy/mm/dd 
+[18:49:33.8055][THSRCrawler.HTMLParser][Info] - 回程日期/時間不可早於去程日期/時間 
+[18:49:33.9123][THSRCrawler.Program][Error] - 回程日期/時間不可早於去程日期/時間 

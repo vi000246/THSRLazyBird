@@ -28,8 +28,6 @@ namespace THSRCrawler
         private readonly IHttpClientFactory _clientFactory;
         private readonly Config _config;
         private readonly CookieContainer _cookieContainer;
-        //用來判斷要修改的行程是單程/去回程/只有去程/只有回程
-        private Models.ModifyTripType _tripType;
 
 
         public RequestClient(IHttpClientFactory clientFactory,Config config,CookieContainer cookieContainer)
@@ -73,10 +71,9 @@ namespace THSRCrawler
 
         //輸入要更改的日期跟時間,取得該時段的車票
 
-        public string post_search_trip_form(Models.ModifyTripType tripType)
+        public string post_search_trip_form(Models.ModifyTripType tripType,TicketOrders order)
         {
-            //判斷config有沒有去程的設定
-            //從config取得資料
+            var formatDate = _config.GetValidOrderDate(order,tripType);
 
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS1Form:hf:0"), ""));
@@ -84,26 +81,20 @@ namespace THSRCrawler
             switch (tripType)
             {
                 case Models.ModifyTripType.To:
-                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toCheck"),
-                        "on")); //勾選變更去程
-                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeInputField"),
-                        "2021/04/14"));
-                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeTable"), "1000A"));
-                    content.Add(
-                        new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTrainIDInputField"), ""));
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toCheck"), "on")); //勾選變更去程
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeInputField"), formatDate.tripDate));
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeTable"), formatDate.tripTime));
+                    content.Add( new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTrainIDInputField"), ""));
                     break;
-                //如果此筆訂位紀錄有回程的票，要加上回程的欄位
                 case Models.ModifyTripType.Back:
-                    //判斷config有沒有回程的設定
                     content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backCheck"), "on"));//勾選變更回程
-                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeInputField"), "2021/04/14"));
-                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeTable"), "1000A"));
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeInputField"), formatDate.tripDate));
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeTable"), formatDate.tripTime));
                     content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTrainIDInputField"), ""));
                     break;
             }
 
             content.Add(new KeyValuePair<string, string>("SubmitButton", "開始查詢"));
-            var cookies = _cookieContainer.GetCookies(new Uri(BaseUrl + "IMINT"));
             var url = $"/IMINT/?wicket:interface=:2:HistoryDetailsModifyTripS1Form::IFormSubmitListener";
             var html = PostForm(url, content);
             return html;
@@ -191,11 +182,6 @@ namespace THSRCrawler
             httpRequestMessage.Headers.Add("Accept-Language", "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,und;q=0.6,ko;q=0.5");
             
             return httpRequestMessage;
-        }
-
-        public Models.ModifyTripType GetTripType()
-        {
-            return _tripType;
         }
 
         private string responseParse(HttpRequestMessage httpRequestMessage, HttpResponseMessage response)

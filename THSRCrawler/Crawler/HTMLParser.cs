@@ -4,17 +4,22 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AngleSharp.Dom;
+using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using Hangfire.Annotations;
+using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace THSRCrawler
 {
     public class HTMLParser
     {
         private readonly IHtmlParser _parser;
-        public HTMLParser(IHtmlParser htmlParser)
+        private readonly ILogger<HTMLParser> _logger;
+        public HTMLParser(IHtmlParser htmlParser, ILogger<HTMLParser> logger)
         {
             _parser = htmlParser;
+            _logger = logger;
         }
 
         public Models.orderPageInfo GetOrderInformation(string html)
@@ -37,25 +42,47 @@ namespace THSRCrawler
             return result;
         }
 
-        //驗證這個時段是否有車票
-        public void ValidTimeIsAvailable()
+        public Models.modifyTripPageInfo GetModifyPageInformation(string html)
         {
+            var result = new Models.modifyTripPageInfo();
 
+            return result;
         }
 
-        //驗證是否變更成功
-        //變更行程頁面 驗證此筆訂位紀錄是否有回程 以及去/回程是否可變更
+
+        //用來驗證變更行程頁面的錯誤，輸入錯的日期、不能早於出發時間、查無該時段車票等
+        public (bool isValid, string msg) ValidModifyTripError(IHtmlDocument dom)
+        {
+            var msg = "";
+            var isValid = true;
+            var mainContent = dom.GetElementsByClassName("feedbackPanelERROR");
+            if (mainContent.Any())
+            {
+                msg = mainContent.First().FirstElementChild.TextContent;
+                isValid = false;
+            }
+
+            return (isValid, msg);
+        }
 
 
         //取得此頁面所有的車次
-        public List<Models.Trips> GetTripsPerPage(string html,Models.ModifyTripType tripType)
+        public IEnumerable<Models.Trips> GetTripsPerPageAndHandleError(string html,Models.ModifyTripType tripType)
         {
             var trips = new List<Models.Trips>();
 			var dom = _parser.ParseDocument(html);
+            var validResult = ValidModifyTripError(dom);
+            if (!validResult.isValid)
+            {
+               _logger.LogInformation(validResult.msg);
+               throw new ArgumentException(validResult.msg);
+            }
+
             //主要的大區塊，包含了去、回程，跟訂位的資料
             var mainContent = dom.GetElementById("content");
-            //HistoryDetailsModifyTripS2Form_TrainQueryDataViewPanel應該會包含去回程的table，待確認
-            var allSection = mainContent.QuerySelectorAll("#HistoryDetailsModifyTripS2Form_TrainQueryDataViewPanel .section_title");
+            var panelName = "HistoryDetailsModifyTripS2Form_TrainQueryDataViewPanel";
+            panelName = tripType == Models.ModifyTripType.Back ? panelName + "2" : panelName;
+            var allSection = mainContent.QuerySelectorAll($"#{panelName} .section_title");
             //section是去、回程table上面的title
             foreach (var section in allSection)
             {
@@ -111,7 +138,7 @@ namespace THSRCrawler
                 }
             }
 
-            return trips;
+            return trips.Where(x=>x.buttonName != null);
         }
     }
 }
