@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
 using DNTScheduler.Core;
 using Microsoft.Extensions.Configuration;
+using NLog;
 using THSRCrawler.ScheduleJob;
 
 namespace THSRCrawler

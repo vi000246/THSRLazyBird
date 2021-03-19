@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Fluent;
+using NLog.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,11 @@ namespace THSRCrawler
     {
         public static void Main(string[] args)
         {
+            var logger = NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
+
             try
             {
+
                 var host = CreateHostBuilder(args).Build();
                 using var serviceScope = host.Services.CreateScope();
                 var services = serviceScope.ServiceProvider;
@@ -29,8 +33,12 @@ namespace THSRCrawler
             }
             catch (Exception e)
             {
-                Log.Error(e.Message);
+                logger.Error(e.Message);
                 throw;
+            }
+            finally
+            {
+                NLog.LogManager.Shutdown();
             }
 
         }
@@ -39,7 +47,13 @@ namespace THSRCrawler
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .ConfigureLogging(logging =>
+                    {
+                        logging.ClearProviders();
+                        logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    })
+                    .UseNLog();
                 });
 
     }

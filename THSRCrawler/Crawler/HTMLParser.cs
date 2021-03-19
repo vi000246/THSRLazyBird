@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
@@ -16,10 +17,24 @@ namespace THSRCrawler
             _parser = htmlParser;
         }
 
-        //訂位紀錄頁面 驗證此筆訂位紀錄是否可變更行程
-        public void ValidOrderIsEditable()
+        public Models.orderPageInfo GetOrderInformation(string html)
         {
-           //if html find 變更行程button 
+            var _parser = new HtmlParser();
+            var result = new Models.orderPageInfo();
+            var dom = _parser.ParseDocument(html);
+            var mainContent = dom.GetElementById("content");
+            var allTitle = mainContent.QuerySelectorAll(".table_simple tbody tr .section_subtitle");
+            result.isRoundTrip = allTitle.Select(x => x.TextContent).Any(x => x == "回程");
+            result.isTripEditable = dom.QuerySelector("input[value='變更行程']") != null ;
+            var paymentRow = dom.QuerySelector(".table_details  tr  td:contains('交易狀態')");
+            var paymentDetail = paymentRow.NextElementSibling.QuerySelectorAll("span > span").Select(x=>x.TextContent);
+            result.isAlreadPaid = paymentDetail.Any(x=>x== "已付款");
+            if (!result.isAlreadPaid)
+            {
+                result.paymentDeadLine = paymentDetail.FirstOrDefault(x => Regex.IsMatch(x, @"\d+\/\d+"));
+            }
+
+            return result;
         }
 
         //驗證這個時段是否有車票
@@ -33,8 +48,9 @@ namespace THSRCrawler
 
 
         //取得此頁面所有的車次
-        public void GetTripsPerPage(string html)
+        public List<Models.Trips> GetTripsPerPage(string html,Models.ModifyTripType tripType)
         {
+            var trips = new List<Models.Trips>();
 			var dom = _parser.ParseDocument(html);
             //主要的大區塊，包含了去、回程，跟訂位的資料
             var mainContent = dom.GetElementById("content");
@@ -43,11 +59,11 @@ namespace THSRCrawler
             //section是去、回程table上面的title
             foreach (var section in allSection)
             {
-                if (section.FirstElementChild.TextContent.Contains("去程"))
+                if (Regex.IsMatch(section.FirstElementChild.TextContent, "去程|回程"))
                 {
                     //取出此section 的next dom ,存放車次資料的table
                     var alltr = section.ParentElement.QuerySelector(".table_simple tbody").QuerySelectorAll(":scope>tr");
-                    var trips = new List<Models.Trips>();
+                    
                     foreach (var tr in alltr)
                     {
                         var tds = tr.QuerySelectorAll("td");
@@ -94,6 +110,8 @@ namespace THSRCrawler
                     }
                 }
             }
-		}
+
+            return trips;
+        }
     }
 }

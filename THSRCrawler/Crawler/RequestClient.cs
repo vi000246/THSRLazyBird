@@ -50,7 +50,7 @@ namespace THSRCrawler
         }
 
         //輸入訂位代號跟身份證字號，取得訂位紀錄的付款頁面
-        public async void post_search_order_form(string IdCard,string OrderId)
+        public string post_search_order_form(string IdCard,string OrderId)
         {
                 var content = new List<KeyValuePair<string, string>>();
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryForm:hf:0"), ""));
@@ -68,29 +68,38 @@ namespace THSRCrawler
                 var cookies = _cookieContainer.GetCookies(new Uri(BaseUrl+"IMINT"));
                 var url = $"/IMINT/;{cookies.FirstOrDefault(x=>x.Name == "JSESSIONID")}?wicket:interface=:0:HistoryForm::IFormSubmitListener";
                 var html = PostForm(url, content);
+                return html;
         }
 
         //輸入要更改的日期跟時間,取得該時段的車票
 
-        public string post_search_trip_form(bool haveBackTrip)
+        public string post_search_trip_form(Models.ModifyTripType tripType)
         {
-            GoTo_modifyTrip_form();
             //判斷config有沒有去程的設定
+            //從config取得資料
+
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS1Form:hf:0"), ""));
             content.Add(new KeyValuePair<string, string>("bookingMethod", "radio10"));
-            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toCheck"), "on"));//勾選變更去程
-            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeInputField"), "2021/04/14"));
-            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeTable"), "1000A"));
-            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTrainIDInputField"), ""));
-            //如果此筆訂位紀錄有回程的票，要加上回程的欄位
-            if (haveBackTrip)
+            switch (tripType)
             {
-                //判斷config有沒有回程的設定
-                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backCheck"), "on"));//勾選變更回程
-                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeInputField"), "2021/04/14"));
-                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeTable"), "1000A"));
-                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTrainIDInputField"), ""));
+                case Models.ModifyTripType.To:
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toCheck"),
+                        "on")); //勾選變更去程
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeInputField"),
+                        "2021/04/14"));
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeTable"), "1000A"));
+                    content.Add(
+                        new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTrainIDInputField"), ""));
+                    break;
+                //如果此筆訂位紀錄有回程的票，要加上回程的欄位
+                case Models.ModifyTripType.Back:
+                    //判斷config有沒有回程的設定
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backCheck"), "on"));//勾選變更回程
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeInputField"), "2021/04/14"));
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeTable"), "1000A"));
+                    content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTrainIDInputField"), ""));
+                    break;
             }
 
             content.Add(new KeyValuePair<string, string>("SubmitButton", "開始查詢"));
@@ -110,8 +119,6 @@ namespace THSRCrawler
         //取得變更行程頁面，更早的車票
         public string GoTo_ModifyTrip_PrevPage()
         {
-            //https://irs.thsrc.com.tw/IMINT/?wicket:interface=:45:HistoryDetailsModifyTripS2Form:TrainQueryDataViewPanel:PreAndLaterTrainContainer:preTrainLink:1:IBehaviorListener&wicket:behaviorId=0&random=0.5447194313814692
-            //如果是選擇去回程，就會有分去程更早車票，回程更早車票，會return 一段html，用 js組起來後render到頁面
             var html = GetHTML("/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form:TrainQueryDataViewPanel:PreAndLaterTrainContainer:laterTrainLink::IBehaviorListener&wicket:behaviorId=0&random=0.6036634629572775");
             return html;
         }
@@ -127,22 +134,23 @@ namespace THSRCrawler
 
             //輸入該車次的radio button name
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TrainQueryDataViewPanel:TrainGroup"), "radio17"));
-            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TrainQueryDataViewPanel2:TrainGroup"), "radio42"));
             content.Add(new KeyValuePair<string, string>("SubmitButton", "確認車次"));
             var url = $"/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form::IFormSubmitListener";
             var html = PostForm(url, content);
             return html;
         }
 
-        private void GoTo_modifyTrip_form()
+        //進到變更行程頁面
+        public string GoTo_modifyTrip_form()
         {
             var clickChangtTripButton = new List<KeyValuePair<string, string>>();
             clickChangtTripButton.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsForm:hf:0"), ""));
             clickChangtTripButton.Add(new KeyValuePair<string, string>("ShowCarDiff", "1"));
             clickChangtTripButton.Add(new KeyValuePair<string, string>("isStudentInfo", "0"));
             clickChangtTripButton.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TicketProcessButtonPanel:ModifyTripButton"), "變更行程"));
-            var modifyTripPage = PostForm("/IMINT/?wicket:interface=:1:HistoryDetailsForm::IFormSubmitListener", clickChangtTripButton);
+            var html = PostForm("/IMINT/?wicket:interface=:1:HistoryDetailsForm::IFormSubmitListener", clickChangtTripButton);
 
+            return html;
         }
 
         private string PostForm(string url,dynamic content)
@@ -183,6 +191,11 @@ namespace THSRCrawler
             httpRequestMessage.Headers.Add("Accept-Language", "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,und;q=0.6,ko;q=0.5");
             
             return httpRequestMessage;
+        }
+
+        public Models.ModifyTripType GetTripType()
+        {
+            return _tripType;
         }
 
         private string responseParse(HttpRequestMessage httpRequestMessage, HttpResponseMessage response)

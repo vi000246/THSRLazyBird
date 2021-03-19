@@ -22,11 +22,17 @@ namespace THSRCrawler
         // 變更行程時選擇的類型
         public enum ModifyTripType
         {
-            Single,//單程 
-            RoundTrip,//去回程
-            OnlyGo,//只有去程
-            OnlyBack//只有回程
+            To,
+            Back
+        }
 
+        public class orderPageInfo
+        {
+            public bool isRoundTrip { get; set; }
+            public bool isTripEditable { get; set; }
+            public bool isAlreadPaid { get; set; }
+            //付款期限 格式mm/dd
+            public string paymentDeadLine { get; set; }
         }
     }
 }
