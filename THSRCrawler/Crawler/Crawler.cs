@@ -40,22 +40,22 @@ namespace THSRCrawler
 
         public void Login()
         {
-            _requestClient.LoginPage();
+            _requestClient.GoTo_search_order_page();
         }
 
         public void LoginTicketHistoryPage(string IdCard,string OrderId)
         {
-            _requestClient.LoginTicketHistoryPage(IdCard,OrderId);
+            _requestClient.post_search_order_form(IdCard,OrderId);
         }
 
         public string GetModifyTripHTML()
         {
-            return _requestClient.GetModifyTripHTML();
+            return _requestClient.post_search_trip_form(false);
         }
 
         public string ModifyTrip_NextPage()
         {
-            return _requestClient.ModifyTrip_NextPage();
+            return _requestClient.GoTo_ModifyTrip_NextPage();
         }
 
         public void GetAllAvailableTickets()

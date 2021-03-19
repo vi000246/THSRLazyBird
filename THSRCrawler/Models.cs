@@ -9,6 +9,9 @@ namespace THSRCrawler
     {
         public class Trips
         {
+            //button name是uniqle的，每個頁面的button都不會重覆
+            public string buttonName { get; set; }
+            //車次代號
             public int train { get; set; }
             public string startTime { get; set; }
             public string arrivalTime { get; set; }

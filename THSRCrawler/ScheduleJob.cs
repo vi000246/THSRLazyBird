@@ -19,6 +19,7 @@ namespace THSRCrawler
             _logger = logger;
             _crawler = crawler;
             _config = config.Value;
+            IsShuttingDown = _config.IsEnableSchedule;
         }
 
         public bool IsShuttingDown { get; set; }
@@ -31,7 +32,6 @@ namespace THSRCrawler
             }
 
             _logger.LogInformation("Running schedule job.");
-            if(_config.IsEnableSchedule)
             _crawler.init();
         }
     }

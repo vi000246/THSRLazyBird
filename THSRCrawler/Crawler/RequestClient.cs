@@ -42,13 +42,13 @@ namespace THSRCrawler
         }
         
         //第一次進到頁面,取得相關cookie
-        public void LoginPage()
+        public void GoTo_search_order_page()
         {
             var LoginPage = GetHTML("/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
         }
 
         //輸入訂位代號跟身份證字號，取得訂位紀錄
-        public async void LoginTicketHistoryPage(string IdCard,string OrderId)
+        public async void post_search_order_form(string IdCard,string OrderId)
         {
                 var content = new List<KeyValuePair<string, string>>();
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryForm:hf:0"), ""));
@@ -60,7 +60,7 @@ namespace THSRCrawler
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:idPnrInputRadio:rocPnrId"), ""));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:selectStartStation"), ""));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:selectDestinationStation"), ""));
-                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:toTimeInputField"), "2021/03/18"));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:toTimeInputField"), DateTime.Now.ToString("yyyy/MM/dd")));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:toTrainIDInputField"), ""));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:divCaptcha:securityCode"), ""));
                 var cookies = _cookieContainer.GetCookies(new Uri(BaseUrl+"IMINT"));
@@ -70,15 +70,27 @@ namespace THSRCrawler
 
         //輸入要更改的日期跟時間,取得該時段的車票
 
-        public string GetModifyTripHTML()
+        public string post_search_trip_form(bool haveBackTrip)
         {
-            GoToModifyTripForm();
+            GoTo_modifyTrip_form();
+            //判斷config有沒有去程的設定
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS1Form:hf:0"), ""));
             content.Add(new KeyValuePair<string, string>("bookingMethod", "radio10"));
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toCheck"), "on"));//勾選變更去程
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeInputField"), "2021/04/14"));
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeTable"), "1000A"));
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTrainIDInputField"), ""));
+            //如果此筆訂位紀錄有回程的票，要加上回程的欄位
+            if (haveBackTrip)
+            {
+                //判斷config有沒有回程的設定
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backCheck"), "on"));//勾選變更回程
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeInputField"), "2021/04/14"));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeTable"), "1000A"));
+                content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTrainIDInputField"), ""));
+            }
+
             content.Add(new KeyValuePair<string, string>("SubmitButton", "開始查詢"));
             var cookies = _cookieContainer.GetCookies(new Uri(BaseUrl + "IMINT"));
             var url = $"/IMINT/?wicket:interface=:2:HistoryDetailsModifyTripS1Form::IFormSubmitListener";
@@ -87,22 +99,39 @@ namespace THSRCrawler
         }
 
         //取得變更行程頁面，更晚的車票
-        public string ModifyTrip_NextPage()
+        public string GoTo_ModifyTrip_NextPage()
         {
             var html = GetHTML("/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form:TrainQueryDataViewPanel:PreAndLaterTrainContainer:laterTrainLink::IBehaviorListener&wicket:behaviorId=0&random=0.6036634629572775");
             return html;
         }
 
         //取得變更行程頁面，更早的車票
-        public string ModifyTrip_PrevPage()
+        public string GoTo_ModifyTrip_PrevPage()
         {
             var html = GetHTML("/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form:TrainQueryDataViewPanel:PreAndLaterTrainContainer:laterTrainLink::IBehaviorListener&wicket:behaviorId=0&random=0.6036634629572775");
             return html;
         }
 
-        private void GoToModifyTripForm()
+        //送出變更行程表單
+        public string post_modifyTrip_form()
         {
-            //先到變更行程的頁面踩點一下
+            var content = new List<KeyValuePair<string, string>>();
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS2Form:hf:0"), ""));
+            //這兩欄不知道幹嘛的，拿掉會有影響嗎?
+            content.Add(new KeyValuePair<string, string>("paymentStatus", "2"));
+            content.Add(new KeyValuePair<string, string>("ticketTakeStatus", "5"));
+
+            //輸入該車次的radio button name
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TrainQueryDataViewPanel:TrainGroup"), "radio17"));
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TrainQueryDataViewPanel2:TrainGroup"), "radio42"));
+            content.Add(new KeyValuePair<string, string>("SubmitButton", "確認車次"));
+            var url = $"/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form::IFormSubmitListener";
+            var html = PostForm(url, content);
+            return html;
+        }
+
+        private void GoTo_modifyTrip_form()
+        {
             var clickChangtTripButton = new List<KeyValuePair<string, string>>();
             clickChangtTripButton.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsForm:hf:0"), ""));
             clickChangtTripButton.Add(new KeyValuePair<string, string>("ShowCarDiff", "1"));

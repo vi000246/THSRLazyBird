@@ -66,6 +66,7 @@ namespace THSRCrawler
             services.AddTransient<Config>();
             services.AddTransient<HTMLParser>();
             services.AddTransient<IHtmlParser,HtmlParser>();
+            services.AddTransient<INotify,LineNotify>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

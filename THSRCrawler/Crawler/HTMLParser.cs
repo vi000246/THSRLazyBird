@@ -16,10 +16,10 @@ namespace THSRCrawler
             _parser = htmlParser;
         }
 
-        //驗證此筆訂位紀錄是否可變更行程，或是查無座位
+        //訂位紀錄頁面 驗證此筆訂位紀錄是否可變更行程
         public void ValidOrderIsEditable()
         {
-            
+           //if html find 變更行程button 
         }
 
         //驗證這個時段是否有車票
@@ -27,6 +27,10 @@ namespace THSRCrawler
         {
 
         }
+
+        //驗證是否變更成功
+        //變更行程頁面 驗證此筆訂位紀錄是否有回程 以及去/回程是否可變更
+
 
         //取得此頁面所有的車次
         public void GetTripsPerPage(string html)
@@ -49,7 +53,6 @@ namespace THSRCrawler
                         var tds = tr.QuerySelectorAll("td");
                         var result = new Models.Trips();
 
-                        //loop 每個欄位，總共有五欄，車次、出發、到達、花費時間、日期
                         int index = 0;
                         foreach (var td in tds)
                         {
@@ -78,6 +81,12 @@ namespace THSRCrawler
 
 
                                 index++;
+                            }
+
+                            var button = td.QuerySelector("input");
+                            if (button != null)
+                            {
+                                result.buttonName = button.GetAttribute("value");
                             }
                         }
                         trips.Add(result);
