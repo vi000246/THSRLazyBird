@@ -28,6 +28,8 @@ namespace THSRCrawler
         private readonly IHttpClientFactory _clientFactory;
         private readonly Config _config;
         private readonly CookieContainer _cookieContainer;
+        //用來判斷要修改的行程是單程/去回程/只有去程/只有回程
+        private Models.ModifyTripType _tripType;
 
 
         public RequestClient(IHttpClientFactory clientFactory,Config config,CookieContainer cookieContainer)
@@ -47,7 +49,7 @@ namespace THSRCrawler
             var LoginPage = GetHTML("/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
         }
 
-        //輸入訂位代號跟身份證字號，取得訂位紀錄
+        //輸入訂位代號跟身份證字號，取得訂位紀錄的付款頁面
         public async void post_search_order_form(string IdCard,string OrderId)
         {
                 var content = new List<KeyValuePair<string, string>>();
@@ -108,6 +110,8 @@ namespace THSRCrawler
         //取得變更行程頁面，更早的車票
         public string GoTo_ModifyTrip_PrevPage()
         {
+            //https://irs.thsrc.com.tw/IMINT/?wicket:interface=:45:HistoryDetailsModifyTripS2Form:TrainQueryDataViewPanel:PreAndLaterTrainContainer:preTrainLink:1:IBehaviorListener&wicket:behaviorId=0&random=0.5447194313814692
+            //如果是選擇去回程，就會有分去程更早車票，回程更早車票，會return 一段html，用 js組起來後render到頁面
             var html = GetHTML("/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form:TrainQueryDataViewPanel:PreAndLaterTrainContainer:laterTrainLink::IBehaviorListener&wicket:behaviorId=0&random=0.6036634629572775");
             return html;
         }
@@ -117,7 +121,7 @@ namespace THSRCrawler
         {
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS2Form:hf:0"), ""));
-            //這兩欄不知道幹嘛的，拿掉會有影響嗎?
+            //這兩欄是給js判斷用的，沒影響
             content.Add(new KeyValuePair<string, string>("paymentStatus", "2"));
             content.Add(new KeyValuePair<string, string>("ticketTakeStatus", "5"));
 

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
 using DNTScheduler.Core;
 using Microsoft.Extensions.Configuration;
+using THSRCrawler.ScheduleJob;
 
 namespace THSRCrawler
 {
@@ -55,7 +56,8 @@ namespace THSRCrawler
                 // 好像是用來讓heroku之類的server keep alive的
                 // options.AddPingTask(siteRootUrl: "https://localhost:5001");
 
-                options.AddScheduledTask<ScheduleJob>(utcNow => utcNow.Second == 1);
+                options.AddScheduledTask<ModifyTripJob>(utcNow => utcNow.Second == 1);
+                options.AddScheduledTask<UnPaidAlertJob>(utcNow => utcNow.Hour == 22 && utcNow.Minute == 0 && utcNow.Second ==0);
             });
             //config註冊
             var configSection =

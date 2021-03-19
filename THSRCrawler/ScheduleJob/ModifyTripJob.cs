@@ -8,13 +8,13 @@ using Microsoft.Extensions.Options;
 
 namespace THSRCrawler
 {
-    public class ScheduleJob: IScheduledTask
+    public class ModifyTripJob: IScheduledTask
     {
-        private readonly ILogger<ScheduleJob> _logger;
+        private readonly ILogger<ModifyTripJob> _logger;
         private readonly Crawler _crawler;
         private readonly Config _config;
 
-        public ScheduleJob(ILogger<ScheduleJob> logger, Crawler crawler, IOptions<Config> config)
+        public ModifyTripJob(ILogger<ModifyTripJob> logger, Crawler crawler, IOptions<Config> config)
         {
             _logger = logger;
             _crawler = crawler;
@@ -31,7 +31,7 @@ namespace THSRCrawler
                 return;
             }
 
-            _logger.LogInformation("Running schedule job.");
+            _logger.LogInformation("Running ModifyTripJob.");
             _crawler.init();
         }
     }

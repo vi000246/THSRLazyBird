@@ -18,5 +18,15 @@ namespace THSRCrawler
             public string totalTime { get; set; }
             public string date { get; set; }
         }
+
+        // 變更行程時選擇的類型
+        public enum ModifyTripType
+        {
+            Single,//單程 
+            RoundTrip,//去回程
+            OnlyGo,//只有去程
+            OnlyBack//只有回程
+
+        }
     }
 }
