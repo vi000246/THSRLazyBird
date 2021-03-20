@@ -1,33 +1,38 @@
 ﻿<Properties StartupConfiguration="{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}|Default">
   <MonoDevelop.Ide.ItemProperties.THSRLazyBird PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.ItemProperties.THSRCrawler PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../THSRCrawler/RequestClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="THSRTest/ValidationTest.cs">
     <Files>
-      <File FileName="../THSRCrawler/Crawler.cs" Line="16" Column="22" IsPinned="True" />
       <File FileName="../THSRCrawler/Startup.cs" Line="29" Column="42" />
-      <File FileName="../THSRCrawler/Program.cs" Line="21" Column="1" />
-      <File FileName="../THSRCrawler/Logger.cs" Line="1" Column="1" />
-      <File FileName="../THSRCrawler/RequestClient.cs" Line="72" Column="20" />
+      <File FileName="../THSRCrawler/Program.cs" />
+      <File FileName="../THSRCrawler/Validation.cs" />
+      <File FileName="../THSRCrawler/Config.cs" />
+      <File FileName="../THSRCrawler/Crawler/Crawler.cs" />
+      <File FileName="../THSRCrawler/Crawler/HTMLParser.cs" />
+      <File FileName="../THSRCrawler/Crawler/RequestClient.cs" />
+      <File FileName="THSRTest/CrawlerTest.cs" Line="1" Column="1" />
+      <File FileName="THSRTest/ValidationTest.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="THSRLazyBird" expanded="True">
             <Node name="THSRCrawler" expanded="True">
-              <Node name="RequestClient.cs" selected="True" />
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="Crawler" expanded="True" />
+            </Node>
+            <Node name="THSRTest" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="ValidationTest.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>content</Value>
-          <Value>responseString</Value>
-          <Value>JsonArrayAttribute</Value>
-        </State>
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.THSRTest FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
