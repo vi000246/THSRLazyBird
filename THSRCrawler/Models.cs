@@ -15,7 +15,7 @@ namespace THSRCrawler
             public int train { get; set; }
             public string startTime { get; set; }
             public string arrivalTime { get; set; }
-            public string totalTime { get; set; }
+            public int totalTime { get; set; }
             public string date { get; set; }
         }
 
@@ -33,6 +33,21 @@ namespace THSRCrawler
             public bool isAlreadPaid { get; set; }
             //付款期限 格式mm/dd
             public string paymentDeadLine { get; set; }
+            public List<tripInfo> trips { get; set; } = new List<tripInfo>();
+        }
+
+        public class tripInfo
+        {
+            public string tripType { get; set; }
+            public string date { get; set; }
+            public string trainNo { get; set; }
+            public string startStation { get; set; }
+            public string arrivalStation { get; set; }
+            public string startTime { get; set; }
+            public string arrivalTime { get; set; }
+            public string price { get; set; }
+            public string seat { get; set; }
+
         }
 
         public class modifyTripPageInfo

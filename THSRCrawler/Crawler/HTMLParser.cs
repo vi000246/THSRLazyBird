@@ -8,6 +8,7 @@ using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using Hangfire.Annotations;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using NLog;
 
 namespace THSRCrawler
@@ -15,10 +16,12 @@ namespace THSRCrawler
     public class HTMLParser
     {
         private readonly IHtmlParser _parser;
+        private readonly Config _config;
         private readonly ILogger<HTMLParser> _logger;
-        public HTMLParser(IHtmlParser htmlParser, ILogger<HTMLParser> logger)
+        public HTMLParser(IHtmlParser htmlParser, ILogger<HTMLParser> logger, IOptions<Config> config)
         {
             _parser = htmlParser;
+            _config = config.Value;
             _logger = logger;
         }
 
@@ -28,8 +31,30 @@ namespace THSRCrawler
             var result = new Models.orderPageInfo();
             var dom = _parser.ParseDocument(html);
             var mainContent = dom.GetElementById("content");
-            var allTitle = mainContent.QuerySelectorAll(".table_simple tbody tr .section_subtitle");
-            result.isRoundTrip = allTitle.Select(x => x.TextContent).Any(x => x == "回程");
+            ValidSessionExpire(mainContent);
+            CheckPageError(dom);
+
+            var allrow = mainContent.QuerySelectorAll(".table_simple tbody tr");
+            foreach (var row in allrow)
+            {
+                var title = row.QuerySelector(".section_subtitle");
+                if (title != null && Regex.IsMatch(title.TextContent, "去程|回程"))
+                {
+                    var tds = row.ChildNodes.ToList().Select(x => x.TextContent).Where(x => !string.IsNullOrEmpty(x?.Trim())).ToList();
+                    var tripInfo = new Models.tripInfo();
+                    tripInfo.tripType = tds[0];
+                    tripInfo.date = tds[1];
+                    tripInfo.trainNo = tds[2];
+                    tripInfo.startStation = tds[3];
+                    tripInfo.arrivalStation = tds[4];
+                    tripInfo.startTime = tds[5];
+                    tripInfo.arrivalTime = tds[6];
+                    tripInfo.price = tds[7];
+                    tripInfo.seat = tds[8];
+                    result.trips.Add(tripInfo);
+                };
+            }
+            result.isRoundTrip = result.trips.Any(x => x.tripType == "回程");
             result.isTripEditable = dom.QuerySelector("input[value='變更行程']") != null ;
             var paymentRow = dom.QuerySelector(".table_details  tr  td:contains('交易狀態')");
             var paymentDetail = paymentRow.NextElementSibling.QuerySelectorAll("span > span").Select(x=>x.TextContent);
@@ -50,19 +75,27 @@ namespace THSRCrawler
         }
 
 
-        //用來驗證變更行程頁面的錯誤，輸入錯的日期、不能早於出發時間、查無該時段車票等
-        public (bool isValid, string msg) ValidModifyTripError(IHtmlDocument dom)
+        public void CheckPageError(IHtmlDocument dom)
         {
             var msg = "";
-            var isValid = true;
             var mainContent = dom.GetElementsByClassName("feedbackPanelERROR");
             if (mainContent.Any())
             {
                 msg = mainContent.First().FirstElementChild.TextContent;
-                isValid = false;
+                _logger.LogInformation(msg);
+                throw new ArgumentException(msg);
             }
+            
+        }
 
-            return (isValid, msg);
+        public void ValidSessionExpire(IElement content)
+        {
+            var txt = content.QuerySelectorAll(".standard_text");
+            if (txt.Length == 0) return;
+            if (txt.First().InnerHtml.Contains("無法繼續提供您訂票的服務"))
+            {
+                throw new ArgumentException("Session已過期，請重新嘗試");
+            }
         }
 
 
@@ -71,15 +104,11 @@ namespace THSRCrawler
         {
             var trips = new List<Models.Trips>();
 			var dom = _parser.ParseDocument(html);
-            var validResult = ValidModifyTripError(dom);
-            if (!validResult.isValid)
-            {
-               _logger.LogInformation(validResult.msg);
-               throw new ArgumentException(validResult.msg);
-            }
+            CheckPageError(dom);
 
             //主要的大區塊，包含了去、回程，跟訂位的資料
             var mainContent = dom.GetElementById("content");
+            ValidSessionExpire(mainContent);
             var panelName = "HistoryDetailsModifyTripS2Form_TrainQueryDataViewPanel";
             panelName = tripType == Models.ModifyTripType.Back ? panelName + "2" : panelName;
             var allSection = mainContent.QuerySelectorAll($"#{panelName} .section_title");
@@ -89,56 +118,43 @@ namespace THSRCrawler
                 if (Regex.IsMatch(section.FirstElementChild.TextContent, "去程|回程"))
                 {
                     //取出此section 的next dom ,存放車次資料的table
-                    var alltr = section.ParentElement.QuerySelector(".table_simple tbody").QuerySelectorAll(":scope>tr");
+                    var alltr = section.ParentElement
+                        .QuerySelector(".table_simple tbody")
+                        .QuerySelectorAll(":scope>tr:not(:first-child)");
                     
                     foreach (var tr in alltr)
                     {
-                        var tds = tr.QuerySelectorAll("td");
-                        var result = new Models.Trips();
-
-                        int index = 0;
-                        foreach (var td in tds)
+                        var tripRowElement = tr.Children.Select(x =>
                         {
-                            var span = td.QuerySelector("span");
-                            if (span != null)
+                            if (x.FirstChild.NodeName == "INPUT")
                             {
-                                string text = span.TextContent;
-                                if (index == 0)
-                                {
-                                    result.train = int.Parse(text);
-                                }
-                                else if (index == 1)
-                                {
-                                    result.startTime = text;
-                                }
-                                else if (index == 2)
-                                {
-                                    result.arrivalTime = text;
-                                }else if (index == 3)
-                                {
-                                    result.totalTime = text;
-                                }else if (index == 4)
-                                {
-                                    result.date = text;
-                                }
-
-
-                                index++;
+                                return x.FirstElementChild.GetAttribute("value");
                             }
 
-                            var button = td.QuerySelector("input");
-                            if (button != null)
-                            {
-                                result.buttonName = button.GetAttribute("value");
-                            }
-                        }
-                        trips.Add(result);
+                            return x.TextContent;
+                        }).Where(x => !string.IsNullOrEmpty(x?.Trim())).ToList();
 
+                        var totalTime = DateTime.ParseExact(tripRowElement[4], "h:mm",
+                           null);
+
+                        trips.Add(new Models.Trips()
+                        {
+                            buttonName = tripRowElement[0],
+                            train = int.Parse(tripRowElement[1]),
+                            startTime = tripRowElement[2],
+                            arrivalTime = tripRowElement[3],
+                            totalTime = (int)totalTime.TimeOfDay.TotalMinutes,
+                            date = tripRowElement[5]
+
+                        });
                     }
+
+
+                    
                 }
             }
 
-            return trips.Where(x=>x.buttonName != null);
+            return trips.Where(x=>x.buttonName != null && x.totalTime <= _config.MaxETA).OrderBy(x=>x.arrivalTime);
         }
     }
 }

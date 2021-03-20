@@ -1,0 +1,28 @@
+[09:41:24.4445][THSRCrawler.ModifyTripJob][Fatal] - 訂位代號:04480571 日期已過期 1天，請重新設置，Date:2021/03/19 
+[09:41:24.6309][THSRCrawler.Program][Error] - 訂位代號:04480571 日期已過期 1天，請重新設置，Date:2021/03/19 
+[09:43:00.9501][THSRCrawler.HTMLParser][Info] - 去程日期不可晚於回程日期 
+[09:43:01.0409][THSRCrawler.Program][Error] - 去程日期不可晚於回程日期 
+[11:31:58.5643][THSRCrawler.HTMLParser][Info] -  
+[11:31:58.6647][THSRCrawler.Program][Error] -  
+[11:33:04.1192][THSRCrawler.HTMLParser][Info] - 去程查無可售車次或選購的車票已售完，請重新輸入訂票條件。 
+[11:33:04.2169][THSRCrawler.Program][Error] - 去程查無可售車次或選購的車票已售完，請重新輸入訂票條件。 
+[11:35:48.8563][THSRCrawler.HTMLParser][Info] - 去程查無可售車次或選購的車票已售完，請重新輸入訂票條件。 
+[11:35:49.2797][THSRCrawler.HTMLParser][Info] - 回程查無可售車次或選購的車票已售完，請重新輸入訂票條件。 
+[11:35:49.4572][Microsoft.Hosting.Lifetime][Info] - Application started. Press Ctrl+C to shut down. 
+[11:35:49.4572][Microsoft.Hosting.Lifetime][Info] - Hosting environment: Development 
+[11:35:49.4572][Microsoft.Hosting.Lifetime][Info] - Content root path: F:\Projects\Github\THSRLazyBird\THSRCrawler 
+[11:35:49.6257][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request starting HTTP/2 GET https://localhost:44312/ - - 
+[11:35:49.7003][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executing endpoint '/ HTTP: GET' 
+[11:35:49.7927][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executed endpoint '/ HTTP: GET' 
+[11:35:49.8143][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request finished HTTP/2 GET https://localhost:44312/ - - - 200 - - 189.3681ms 
+[11:36:01.4075][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/20 上午 03:36:01. 
+[11:36:01.4278][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/20 上午 03:36:01. 
+[11:36:42.5663][Microsoft.Hosting.Lifetime][Info] - Application started. Press Ctrl+C to shut down. 
+[11:36:42.6495][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request starting HTTP/2 GET https://localhost:44312/ - - 
+[11:36:42.6599][Microsoft.Hosting.Lifetime][Info] - Hosting environment: Development 
+[11:36:42.6599][Microsoft.Hosting.Lifetime][Info] - Content root path: F:\Projects\Github\THSRLazyBird\THSRCrawler 
+[11:36:42.7239][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executing endpoint '/ HTTP: GET' 
+[11:36:42.7954][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executed endpoint '/ HTTP: GET' 
+[11:36:42.8198][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request finished HTTP/2 GET https://localhost:44312/ - - - 200 - - 171.2151ms 
+[11:37:01.5077][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/20 上午 03:37:01. 
+[11:37:01.5077][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/20 上午 03:37:01. 

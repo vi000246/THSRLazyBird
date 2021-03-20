@@ -71,10 +71,8 @@ namespace THSRCrawler
 
         //輸入要更改的日期跟時間,取得該時段的車票
 
-        public string post_search_trip_form(Models.ModifyTripType tripType,TicketOrders order)
+        public string post_search_trip_form(Models.ModifyTripType tripType,(string tripDate,string tripTime) formatDate)
         {
-            var formatDate = _config.GetValidOrderDate(order,tripType);
-
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS1Form:hf:0"), ""));
             content.Add(new KeyValuePair<string, string>("bookingMethod", "radio10"));
@@ -114,8 +112,8 @@ namespace THSRCrawler
             return html;
         }
 
-        //送出變更行程表單
-        public string post_modifyTrip_form()
+        //送出變更行程表單 buttonName是該車次的radio button name
+        public string post_modifyTrip_form(string buttonName)
         {
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS2Form:hf:0"), ""));
@@ -124,7 +122,7 @@ namespace THSRCrawler
             content.Add(new KeyValuePair<string, string>("ticketTakeStatus", "5"));
 
             //輸入該車次的radio button name
-            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TrainQueryDataViewPanel:TrainGroup"), "radio17"));
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TrainQueryDataViewPanel:TrainGroup"), buttonName));
             content.Add(new KeyValuePair<string, string>("SubmitButton", "確認車次"));
             var url = $"/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form::IFormSubmitListener";
             var html = PostForm(url, content);

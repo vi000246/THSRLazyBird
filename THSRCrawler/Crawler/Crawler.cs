@@ -29,21 +29,21 @@ namespace THSRCrawler
         }
         public void init()
         {
-            var orders = _config.ticketOrders;
-            foreach (var order in orders)
+            var configs = _config.ticketOrders;
+            foreach (var config in configs)
             {
-                var orderInfo = post_search_order_form(order.IdCard,order.OrderId);
+                var orderInfo = post_search_order_form(config.IdCard, config.OrderId);
                 
                 if (!orderInfo.isTripEditable)
                 {
-                    _logger.LogInformation($"此訂位代號:{order.OrderId} 無法變更行程");
+                    _logger.LogInformation($"此訂位代號:{config.OrderId} 無法變更行程");
                     return;
                 }
 
-                ModifyTrip(Models.ModifyTripType.To, order);
+                ModifyTrip(Models.ModifyTripType.To, config, orderInfo);
                 if (orderInfo.isRoundTrip)
                 {
-                    ModifyTrip(Models.ModifyTripType.Back, order);
+                    ModifyTrip(Models.ModifyTripType.Back, config, orderInfo);
                 }
 
             }
@@ -52,22 +52,48 @@ namespace THSRCrawler
         public Models.orderPageInfo post_search_order_form(string IdCard,string OrderId)
         {
             _requestClient.GoTo_search_order_page();
-            var html =  _requestClient.post_search_order_form(IdCard,OrderId);
+            var html = _requestClient.post_search_order_form(IdCard, OrderId);
             var orderInfo = _htmlParser.GetOrderInformation(html);
+
             return orderInfo;
         }
 
-        public string ModifyTrip(Models.ModifyTripType tripType,TicketOrders order)
+        public void ModifyTrip(Models.ModifyTripType tripType,TicketOrders config,Models.orderPageInfo orderInfo)
         {
-            var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
-            //判斷去/回程是否可更改
+            try
+            {
+                var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
+                //判斷去/回程是否可更改
 
+                var formatDate = _config.GetValidOrderDate(config, tripType);
+                var html = _requestClient.post_search_trip_form(tripType, formatDate);
+                var trips = _htmlParser.GetTripsPerPageAndHandleError(html, tripType);
+                if (trips != null && trips.Count() >= 0)
+                {
+                    var matchTrip = FindMatchTrip(tripType, trips, orderInfo);
+                    if (!string.IsNullOrEmpty(matchTrip))
+                    {
+                        _requestClient.post_modifyTrip_form(matchTrip);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //這裡不需要處理例外，就讓程式繼續跑
+            }
 
-            var html = _requestClient.post_search_trip_form(tripType,order);
-            var trips = _htmlParser.GetTripsPerPageAndHandleError(html, tripType);
-            //找出符合的行程,需要比對目前的行程，不能越改越爛
-            //變更行程
-            return "";
+        }
+
+        public string FindMatchTrip(Models.ModifyTripType tripType ,IEnumerable<Models.Trips> trips,Models.orderPageInfo orderInfo)
+        {
+            var tripTitle = "去程";
+            if (tripType == Models.ModifyTripType.Back)
+                tripTitle = "回程";
+            //目前訂單的行程資訊
+            var tripInfo = orderInfo.trips.First(x => x.tripType == tripTitle);
+            //組出行程的抵達時間
+
+            return trips.FirstOrDefault().buttonName;
         }
 
     }

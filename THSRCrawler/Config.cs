@@ -54,7 +54,7 @@ namespace THSRCrawler
 
             if (DateTime.Now.Date > dDate.Date)
             {
-                var msg = $"訂位代號:{order.OrderId} 日期已過期 {(DateTime.Now - dDate).Days}天，請重新設置，Date:{tripDate}";
+                var msg = $"訂位代號:{order.OrderId} 日期為過去時間 {(DateTime.Now - dDate).Days}天，請重新設置，Date:{tripDate}";
                 _logger.LogCritical(msg);
                 throw new ArgumentException(msg);
             }
