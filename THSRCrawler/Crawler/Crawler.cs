@@ -20,12 +20,14 @@ namespace THSRCrawler
         private readonly Config _config;
         private readonly HTMLParser _htmlParser;
         private readonly ILogger<Crawler> _logger;
-        public Crawler(RequestClient requestClient, IOptions<Config> config, HTMLParser htmlParser, ILogger<Crawler> logger)
+        private readonly Validation _validation;
+        public Crawler(RequestClient requestClient, IOptions<Config> config, HTMLParser htmlParser, ILogger<Crawler> logger,Validation validation)
         {
             _requestClient = requestClient;
             _config = config.Value;
             _htmlParser = htmlParser;
             _logger = logger;
+            _validation = validation;
         }
         public void init()
         {
@@ -65,7 +67,9 @@ namespace THSRCrawler
                 var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
                 //判斷去/回程是否可更改
 
-                var formatDate = _config.GetValidOrderDate(config, tripType);
+                _validation.validConfigDateTime(config,orderInfo);
+
+                var formatDate = _config.GetValidOrderDate(config, tripType,orderInfo);
                 var html = _requestClient.post_search_trip_form(tripType, formatDate);
                 var trips = _htmlParser.GetTripsPerPageAndHandleError(html, tripType);
                 if (trips != null && trips.Count() >= 0)
@@ -92,6 +96,9 @@ namespace THSRCrawler
             //目前訂單的行程資訊
             var tripInfo = orderInfo.trips.First(x => x.tripType == tripTitle);
             //組出行程的抵達時間
+
+            //如果目前訂位日期跟設定檔日期一樣，就判斷抵達時間
+            //如果不一樣，就挑一個行車時間最短的
 
             return trips.FirstOrDefault().buttonName;
         }

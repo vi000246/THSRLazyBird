@@ -26,47 +26,32 @@ namespace THSRCrawler
         }
 
         //將設定檔的訂位時間轉成高鐵網站可用的格式
-        public (string tripDate,string tripTime) GetValidOrderDate(TicketOrders order, Models.ModifyTripType tripType)
+        public (string tripDate,string tripTime) GetValidOrderDate(TicketOrders config, Models.ModifyTripType tripType, Models.orderPageInfo orderInfo)
         {
             string tripDate = "";
             string tripTime = "";
-            var targetDate = order.targetDate;
+            var targetDate = config.targetDate;
             switch (tripType)
             {
                 case Models.ModifyTripType.To:
                     tripDate = targetDate.TripToDate;
-                    tripTime = getTimeDropDownValue(targetDate.TripToTime);
+                    tripTime =targetDate.TripToTime;
                     break;
                 case Models.ModifyTripType.Back:
                     tripDate = targetDate.TripBackDate;
-                    tripTime = getTimeDropDownValue(targetDate.TripBackTime);
+                    tripTime = targetDate.TripBackTime;
                     break;
             }
 
-            string[] formats = { "yyyy/mm/dd", "yyyy/m/d", "yyyy/m/dd", "yyyy/mm/d" };
-            if (!DateTime.TryParseExact(tripDate, formats, null, System.Globalization.DateTimeStyles.None, out DateTime _date) ||
-                !DateTime.TryParse(tripDate, out DateTime dDate))
+            var formatTime = getTimeDropDownValue(tripTime);
+            if (string.IsNullOrEmpty(formatTime))
             {
-                var msg = $"訂位代號:{order.OrderId} 設定檔Date欄位格式錯誤，Date:{tripDate} 必須為yyyy/mm/dd";
+                var msg = $"訂位代號:{config.OrderId} 設定檔Time欄位格式錯誤，time:{tripTime} 必須為mm:dd 以30分鐘為間隔";
                 _logger.LogCritical(msg);
                 throw new ArgumentException(msg);
             }
 
-            if (DateTime.Now.Date > dDate.Date)
-            {
-                var msg = $"訂位代號:{order.OrderId} 日期為過去時間 {(DateTime.Now - dDate).Days}天，請重新設置，Date:{tripDate}";
-                _logger.LogCritical(msg);
-                throw new ArgumentException(msg);
-            }
-
-            if (string.IsNullOrEmpty(tripTime))
-            {
-                var msg = $"訂位代號:{order.OrderId} 設定檔Time欄位格式錯誤，time:{tripTime} 必須為mm:dd 以30分鐘為間隔";
-                _logger.LogCritical(msg);
-                throw new ArgumentException(msg);
-            }
-
-            return(tripDate,tripTime);
+            return(tripDate, formatTime);
         }
 
         private string getTimeDropDownValue(string time)

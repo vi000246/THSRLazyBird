@@ -68,6 +68,7 @@ namespace THSRCrawler
             services.AddTransient<Crawler>();
             services.AddTransient<Config>();
             services.AddTransient<HTMLParser>();
+            services.AddTransient<Validation>();
             services.AddTransient<IHtmlParser,HtmlParser>();
             services.AddTransient<INotify,LineNotify>();
         }
