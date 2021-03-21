@@ -92,7 +92,8 @@ namespace THSRCrawler
             }
             else if (tripInfo.tripType == "回程")
             {
-                if(configDate >= orderDate.AddMinutes(-30))
+                //因為是算去程到達時間，而設定檔是設出發時間，就再加個2.5小時
+                if(configDate.AddHours(2.5) >= orderDate)
                     throw new InvalidConfigException("設定檔的去程不得大於訂位紀錄的回程");
             }
             else {

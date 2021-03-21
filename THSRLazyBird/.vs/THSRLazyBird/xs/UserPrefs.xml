@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}|Default">
   <MonoDevelop.Ide.ItemProperties.THSRLazyBird PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.ItemProperties.THSRCrawler PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../THSRCrawler/Validation.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../THSRCrawler/Nlog.config">
     <Files>
       <File FileName="../THSRCrawler/Startup.cs" Line="29" Column="42" />
       <File FileName="../THSRCrawler/Program.cs" Line="26" Column="23" />
@@ -11,15 +11,16 @@
       <File FileName="../THSRCrawler/Crawler/RequestClient.cs" Line="12" Column="48" />
       <File FileName="Program.cs" />
       <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" Line="4" Column="12" />
-      <File FileName="../THSRCrawler/Crawler/TripCompare.cs" Line="17" Column="31" />
+      <File FileName="../THSRCrawler/Crawler/TripCompare.cs" Line="14" Column="10" />
       <File FileName="THSRLazyBird.csproj" />
       <File FileName="../THSRCrawler/ScheduleJob/UnPaidAlertJob.cs" Line="33" Column="27" />
-      <File FileName="THSRTest/TripCompareTest.cs" Line="7" Column="7" />
-      <File FileName="THSRTest/ValidationTest.cs" Line="23" Column="45" />
-      <File FileName="../THSRCrawler/Crawler/Validation.cs" Line="26" Column="83" />
+      <File FileName="THSRTest/TripCompareTest.cs" Line="14" Column="52" />
+      <File FileName="THSRTest/ValidationTest.cs" Line="18" Column="1" />
+      <File FileName="../THSRCrawler/Crawler/Validation.cs" Line="57" Column="1" />
       <File FileName="../THSRCrawler/Exception/InvalidConfigxception.cs" Line="6" Column="38" />
       <File FileName="../THSRCrawler/ScheduleJob/ModifyTripJob.cs" Line="1" Column="1" />
       <File FileName="../THSRCrawler/Models.cs" Line="28" Column="1" />
+      <File FileName="../THSRCrawler/Nlog.config" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -31,13 +32,27 @@
               <Node name="Notify" expanded="True" />
               <Node name="Properties" expanded="True" />
               <Node name="ScheduleJob" expanded="True" />
-              <Node name="Validation.cs" selected="True" />
+              <Node name="Nlog.config" selected="True" />
             </Node>
             <Node name="THSRLazyBird" expanded="True">
               <Node name="Dependencies" expanded="True" />
             </Node>
             <Node name="THSRTest" expanded="True">
               <Node name="Dependencies" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="THSRLazyBird" expanded="True">
+            <Node name="THSRTest" expanded="True">
+              <Node name="THSRTest" expanded="True">
+                <Node name="ValidationTest" expanded="True" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
