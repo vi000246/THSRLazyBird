@@ -94,8 +94,9 @@ namespace THSRCrawler
             if (tripType == Models.ModifyTripType.Back)
                 tripTitle = "回程";
             //目前訂單的行程資訊
-            var tripInfo = orderInfo.trips.First(x => x.tripType == tripTitle);
+            var orderTripInfo = orderInfo.trips.First(x => x.tripType == tripTitle);
             //組出行程的抵達時間
+
 
             //如果目前訂位日期跟設定檔日期一樣，就判斷抵達時間
             //如果不一樣，就挑一個行車時間最短的

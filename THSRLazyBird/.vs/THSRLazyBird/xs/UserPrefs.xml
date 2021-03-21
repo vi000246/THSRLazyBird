@@ -5,23 +5,29 @@
     <Files>
       <File FileName="../THSRCrawler/Startup.cs" Line="29" Column="42" />
       <File FileName="../THSRCrawler/Program.cs" />
-      <File FileName="../THSRCrawler/Validation.cs" />
+      <File FileName="../THSRCrawler/Validation.cs" Line="25" Column="1" />
       <File FileName="../THSRCrawler/Config.cs" />
       <File FileName="../THSRCrawler/Crawler/Crawler.cs" />
       <File FileName="../THSRCrawler/Crawler/HTMLParser.cs" />
       <File FileName="../THSRCrawler/Crawler/RequestClient.cs" />
+      <File FileName="Program.cs" />
+      <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" Line="4" Column="12" />
+      <File FileName="THSRTest/UnitTest1.cs" Line="21" Column="1" />
       <File FileName="THSRTest/CrawlerTest.cs" Line="1" Column="1" />
-      <File FileName="THSRTest/ValidationTest.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="THSRLazyBird" expanded="True">
             <Node name="THSRCrawler" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
               <Node name="Crawler" expanded="True" />
+              <Node name="Notify" expanded="True" />
+              <Node name="ScheduleJob" expanded="True" />
+            </Node>
+            <Node name="THSRLazyBird" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="ProjectDependencies" expanded="True" />
+              </Node>
             </Node>
             <Node name="THSRTest" expanded="True">
               <Node name="Dependencies" expanded="True" />
@@ -30,9 +36,16 @@
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="THSRLazyBird" expanded="True" selected="True" />
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.THSRTest FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

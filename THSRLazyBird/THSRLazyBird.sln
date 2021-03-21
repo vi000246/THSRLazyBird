@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THSRLazyBird", "THSRLazyBir
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THSRCrawler", "..\THSRCrawler\THSRCrawler.csproj", "{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THSRTest", "THSRTest\THSRTest.csproj", "{990F76C3-CF5E-4AEB-9684-6F101EB21366}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THSRTest", "THSRTest\THSRTest.csproj", "{30C0133C-406E-48E2-A6B4-25317A7B8EB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{990F76C3-CF5E-4AEB-9684-6F101EB21366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{990F76C3-CF5E-4AEB-9684-6F101EB21366}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{990F76C3-CF5E-4AEB-9684-6F101EB21366}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{990F76C3-CF5E-4AEB-9684-6F101EB21366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30C0133C-406E-48E2-A6B4-25317A7B8EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C0133C-406E-48E2-A6B4-25317A7B8EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C0133C-406E-48E2-A6B4-25317A7B8EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C0133C-406E-48E2-A6B4-25317A7B8EB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

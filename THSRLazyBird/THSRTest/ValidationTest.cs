@@ -1,13 +1,25 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+using THSRCrawler;
 
 namespace THSRTest
 {
-    [TestClass]
-    public class UnitTest1
+    public class ValidationTest
     {
-        [TestMethod]
-        public void TestMethod1()
+        public readonly Validation _validation = new Validation();
+
+
+        [SetUp]
+        public void Setup()
         {
+        }
+
+        [Test]
+        public void Test1()
+        {
+            var config = new TicketOrders();
+            var orderInfo = new Models.orderPageInfo();
+            _validation.validConfigDateTime(config,orderInfo);
+            Assert.Pass();
         }
     }
 }
