@@ -46,10 +46,6 @@
               "target": "Package",
               "version": "[1.2.0, )"
             },
-            "Hangfire": {
-              "target": "Package",
-              "version": "[1.7.20, )"
-            },
             "NLog": {
               "target": "Package",
               "version": "[4.7.8, )"

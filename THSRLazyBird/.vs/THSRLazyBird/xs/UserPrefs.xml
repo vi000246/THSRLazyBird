@@ -1,19 +1,23 @@
 ﻿<Properties StartupConfiguration="{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}|Default">
   <MonoDevelop.Ide.ItemProperties.THSRLazyBird PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.ItemProperties.THSRCrawler PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="THSRTest/ValidationTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="obj/Debug/net5.0/THSRLazyBird.AssemblyInfo.cs">
     <Files>
       <File FileName="../THSRCrawler/Startup.cs" Line="29" Column="42" />
       <File FileName="../THSRCrawler/Program.cs" />
       <File FileName="../THSRCrawler/Validation.cs" Line="25" Column="1" />
       <File FileName="../THSRCrawler/Config.cs" />
-      <File FileName="../THSRCrawler/Crawler/Crawler.cs" />
-      <File FileName="../THSRCrawler/Crawler/HTMLParser.cs" />
-      <File FileName="../THSRCrawler/Crawler/RequestClient.cs" />
+      <File FileName="../THSRCrawler/Crawler/Crawler.cs" Line="78" Column="18" />
+      <File FileName="../THSRCrawler/Crawler/HTMLParser.cs" Line="8" Column="30" />
+      <File FileName="../THSRCrawler/Crawler/RequestClient.cs" Line="12" Column="48" />
       <File FileName="Program.cs" />
       <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" Line="4" Column="12" />
-      <File FileName="THSRTest/UnitTest1.cs" Line="21" Column="1" />
-      <File FileName="THSRTest/CrawlerTest.cs" Line="1" Column="1" />
+      <File FileName="THSRTest/UnitTest1.cs" Line="16" Column="15" />
+      <File FileName="THSRTest/CrawlerTest.cs" Line="7" Column="7" />
+      <File FileName="../THSRCrawler/Crawler/TripCompare.cs" Line="17" Column="31" />
+      <File FileName="THSRLazyBird.csproj" Line="1" Column="1" />
+      <File FileName="../THSRCrawler/ScheduleJob/UnPaidAlertJob.cs" Line="33" Column="27" />
+      <File FileName="obj/Debug/net5.0/THSRLazyBird.AssemblyInfo.cs" Line="16" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,14 +28,11 @@
               <Node name="Notify" expanded="True" />
               <Node name="ScheduleJob" expanded="True" />
             </Node>
-            <Node name="THSRLazyBird" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="ProjectDependencies" expanded="True" />
-              </Node>
+            <Node name="THSRLazyBird" expanded="True" selected="True">
+              <Node name="Dependencies" expanded="True" />
             </Node>
             <Node name="THSRTest" expanded="True">
               <Node name="Dependencies" expanded="True" />
-              <Node name="ValidationTest.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -52,6 +53,7 @@
     <BreakpointStore>
       <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="81" column="1" />
       <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRCrawler/RequestClient.cs" line="74" column="1" />
+      <Breakpoint file="/Users/linyicyun/THSRLazyBird/THSRLazyBird/THSRTest/TripCompareTest.cs" relfile="THSRTest/TripCompareTest.cs" line="27" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

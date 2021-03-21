@@ -46,10 +46,6 @@
               "target": "Package",
               "version": "[1.2.0, )"
             },
-            "Hangfire": {
-              "target": "Package",
-              "version": "[1.7.20, )"
-            },
             "NLog": {
               "target": "Package",
               "version": "[4.7.8, )"
@@ -127,10 +123,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Hangfire": {
-              "target": "Package",
-              "version": "[1.7.19, )"
-            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.10.13, )"

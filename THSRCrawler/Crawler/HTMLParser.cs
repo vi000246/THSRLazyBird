@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
-using Hangfire.Annotations;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NLog;

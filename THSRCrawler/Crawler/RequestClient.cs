@@ -10,7 +10,6 @@ using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using RestSharp;
 
 namespace THSRCrawler
