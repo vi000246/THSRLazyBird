@@ -21,4 +21,7 @@
     <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exception\" />
+  </ItemGroup>
 </Project>

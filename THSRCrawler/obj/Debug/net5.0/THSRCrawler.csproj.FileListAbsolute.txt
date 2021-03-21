@@ -76,3 +76,4 @@ F:/Projects/Github/THSRLazyBird/THSRCrawler/bin/Debug/net5.0/NLog.Web.AspNetCore
 /Users/linyicyun/THSRLazyBird/THSRCrawler/obj/Debug/net5.0/ref/THSRCrawler.dll
 /Users/linyicyun/THSRLazyBird/THSRCrawler/obj/Debug/net5.0/THSRCrawler.pdb
 /Users/linyicyun/THSRLazyBird/THSRCrawler/obj/Debug/net5.0/THSRCrawler.genruntimeconfig.cache
+/Users/linyicyun/THSRLazyBird/THSRCrawler/obj/Debug/net5.0/THSRCrawler.csprojAssemblyReference.cache

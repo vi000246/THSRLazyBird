@@ -1,25 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PmVkgU3tblHuZjkokiqpHIvv+2YWK1F2oqTDSR7fO7SvyMfij2bS/8fql5EuzSxtgTfQcWueqmw7A9diJKHnTQ==",
+  "dgSpecHash": "rSO7fihys17Eq7eAgfxzxn7tyEMcECTQCIfRMQjkAZS7nsfh7qyoJSKMMWTgpe1dFAkUOJoZdkf8dgu114RbrQ==",
   "success": true,
   "projectFilePath": "/Users/linyicyun/THSRLazyBird/THSRLazyBird/THSRLazyBird.csproj",
   "expectedPackageFiles": [
-    "/Users/linyicyun/.nuget/packages/anglesharp/1.0.0-alpha-844/anglesharp.1.0.0-alpha-844.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/dntscheduler.core/1.2.0/dntscheduler.core.1.2.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.extensions.configuration.abstractions/5.0.0/microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.extensions.dependencyinjection/5.0.0/microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/5.0.0/microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.extensions.logging/5.0.0/microsoft.extensions.logging.5.0.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.extensions.logging.abstractions/5.0.0/microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.extensions.options/5.0.0/microsoft.extensions.options.5.0.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.extensions.primitives/5.0.0/microsoft.extensions.primitives.5.0.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/microsoft.visualstudio.azure.containers.tools.targets/1.10.13/microsoft.visualstudio.azure.containers.tools.targets.1.10.13.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/nlog/4.7.8/nlog.4.7.8.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/nlog.extensions.logging/1.7.1/nlog.extensions.logging.1.7.1.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/nlog.web.aspnetcore/4.11.0/nlog.web.aspnetcore.4.11.0.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/restsharp/106.11.7/restsharp.106.11.7.nupkg.sha512",
-    "/Users/linyicyun/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512"
+    "/Users/linyicyun/.nuget/packages/microsoft.visualstudio.azure.containers.tools.targets/1.10.13/microsoft.visualstudio.azure.containers.tools.targets.1.10.13.nupkg.sha512"
   ],
   "logs": []
 }

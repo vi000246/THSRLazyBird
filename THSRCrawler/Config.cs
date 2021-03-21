@@ -48,7 +48,7 @@ namespace THSRCrawler
             {
                 var msg = $"訂位代號:{config.OrderId} 設定檔Time欄位格式錯誤，time:{tripTime} 必須為mm:dd 以30分鐘為間隔";
                 _logger.LogCritical(msg);
-                throw new ArgumentException(msg);
+                throw new InvalidConfigException(msg);
             }
 
             return(tripDate, formatTime);

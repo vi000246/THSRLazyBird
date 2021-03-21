@@ -108,3 +108,4 @@
 /Users/linyicyun/THSRLazyBird/THSRLazyBird/THSRTest/obj/Debug/net5.0/ref/THSRTest.dll
 /Users/linyicyun/THSRLazyBird/THSRLazyBird/THSRTest/obj/Debug/net5.0/THSRTest.pdb
 /Users/linyicyun/THSRLazyBird/THSRLazyBird/THSRTest/obj/Debug/net5.0/THSRTest.genruntimeconfig.cache
+/Users/linyicyun/THSRLazyBird/THSRLazyBird/THSRTest/obj/Debug/net5.0/THSRTest.csprojAssemblyReference.cache
