@@ -36,6 +36,8 @@ namespace THSRCrawler
             var configs = _config.ticketOrders;
             foreach (var config in configs)
             {
+                _validation.validOrderIdAndIdCard(config);
+
                 var orderInfo = post_search_order_form(config.IdCard, config.OrderId);
                 
                 if (!orderInfo.isTripEditable)
@@ -43,9 +45,13 @@ namespace THSRCrawler
                     _logger.LogInformation($"此訂位代號:{config.OrderId} 無法變更行程");
                     return;
                 }
+                _validation.validConfigDateTime(config,orderInfo);
 
-                ModifyTrip(Models.ModifyTripType.To, config, orderInfo);
-                if (orderInfo.isRoundTrip)
+                if (_validation.haveToDateFunc(config))
+                {
+                    ModifyTrip(Models.ModifyTripType.To, config, orderInfo);
+                }
+                if (orderInfo.isRoundTrip && _validation.haveBackDateFunc(config))
                 {
                     ModifyTrip(Models.ModifyTripType.Back, config, orderInfo);
                 }
@@ -69,14 +75,21 @@ namespace THSRCrawler
                 var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
                 //判斷去/回程是否可更改
 
-                _validation.validConfigDateTime(config,orderInfo);
 
                 var formatDate = _config.GetValidOrderDate(config, tripType,orderInfo);
                 var html = _requestClient.post_search_trip_form(tripType, formatDate);
                 var trips = _htmlParser.GetTripsPerPageAndHandleError(html, tripType);
                 if (trips != null && trips.Count() >= 0)
                 {
-                    var matchTrip = _tripCompare.FindMatchTrip(tripType, trips, orderInfo);
+                    var tripInfo = new Models.tripInfo();
+                    if (tripType == Models.ModifyTripType.To)
+                        tripInfo = orderInfo.trips.FirstOrDefault(x => x.tripType == "去程");
+                    else
+                    {
+                        tripInfo = orderInfo.trips.FirstOrDefault(x => x.tripType == "回程");
+                    }
+
+                    var matchTrip = _tripCompare.FindMatchTrip(trips.ToList(), tripInfo);
                     if (!string.IsNullOrEmpty(matchTrip))
                     {
                         _requestClient.post_modifyTrip_form(matchTrip);

@@ -19,23 +19,28 @@ namespace THSRCrawler
             _logger = logger;
         }
 
+        public Func<TicketOrders,bool> haveBackDateFunc = (TicketOrders config) => (!string.IsNullOrEmpty(config.targetDate.TripBackDate) &&
+                                                                                    !string.IsNullOrEmpty(config.targetDate.TripBackTime));
+        public Func<TicketOrders, bool> haveToDateFunc = (TicketOrders config) => (!string.IsNullOrEmpty(config.targetDate.TripToDate) &&
+                                                                                   !string.IsNullOrEmpty(config.targetDate.TripToTime));
 
         public void validConfigDateTime(TicketOrders config, Models.orderPageInfo orderInfo)
         {
-            if (config.targetDate == null || string.IsNullOrEmpty(config.targetDate.TripToDate) || string.IsNullOrEmpty(config.targetDate.TripToTime)) {
-                throw new InvalidConfigException($"訂位代號:{config.OrderId} 請填寫去程目標時段");
+
+            var haveBackDate = haveBackDateFunc(config);
+            var haveToDate = haveToDateFunc(config);
+
+            if (haveToDate)
+            {
+                var configToDate = validDateFormat(config.targetDate.TripToDate, config.OrderId);
+                validPassDate(configToDate, config.OrderId);
+                /**
+                 * logic:去程到達時間不可晚於回程出發時間或相距過近
+                 * 去程日期不可晚於回程日期
+                **/
+                var backTripInfo = orderInfo.trips.FirstOrDefault(x => x.tripType == "回程");
+                compareTripDateAndConfigDate(backTripInfo, configToDate);
             }
-
-            var haveBackDate = string.IsNullOrEmpty(config.targetDate.TripBackDate);
-
-            var configToDate = validDateFormat(config.targetDate.TripToDate,config.OrderId);
-            validPassDate(configToDate, config.OrderId);
-            /**
-             * logic:去程到達時間不可晚於回程出發時間或相距過近
-             * 去程日期不可晚於回程日期
-            **/
-            var backTripInfo = orderInfo.trips.FirstOrDefault(x => x.tripType == "回程");
-            compareTripDateAndConfigDate(backTripInfo, configToDate);
 
 
             if (haveBackDate)
@@ -46,6 +51,16 @@ namespace THSRCrawler
                 compareTripDateAndConfigDate(toTripInfo, configBackDate);
             }
 
+        }
+
+        public void validOrderIdAndIdCard(TicketOrders config)
+        {
+            if (string.IsNullOrEmpty(config.OrderId) || string.IsNullOrEmpty(config.IdCard))
+            {
+                var msg = $"訂位代號及身份證字號不得為空";
+                _logger.LogCritical(msg);
+                throw new InvalidConfigException(msg);
+            }
         }
 
         public DateTime validDateFormat(string tripDate,string OrderId)
@@ -78,7 +93,9 @@ namespace THSRCrawler
                 if (tripInfo == null) {
                     throw new ArgumentException("無法取得訂位紀錄的車次");
                 }
-                orderDate = Convert.ToDateTime(DateTime.Now.Year + $"/{tripInfo.date} {tripInfo.arrivalTime}");
+
+                var orderTime = tripInfo.tripType == "回程" ? tripInfo.startTime : tripInfo.arrivalTime;
+                orderDate = Convert.ToDateTime(DateTime.Now.Year + $"/{tripInfo.date} {orderTime}");
             }
             catch (Exception ex) {
                 throw new ArgumentException($"無法取得訂位紀錄的車次日期 {tripInfo.date} {tripInfo.arrivalTime}");
@@ -88,13 +105,13 @@ namespace THSRCrawler
             {
                 //加30分鐘的buffer
                 if (configDate <= orderDate.AddMinutes(30))
-                    throw new InvalidConfigException("設定檔的回程不得小於訂位紀錄的去程");
+                    throw new InvalidConfigException("設定檔的回程不得小於訂位紀錄的去程抵達時間");
             }
             else if (tripInfo.tripType == "回程")
             {
-                //因為是算去程到達時間，而設定檔是設出發時間，就再加個2.5小時
+                //因為是算去程到達時間，而設定檔是設出發時間，就再加個2.5小時當作去程抵達時間
                 if(configDate.AddHours(2.5) >= orderDate)
-                    throw new InvalidConfigException("設定檔的去程不得大於訂位紀錄的回程");
+                    throw new InvalidConfigException("設定檔的去程不得大於訂位紀錄的回程出發時間");
             }
             else {
                

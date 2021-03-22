@@ -66,7 +66,7 @@ namespace THSRCrawler
     {
         public string IdCard { get; set; }
         public string OrderId { get; set; }
-        public TargetDate targetDate { get; set; }
+        public TargetDate targetDate { get; set; } = new TargetDate();
     }
 
     public class TargetDate

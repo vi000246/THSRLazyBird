@@ -10,20 +10,30 @@ namespace THSRCrawler
         {
         }
 
-        public string FindMatchTrip(Models.ModifyTripType tripType, IEnumerable<Models.Trips> trips, Models.orderPageInfo orderInfo)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="trips">搜尋車次頁面取得的車次列表</param>
+        /// <param name="orderTripInfo">目前訂單的行程資訊</param>
+        /// <returns></returns>
+        public string FindMatchTrip(List<Models.Trips> trips, Models.tripInfo orderTripInfo)
         {
-            var tripTitle = "去程";
-            if (tripType == Models.ModifyTripType.Back)
-                tripTitle = "回程";
-            //目前訂單的行程資訊
-            var orderTripInfo = orderInfo.trips.First(x => x.tripType == tripTitle);
             //組出行程的抵達時間
+            var orderArrivalDate = Convert.ToDateTime(DateTime.Now.Year + $"/{orderTripInfo.date} {orderTripInfo.arrivalTime}");
+            var tripsOrderByTime = trips.OrderBy(x => x.arrivalTime).ToList();
+            //依照自訂方法排序
+            tripsOrderByTime.Sort();
+            //將車次列表轉成Datetime格式
+              var tripsList = tripsOrderByTime.Select(x => new
+                {
+                    buttonName = x.buttonName,
+                    arrivalTime = Convert.ToDateTime(DateTime.Now.Year + $"/{x.date} {x.arrivalTime}"),
+                    totalTime = x.totalTime
+                })
+                .ToList();
 
-
-            //如果目前訂位日期跟設定檔日期一樣，就判斷抵達時間
-            //如果不一樣，就挑一個行車時間最短的
-
-            return trips.FirstOrDefault().buttonName;
+            //找出比目前訂位紀錄的抵達時間早的車次
+            return tripsList.FirstOrDefault(x => x.arrivalTime < orderArrivalDate)?.buttonName;
         }
     }
 }

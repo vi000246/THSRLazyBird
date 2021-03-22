@@ -7,7 +7,8 @@ namespace THSRCrawler
 {
     public class Models
     {
-        public class Trips
+        //用來存放搜尋結果的車次
+        public class Trips:IComparable<Trips>
         {
             //button name是uniqle的，每個頁面的button都不會重覆
             public string buttonName { get; set; }
@@ -17,6 +18,20 @@ namespace THSRCrawler
             public string arrivalTime { get; set; }
             public int totalTime { get; set; }
             public string date { get; set; }
+            public int CompareTo(Trips other)
+            {
+                var currentArrivalTime = Convert.ToDateTime(this.arrivalTime);
+                var otherArrivalTime = Convert.ToDateTime(other.arrivalTime);
+                //如果兩車次的抵達時間不超過十分鐘，就用行車時間比較
+                if ((currentArrivalTime - otherArrivalTime).TotalMinutes <= 10)
+                {
+                    return this.totalTime.CompareTo(other.totalTime);
+                }
+                else
+                {
+                    return this.arrivalTime.CompareTo(other.arrivalTime);
+                }
+            }
         }
 
         // 變更行程時選擇的類型
@@ -35,7 +50,8 @@ namespace THSRCrawler
             public string paymentDeadLine { get; set; }
             public List<tripInfo> trips { get; set; } = new List<tripInfo>();
         }
-
+        
+        //用來儲存目前訂位紀錄的行程
         public class tripInfo
         {
             public string tripType { get; set; }

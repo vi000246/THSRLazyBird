@@ -21,17 +21,58 @@ namespace THSRTest
         }
 
         [Test]
-        public void NotInputToTripConfig()
+        public void checkEmptyConfig_to()
+        {
+            var config = new TicketOrders();
+            config.targetDate.TripToTime = "";
+            config.targetDate.TripToDate = "";
+
+            var check = _validation.haveToDateFunc(config);
+            Assert.IsFalse(check);
+        }
+        [Test]
+        public void checkEmptyConfig_to_notEmpty()
+        {
+            var config = new TicketOrders();
+            config.targetDate.TripToTime = "11:30";
+            config.targetDate.TripToDate = "11/30";
+
+            var check = _validation.haveToDateFunc(config);
+            Assert.IsTrue(check);
+        }
+
+        [Test]
+        public void checkEmptyConfig_back()
+        {
+            var config = new TicketOrders();
+            config.targetDate.TripBackDate = "";
+            config.targetDate.TripBackTime = "";
+
+            var check = _validation.haveBackDateFunc(config);
+            Assert.IsFalse(check);
+        }
+        [Test]
+        public void checkEmptyConfig_back_notEmpty()
+        {
+            var config = new TicketOrders();
+            config.targetDate.TripBackDate = "11/30";
+            config.targetDate.TripBackTime = "11:30";
+
+            var check = _validation.haveBackDateFunc(config);
+            Assert.IsTrue(check);
+        }
+
+        [Test]
+        public void validOrderIdAndIdCardTest()
         {
             try
             {
                 var config = new TicketOrders();
-                var orderInfo = new Models.orderPageInfo();
-                _validation.validConfigDateTime(config, orderInfo);
-                Assert.Fail();
+                _validation.validOrderIdAndIdCard(config);
             }
-            catch (InvalidConfigException ex) {
-                Assert.True(ex.Message.Contains("請填寫去程目標時段"));
+            catch (InvalidConfigException ex)
+            {
+                Assert.True(ex.Message.Contains("訂位代號及身份證字號不得為空"));
             }
         }
 
@@ -76,7 +117,7 @@ namespace THSRTest
             }
             catch (InvalidConfigException ex)
             {
-                Assert.True(ex.Message.Contains("設定檔的回程不得小於訂位紀錄的去程"));
+                Assert.True(ex.Message.Contains("設定檔的回程不得小於訂位紀錄的去程抵達時間"));
             }
         }
         [Test]
@@ -87,13 +128,13 @@ namespace THSRTest
                 var tripInfo = new Models.tripInfo();
                 tripInfo.tripType = "回程";
                 tripInfo.date = "2/1";
-                tripInfo.arrivalTime = "12:00";
+                tripInfo.startTime = "12:00";
                 var configDate = new DateTime(DateTime.Now.Year, 3, 3, 12, 50, 00);
                 _validation.compareTripDateAndConfigDate(tripInfo, configDate);
             }
             catch (InvalidConfigException ex)
             {
-                Assert.True(ex.Message.Contains("設定檔的去程不得大於訂位紀錄的回程"));
+                Assert.True(ex.Message.Contains("設定檔的去程不得大於訂位紀錄的回程出發時間"));
             }
         }
     }
