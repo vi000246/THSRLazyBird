@@ -31,6 +31,16 @@ namespace THSRCrawler
                 host.Run();
 
             }
+            catch (CritialPageErrorException e)
+            {
+                logger.Fatal(e.Message);
+                throw;
+            }
+            catch (InvalidConfigException e)
+            {
+                logger.Fatal(e.Message);
+                throw;
+            }
             catch (Exception e)
             {
                 logger.Error(e.Message);

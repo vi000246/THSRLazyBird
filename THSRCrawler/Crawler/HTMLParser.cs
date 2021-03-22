@@ -82,6 +82,11 @@ namespace THSRCrawler
             {
                 msg = mainContent.First().FirstElementChild.TextContent;
                 _logger.LogInformation(msg);
+                if (msg.Contains("查無訂位紀錄"))
+                {
+                    throw new CritialPageErrorException(msg);
+                }
+
                 throw new ArgumentException(msg);
             }
             
