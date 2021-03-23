@@ -24,7 +24,7 @@ namespace THSRCrawler
         public Func<TicketOrders, bool> haveToDateFunc = (TicketOrders config) => (!string.IsNullOrEmpty(config.targetDate.TripToDate) &&
                                                                                    !string.IsNullOrEmpty(config.targetDate.TripToTime));
 
-        public void validConfigDateTime(TicketOrders config, Models.orderPageInfo orderInfo)
+        public void validConfigDateTime(TicketOrders config, CrawlerModels.orderPageInfo orderInfo)
         {
 
             var haveBackDate = haveBackDateFunc(config);
@@ -86,7 +86,7 @@ namespace THSRCrawler
                 throw new InvalidConfigException(msg);
             }
         }
-        public void compareTripDateAndConfigDate(Models.tripInfo tripInfo,DateTime configDate) {
+        public void compareTripDateAndConfigDate(CrawlerModels.tripInfo tripInfo,DateTime configDate) {
             DateTime orderDate;
             try
             {

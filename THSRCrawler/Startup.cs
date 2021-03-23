@@ -9,11 +9,17 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AngleSharp;
 using AngleSharp.Html.Parser;
+using AngleSharp.Io;
 using DNTScheduler.Core;
+using LexLibrary.Line.NotifyBot;
+using LexLibrary.Line.NotifyBot.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NLog;
 using THSRCrawler.ScheduleJob;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace THSRCrawler
 {
@@ -60,11 +66,29 @@ namespace THSRCrawler
                 options.AddScheduledTask<ModifyTripJob>(utcNow => utcNow.Second == 1);
                 options.AddScheduledTask<UnPaidAlertJob>(utcNow => utcNow.Hour == 22 && utcNow.Minute == 0 && utcNow.Second ==0);
             });
+            var config = new Config();
+
+            Configuration.GetSection("Config").Bind(config);
             //config註冊
             var configSection =
                 Configuration.GetSection("Config");
             services.Configure<Config>(configSection);
-            services.AddTransient<RequestClient>();
+
+            //addMvc好像過時了，找時間再來研究
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //line notify套件
+            
+            services.AddLineNotifyBot(new LineNotifyBotSetting
+            {
+                ClientID = config.notify.linebot.ClientID,
+                ClientSecret = config.notify.linebot.ClientSecret,
+                AuthorizeApi = "https://notify-bot.line.me/oauth/authorize",
+                TokenApi = "https://notify-bot.line.me/oauth/token",
+                NotifyApi = "https://notify-api.line.me/api/notify",
+                StatusApi = "https://notify-api.line.me/api/status",
+                RevokeApi = "https://notify-api.line.me/api/revoke"
+            });
+                        services.AddTransient<RequestClient>();
             services.AddTransient<Crawler>();
             services.AddTransient<Config>();
             services.AddTransient<HTMLParser>();
@@ -83,16 +107,21 @@ namespace THSRCrawler
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(routes =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                routes.MapControllerRoute(
+                     "default",
+                     "{controller=Home}/{action=Index}/{id?}");
             });
         }
 

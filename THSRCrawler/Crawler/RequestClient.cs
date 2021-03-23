@@ -70,20 +70,20 @@ namespace THSRCrawler
 
         //輸入要更改的日期跟時間,取得該時段的車票
 
-        public string post_search_trip_form(Models.ModifyTripType tripType,(string tripDate,string tripTime) formatDate)
+        public string post_search_trip_form(CrawlerModels.ModifyTripType tripType,(string tripDate,string tripTime) formatDate)
         {
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS1Form:hf:0"), ""));
             content.Add(new KeyValuePair<string, string>("bookingMethod", "radio10"));
             switch (tripType)
             {
-                case Models.ModifyTripType.To:
+                case CrawlerModels.ModifyTripType.To:
                     content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toCheck"), "on")); //勾選變更去程
                     content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeInputField"), formatDate.tripDate));
                     content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTimeTable"), formatDate.tripTime));
                     content.Add( new KeyValuePair<string, string>(Uri.EscapeUriString("toContainer:toTrainIDInputField"), ""));
                     break;
-                case Models.ModifyTripType.Back:
+                case CrawlerModels.ModifyTripType.Back:
                     content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backCheck"), "on"));//勾選變更回程
                     content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeInputField"), formatDate.tripDate));
                     content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("backContainer:backTimeTable"), formatDate.tripTime));

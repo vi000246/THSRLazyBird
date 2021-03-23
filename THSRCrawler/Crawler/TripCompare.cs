@@ -16,7 +16,7 @@ namespace THSRCrawler
         /// <param name="trips">搜尋車次頁面取得的車次列表</param>
         /// <param name="orderTripInfo">目前訂單的行程資訊</param>
         /// <returns></returns>
-        public string FindMatchTrip(List<Models.Trips> trips, Models.tripInfo orderTripInfo)
+        public string FindMatchTrip(List<CrawlerModels.Trips> trips, CrawlerModels.tripInfo orderTripInfo)
         {
             //組出行程的抵達時間
             var orderArrivalDate = Convert.ToDateTime(DateTime.Now.Year + $"/{orderTripInfo.date} {orderTripInfo.arrivalTime}");

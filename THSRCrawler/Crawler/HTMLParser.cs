@@ -24,10 +24,10 @@ namespace THSRCrawler
             _logger = logger;
         }
 
-        public Models.orderPageInfo GetOrderInformation(string html)
+        public CrawlerModels.orderPageInfo GetOrderInformation(string html)
         {
             var _parser = new HtmlParser();
-            var result = new Models.orderPageInfo();
+            var result = new CrawlerModels.orderPageInfo();
             var dom = _parser.ParseDocument(html);
             var mainContent = dom.GetElementById("content");
             ValidSessionExpire(mainContent);
@@ -40,7 +40,7 @@ namespace THSRCrawler
                 if (title != null && Regex.IsMatch(title.TextContent, "去程|回程"))
                 {
                     var tds = row.ChildNodes.ToList().Select(x => x.TextContent).Where(x => !string.IsNullOrEmpty(x?.Trim())).ToList();
-                    var tripInfo = new Models.tripInfo();
+                    var tripInfo = new CrawlerModels.tripInfo();
                     tripInfo.tripType = tds[0];
                     tripInfo.date = tds[1];
                     tripInfo.trainNo = tds[2];
@@ -66,9 +66,9 @@ namespace THSRCrawler
             return result;
         }
 
-        public Models.modifyTripPageInfo GetModifyPageInformation(string html)
+        public CrawlerModels.modifyTripPageInfo GetModifyPageInformation(string html)
         {
-            var result = new Models.modifyTripPageInfo();
+            var result = new CrawlerModels.modifyTripPageInfo();
 
             return result;
         }
@@ -104,9 +104,9 @@ namespace THSRCrawler
 
 
         //取得此頁面所有的車次
-        public IEnumerable<Models.Trips> GetTripsPerPageAndHandleError(string html,Models.ModifyTripType tripType)
+        public IEnumerable<CrawlerModels.Trips> GetTripsPerPageAndHandleError(string html,CrawlerModels.ModifyTripType tripType)
         {
-            var trips = new List<Models.Trips>();
+            var trips = new List<CrawlerModels.Trips>();
 			var dom = _parser.ParseDocument(html);
             CheckPageError(dom);
 
@@ -114,7 +114,7 @@ namespace THSRCrawler
             var mainContent = dom.GetElementById("content");
             ValidSessionExpire(mainContent);
             var panelName = "HistoryDetailsModifyTripS2Form_TrainQueryDataViewPanel";
-            panelName = tripType == Models.ModifyTripType.Back ? panelName + "2" : panelName;
+            panelName = tripType == CrawlerModels.ModifyTripType.Back ? panelName + "2" : panelName;
             var allSection = mainContent.QuerySelectorAll($"#{panelName} .section_title");
             //section是去、回程table上面的title
             foreach (var section in allSection)
@@ -141,7 +141,7 @@ namespace THSRCrawler
                         var totalTime = DateTime.ParseExact(tripRowElement[4], "h:mm",
                            null);
 
-                        trips.Add(new Models.Trips()
+                        trips.Add(new CrawlerModels.Trips()
                         {
                             buttonName = tripRowElement[0],
                             train = int.Parse(tripRowElement[1]),

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace THSRCrawler
 {
-    public class Models
+    public class CrawlerModels
     {
         //用來存放搜尋結果的車次
         public class Trips:IComparable<Trips>

@@ -108,7 +108,7 @@ namespace THSRTest
         public void ValidTripConfigAndOrderTime() {
             try
             {
-                var tripInfo = new Models.tripInfo();
+                var tripInfo = new CrawlerModels.tripInfo();
                 tripInfo.tripType = "去程";
                 tripInfo.date = "2/1";
                 tripInfo.arrivalTime = "12:00";
@@ -125,7 +125,7 @@ namespace THSRTest
         {
             try
             {
-                var tripInfo = new Models.tripInfo();
+                var tripInfo = new CrawlerModels.tripInfo();
                 tripInfo.tripType = "回程";
                 tripInfo.date = "2/1";
                 tripInfo.startTime = "12:00";

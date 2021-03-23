@@ -49,17 +49,17 @@ namespace THSRCrawler
 
                 if (_validation.haveToDateFunc(config))
                 {
-                    ModifyTrip(Models.ModifyTripType.To, config, orderInfo);
+                    ModifyTrip(CrawlerModels.ModifyTripType.To, config, orderInfo);
                 }
                 if (orderInfo.isRoundTrip && _validation.haveBackDateFunc(config))
                 {
-                    ModifyTrip(Models.ModifyTripType.Back, config, orderInfo);
+                    ModifyTrip(CrawlerModels.ModifyTripType.Back, config, orderInfo);
                 }
 
             }
         }
 
-        public Models.orderPageInfo post_search_order_form(string IdCard,string OrderId)
+        public CrawlerModels.orderPageInfo post_search_order_form(string IdCard,string OrderId)
         {
             _requestClient.GoTo_search_order_page();
             var html = _requestClient.post_search_order_form(IdCard, OrderId);
@@ -68,7 +68,7 @@ namespace THSRCrawler
             return orderInfo;
         }
 
-        public void ModifyTrip(Models.ModifyTripType tripType,TicketOrders config,Models.orderPageInfo orderInfo)
+        public void ModifyTrip(CrawlerModels.ModifyTripType tripType,TicketOrders config,CrawlerModels.orderPageInfo orderInfo)
         {
             try
             {
@@ -81,8 +81,8 @@ namespace THSRCrawler
                 var trips = _htmlParser.GetTripsPerPageAndHandleError(html, tripType);
                 if (trips != null && trips.Count() >= 0)
                 {
-                    var tripInfo = new Models.tripInfo();
-                    if (tripType == Models.ModifyTripType.To)
+                    var tripInfo = new CrawlerModels.tripInfo();
+                    if (tripType == CrawlerModels.ModifyTripType.To)
                         tripInfo = orderInfo.trips.FirstOrDefault(x => x.tripType == "去程");
                     else
                     {

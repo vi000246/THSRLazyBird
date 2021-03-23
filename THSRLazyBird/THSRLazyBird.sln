@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THSRLazyBird", "THSRLazyBird.csproj", "{1218CA6B-2D51-4CFA-8FA8-11D642802561}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THSRLazyBird", "THSRLazyBird.csproj", "{1218CA6B-2D51-4CFA-8FA8-11D642802561}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THSRCrawler", "..\THSRCrawler\THSRCrawler.csproj", "{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THSRCrawler", "..\THSRCrawler\THSRCrawler.csproj", "{9881B6FB-A4F2-4466-AB72-A415D9EC49B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THSRTest", "THSRTest\THSRTest.csproj", "{30C0133C-406E-48E2-A6B4-25317A7B8EB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THSRTest", "THSRTest\THSRTest.csproj", "{30C0133C-406E-48E2-A6B4-25317A7B8EB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

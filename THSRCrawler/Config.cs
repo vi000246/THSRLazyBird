@@ -12,6 +12,7 @@ namespace THSRCrawler
     public class Config
     {
         public List<TicketOrders> ticketOrders { get; set; }
+        public Notify notify { get; set; }
         public bool IsEnableSchedule { get; set; }
         public int MaxETA { get; set; }
         private readonly ILogger<ModifyTripJob> _logger;
@@ -26,18 +27,18 @@ namespace THSRCrawler
         }
 
         //將設定檔的訂位時間轉成高鐵網站可用的格式
-        public (string tripDate,string tripTime) GetValidOrderDate(TicketOrders config, Models.ModifyTripType tripType, Models.orderPageInfo orderInfo)
+        public (string tripDate,string tripTime) GetValidOrderDate(TicketOrders config, CrawlerModels.ModifyTripType tripType, CrawlerModels.orderPageInfo orderInfo)
         {
             string tripDate = "";
             string tripTime = "";
             var targetDate = config.targetDate;
             switch (tripType)
             {
-                case Models.ModifyTripType.To:
+                case CrawlerModels.ModifyTripType.To:
                     tripDate = targetDate.TripToDate;
                     tripTime =targetDate.TripToTime;
                     break;
-                case Models.ModifyTripType.Back:
+                case CrawlerModels.ModifyTripType.Back:
                     tripDate = targetDate.TripBackDate;
                     tripTime = targetDate.TripBackTime;
                     break;
@@ -56,7 +57,7 @@ namespace THSRCrawler
 
         private string getTimeDropDownValue(string time)
         {
-            Models.timeDropdown.TryGetValue(time, out string validtime);
+            CrawlerModels.timeDropdown.TryGetValue(time, out string validtime);
             return validtime;
         }
 
@@ -75,5 +76,17 @@ namespace THSRCrawler
         public string TripBackDate { get; set; }
         public string TripToTime { get; set; }
         public string TripBackTime { get; set; }
+    }
+
+    public class Notify
+    {
+        public LineBot linebot { get; set; }
+    }
+
+    public class LineBot
+    {
+        public string ClientID { get; set; }
+        public string ClientSecret { get; set; }
+        public string[] AccessToken { get; set; }
     }
 }
