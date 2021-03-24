@@ -15,6 +15,7 @@ namespace THSRCrawler
         public Notify notify { get; set; }
         public bool IsEnableSchedule { get; set; }
         public int MaxETA { get; set; }
+
         private readonly ILogger<ModifyTripJob> _logger;
 
         public Config()
@@ -81,6 +82,7 @@ namespace THSRCrawler
     public class Notify
     {
         public LineBot linebot { get; set; }
+        public SMTP smtp { get; set; }
     }
 
     public class LineBot
@@ -89,4 +91,12 @@ namespace THSRCrawler
         public string ClientSecret { get; set; }
         public string[] AccessToken { get; set; }
     }
+
+    public class SMTP
+    {
+        public string Account { get; set; }
+        public string Password { get; set; }
+
+    }
+
 }

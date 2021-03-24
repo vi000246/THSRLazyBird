@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NLog;
-using RestSharp;
 using ILogger = NLog.ILogger;
 
 namespace THSRCrawler

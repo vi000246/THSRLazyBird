@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using THSRCrawler.CustomException;
 
 namespace THSRCrawler
 {
@@ -29,6 +30,8 @@ namespace THSRCrawler
                 var myDependency = services.GetRequiredService<Crawler>();
                 // //入口寫在這裡 以後註解掉，只用schedule跑
                 // myDependency.init();
+                var emailNotify = services.GetRequiredService<INotify>();
+                emailNotify.SendMsg("");
                 host.Run();
 
             }
@@ -38,6 +41,11 @@ namespace THSRCrawler
                 throw;
             }
             catch (InvalidConfigException e)
+            {
+                logger.Fatal(e.Message);
+                throw;
+            }
+            catch (NotifyException e)
             {
                 logger.Fatal(e.Message);
                 throw;

@@ -17,6 +17,8 @@ using LexLibrary.Line.NotifyBot;
 using LexLibrary.Line.NotifyBot.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
 using NLog;
 using THSRCrawler.ScheduleJob;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
@@ -88,14 +90,30 @@ namespace THSRCrawler
                 StatusApi = "https://notify-api.line.me/api/status",
                 RevokeApi = "https://notify-api.line.me/api/revoke"
             });
-                        services.AddTransient<RequestClient>();
+            services.AddMailKit(optionBuilder =>
+            {
+                optionBuilder.UseMailKit(new MailKitOptions()
+                {
+                    //get options from sercets.json
+                    Server = "smtp.gmail.com",
+                    Port = 587,
+                    SenderName = config.notify.smtp.Account,
+
+                    // can be optional with no authentication 
+                    Account =config.notify.smtp.Account,
+                    Password = config.notify.smtp.Password,
+                    // enable ssl or tls
+                    Security = true
+                });
+            });
+            services.AddTransient<RequestClient>();
             services.AddTransient<Crawler>();
             services.AddTransient<Config>();
             services.AddTransient<HTMLParser>();
             services.AddTransient<Validation>();
             services.AddTransient<TripCompare>();
             services.AddTransient<IHtmlParser,HtmlParser>();
-            services.AddTransient<INotify,LineNotify>();
+            services.AddTransient<INotify, EmailNotify>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

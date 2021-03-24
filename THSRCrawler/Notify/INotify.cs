@@ -7,5 +7,6 @@ namespace THSRCrawler
 {
     interface INotify
     {
+        public void SendMsg(string message,string title = null);
     }
 }

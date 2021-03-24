@@ -13,6 +13,10 @@
         "ClientID": "註冊line通知服務用的clientId",
         "ClientSecret": "註冊line通知服務用的clientSecret",
         "AccessToken": [ "請填入取得授權後回傳的accesstoken,可填寫多組" ]
+      },
+      "SMTP": {
+        "Account": "google帳號",
+        "Password": "google密碼"
       }
     },
     "//TicketOrders": "可以放多筆訂位代號",
