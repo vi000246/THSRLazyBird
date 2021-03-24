@@ -19,7 +19,7 @@ namespace THSRCrawler
         public static void Main(string[] args)
         {
             var logger = NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
-
+            INotify notify = null;
             try
             {
 
@@ -30,19 +30,20 @@ namespace THSRCrawler
                 var myDependency = services.GetRequiredService<Crawler>();
                 // //入口寫在這裡 以後註解掉，只用schedule跑
                 // myDependency.init();
-                var emailNotify = services.GetRequiredService<INotify>();
-                emailNotify.SendMsg("");
+                notify = services.GetRequiredService<INotify>();
                 host.Run();
 
             }
             catch (CritialPageErrorException e)
             {
                 logger.Fatal(e.Message);
+                notify.SendMsg(e.Message,"高鐵頁面錯誤訊息");
                 throw;
             }
             catch (InvalidConfigException e)
             {
                 logger.Fatal(e.Message);
+                notify.SendMsg(e.Message,"設定檔錯誤");
                 throw;
             }
             catch (NotifyException e)
@@ -53,6 +54,7 @@ namespace THSRCrawler
             catch (Exception e)
             {
                 logger.Error(e.Message);
+                notify.SendMsg(e.Message);
                 throw;
             }
             finally
