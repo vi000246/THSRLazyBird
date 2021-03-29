@@ -127,6 +127,18 @@ namespace THSRCrawler
             return html;
         }
 
+        public string post_confirm_form()
+        {
+            var content = new List<KeyValuePair<string, string>>();
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsPaidModifyForm:hf:0"), ""));
+            content.Add(new KeyValuePair<string, string>("agree", "on"));
+            content.Add(new KeyValuePair<string, string>("confirmButton", "下一步"));
+
+            var url = $"/IMINT/?wicket:interface=:10:HistoryDetailsPaidModifyForm::IFormSubmitListener";
+            var html = PostForm(url, content);
+            return html;
+        }
+
         //進到變更行程頁面
         public string GoTo_modifyTrip_form()
         {

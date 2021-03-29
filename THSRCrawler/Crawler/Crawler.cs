@@ -73,6 +73,23 @@ namespace THSRCrawler
             {
                 var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
                 //判斷去/回程是否可更改
+                var OrderStatus = _htmlParser.CheckModifyFormIsAvailable(modifyTripPageHtml);
+                if (OrderStatus == CrawlerModels.orderStatus.BothCannot)
+                {
+                    throw new ArgumentException("無法修改行程");
+                }
+
+                if (tripType == CrawlerModels.ModifyTripType.To)
+                {
+                    if(OrderStatus == CrawlerModels.orderStatus.onlyBack)
+                        throw new ArgumentException("無法修改去程");
+                }
+                else if(tripType == CrawlerModels.ModifyTripType.Back)
+                {
+                    if(OrderStatus == CrawlerModels.orderStatus.onlyTo)
+                        throw new ArgumentException("無法修改回程");
+
+                }
 
 
                 var formatDate = _config.GetValidOrderDate(config, tripType,orderInfo);
@@ -91,7 +108,11 @@ namespace THSRCrawler
                     var matchTrip = _tripCompare.FindMatchTrip(trips.ToList(), tripInfo,formatDate.tripDateTime);
                     if (!string.IsNullOrEmpty(matchTrip))
                     {
-                        _requestClient.post_modifyTrip_form(matchTrip);
+                        string result = _requestClient.post_modifyTrip_form(matchTrip);
+                        if (_htmlParser.ModifyOrderResult(result) == CrawlerModels.modifyResult.needConfirm)
+                        {
+                            _requestClient.post_confirm_form();
+                        }
                     }
                 }
             }

@@ -66,6 +66,24 @@ namespace THSRCrawler
             return result;
         }
 
+        //如果已付款的訂單，要變更坐位時會有confirm message
+        public CrawlerModels.modifyResult ModifyOrderResult(string html)
+        {
+            var dom = _parser.ParseDocument(html);
+            CheckPageError(dom);
+            var content = dom.QuerySelector(".payment_title");
+            switch (content.InnerHtml)
+            {
+                case string a when a.Contains("您確定要變更本筆訂位嗎"):
+                    return CrawlerModels.modifyResult.needConfirm;
+                case string a when a.Contains("行程變更成功"):
+                    return CrawlerModels.modifyResult.success;
+            }
+
+            return CrawlerModels.modifyResult.fail;
+
+        }
+
         public CrawlerModels.modifyTripPageInfo GetModifyPageInformation(string html)
         {
             var result = new CrawlerModels.modifyTripPageInfo();
@@ -100,6 +118,23 @@ namespace THSRCrawler
             {
                 throw new ArgumentException("Session已過期，請重新嘗試");
             }
+        }
+
+        //判斷行程是否可修改
+        public CrawlerModels.orderStatus CheckModifyFormIsAvailable(string html)
+        {
+            var dom = _parser.ParseDocument(html);
+            CheckPageError(dom);
+            var Trip_to = dom.GetElementById("toTimeInputField").GetAttribute("disabled") == "disabled";
+            var Trip_back = dom.GetElementById("backTimeInputField").GetAttribute("disabled") == "disabled";
+            if (!Trip_to && !Trip_back)
+                return CrawlerModels.orderStatus.BothAvailable;
+            else if (!Trip_to && Trip_back)
+                return CrawlerModels.orderStatus.onlyTo;
+            else if (Trip_to && !Trip_back)
+                return CrawlerModels.orderStatus.onlyBack;
+            else
+                return CrawlerModels.orderStatus.BothCannot;
         }
 
 

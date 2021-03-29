@@ -36,8 +36,9 @@ namespace THSRCrawler
                   .Where(x=>Math.Abs((x.startTime-ConfigTargetDate).TotalHours) < 1)
                 .ToList();
 
-            //找出比目前訂位紀錄的抵達時間早的車次
-            return tripsList.FirstOrDefault(x => x.arrivalTime < orderArrivalDate)?.buttonName;
+            //找出比目前訂位紀錄的抵達時間早的車次 這個判斷可能會有問題 先拿掉好了 依搜尋到的結果為主
+            // return tripsList.FirstOrDefault(x => x.arrivalTime < orderArrivalDate)?.buttonName;
+            return tripsList.FirstOrDefault()?.buttonName;
         }
     }
 }

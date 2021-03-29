@@ -41,6 +41,16 @@ namespace THSRCrawler
             Back
         }
 
+        public enum modifyResult
+        {
+            success,fail,needConfirm
+        }
+
+        public enum orderStatus
+        {
+            onlyTo,onlyBack,BothAvailable,BothCannot
+        }
+
         public class orderPageInfo
         {
             public bool isRoundTrip { get; set; }
