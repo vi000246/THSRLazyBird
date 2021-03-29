@@ -1,0 +1,9 @@
+2021-03-29 16:27:31.0534 Info Message Template Auto Format enabled
+2021-03-29 16:27:31.0953 Info Loading assembly: NLog.Web.AspNetCore
+2021-03-29 16:27:31.2398 Info Adding target FileTarget(Name=debug-all)
+2021-03-29 16:27:31.3623 Info Validating config: TargetNames=debug-all, ConfigItems=36, FilePath=F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\NLog.config
+Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.
+   at THSRCrawler.Program.Main(String[] args) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Program.cs:line 46
+2021-03-29 16:28:04.3162 Info Shutdown() called. Logger closing...
+2021-03-29 16:28:04.3162 Info Closing old configuration.
+2021-03-29 16:28:04.3573 Info Logger has been closed down.

@@ -69,7 +69,7 @@ namespace THSRCrawler
 
         //輸入要更改的日期跟時間,取得該時段的車票
 
-        public string post_search_trip_form(CrawlerModels.ModifyTripType tripType,(string tripDate,string tripTime) formatDate)
+        public string post_search_trip_form(CrawlerModels.ModifyTripType tripType,(string tripDate,string tripTime,DateTime tripDateTime) formatDate)
         {
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS1Form:hf:0"), ""));

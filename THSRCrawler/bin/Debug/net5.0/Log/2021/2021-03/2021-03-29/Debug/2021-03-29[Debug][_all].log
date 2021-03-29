@@ -1,0 +1,12 @@
+[14:47:16.0037][THSRCrawler.HTMLParser][Info] - 請輸入正確之身分證字號 
+[14:47:16.1714][THSRCrawler.Program][Error] - 請輸入正確之身分證字號 
+[14:48:06.7369][THSRCrawler.HTMLParser][Info] - 請輸入正確之身分證字號 
+[14:48:09.7549][THSRCrawler.Program][Error] - 請輸入正確之身分證字號 
+[16:27:41.3316][THSRCrawler.Validation][Fatal] - 訂位代號:06201782 設定檔Date欄位格式錯誤， 必須為yyyy/mm/dd 
+[16:27:41.4204][THSRCrawler.Program][Fatal] - 訂位代號:06201782 設定檔Date欄位格式錯誤， 必須為yyyy/mm/dd 
+[16:28:55.3140][THSRCrawler.Validation][Fatal] - 訂位代號:06201782 日期為過去時間 ，請重新設置 
+[16:28:55.3845][THSRCrawler.Program][Fatal] - 訂位代號:06201782 日期為過去時間 ，請重新設置 
+[16:29:59.5355][THSRCrawler.Validation][Fatal] - 訂位代號:06201782 設定檔Date欄位格式錯誤， 必須為yyyy/mm/dd 
+[16:29:59.6167][THSRCrawler.Program][Fatal] - 訂位代號:06201782 設定檔Date欄位格式錯誤， 必須為yyyy/mm/dd 
+[16:32:21.3775][THSRCrawler.Validation][Fatal] - 訂位代號及身份證字號不得為空 
+[16:32:21.4588][THSRCrawler.Program][Fatal] - 訂位代號及身份證字號不得為空 

@@ -19,7 +19,7 @@
         "Password": "google密碼"
       }
     },
-    "//TicketOrders": "可以放多筆訂位代號",
+    "//TicketOrders": "可以放多筆訂位代號,可以刪掉下面範例，直接用空的模板",
     "TicketOrders": [
       {
         "IDCard": "身份證字號",
@@ -28,8 +28,8 @@
         "TargetDate": {
           "TripToDate": "預計出發日期 格式yyyy/mm/dd",
           "TripToTime": "去程的預計出發時間 格式(HH:MM) 每30分鐘為單位，24hr制，ex 00:00、 05:00、 12:30、 17:30、 22:00",
-          "TripBackDate": "預計回程日期 格式yyyy/mm/dd",
-          "TripBackTime": "回程的預計出發時間，格式同上"
+          "TripBackDate": "預計回程日期 格式yyyy/mm/dd (不需要回程請刪除提示文字)",
+          "TripBackTime": "回程的預計出發時間，格式同上 (不需要回程請刪除提示文字)"
         }
       },
       {

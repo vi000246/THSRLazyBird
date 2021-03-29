@@ -29,7 +29,7 @@ namespace THSRCrawler
 
                 var myDependency = services.GetRequiredService<Crawler>();
                 // //入口寫在這裡 以後註解掉，只用schedule跑
-                // myDependency.init();
+                myDependency.init();
                 notify = services.GetRequiredService<INotify>();
                 host.Run();
 

@@ -113,7 +113,7 @@ namespace THSRCrawler
             services.AddTransient<Validation>();
             services.AddTransient<TripCompare>();
             services.AddTransient<IHtmlParser,HtmlParser>();
-            services.AddTransient<INotify, EmailNotify>();
+            services.AddTransient<INotify, LineNotify>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

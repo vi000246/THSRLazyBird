@@ -88,7 +88,7 @@ namespace THSRCrawler
                         tripInfo = orderInfo.trips.FirstOrDefault(x => x.tripType == "回程");
                     }
 
-                    var matchTrip = _tripCompare.FindMatchTrip(trips.ToList(), tripInfo);
+                    var matchTrip = _tripCompare.FindMatchTrip(trips.ToList(), tripInfo,formatDate.tripDateTime);
                     if (!string.IsNullOrEmpty(matchTrip))
                     {
                         _requestClient.post_modifyTrip_form(matchTrip);

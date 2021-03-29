@@ -28,7 +28,7 @@ namespace THSRCrawler
         }
 
         //將設定檔的訂位時間轉成高鐵網站可用的格式
-        public (string tripDate,string tripTime) GetValidOrderDate(TicketOrders config, CrawlerModels.ModifyTripType tripType, CrawlerModels.orderPageInfo orderInfo)
+        public (string tripDate,string tripTime,DateTime tripDateTime) GetValidOrderDate(TicketOrders config, CrawlerModels.ModifyTripType tripType, CrawlerModels.orderPageInfo orderInfo)
         {
             string tripDate = "";
             string tripTime = "";
@@ -52,8 +52,9 @@ namespace THSRCrawler
                 _logger.LogCritical(msg);
                 throw new InvalidConfigException(msg);
             }
+            var tripDateTime = Convert.ToDateTime($"{tripDate} {tripTime}");
 
-            return(tripDate, formatTime);
+            return (tripDate, formatTime, tripDateTime);
         }
 
         private string getTimeDropDownValue(string time)
