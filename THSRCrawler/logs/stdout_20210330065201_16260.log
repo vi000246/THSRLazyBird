@@ -1,0 +1,89 @@
+2021-03-30 14:52:09.2175 Info Message Template Auto Format enabled
+2021-03-30 14:52:09.2665 Info Loading assembly: NLog.Web.AspNetCore
+2021-03-30 14:52:09.3838 Info Adding target FileTarget(Name=debug-all)
+2021-03-30 14:52:09.3838 Info Adding target ConsoleTarget(Name=Console)
+2021-03-30 14:52:09.4971 Info Validating config: TargetNames=debug-all, Console, ConfigItems=34, FilePath=F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\NLog.config
+info: LexLibrary.Line.NotifyBot.LineNotifyBotApi[0]
+      {"Guid":"5daf202a-7d10-4c2c-a407-13dda99a14be","Url":null,"Method":{"Method":"POST"},"Headers":[{"Key":"Authorization","Value":["Bearer GlGQ0MWesGjJH60qGeOFaoOmnQDiWl8QCSS7ZiMV8Xs"]}],"Content":{"Headers":[{"Key":"Content-Type","Value":["application/x-www-form-urlencoded"]}]},"Query":{"message":"\r\n\r\n:\r\n搶票模式設定為 2021/03/30 11:24:30 啟動\r\n搶票模式已啟動"}}
+2021-03-30 Info User profile is available. Using 'C:\Users\yich.lin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-03-30 Info Application started. Press Ctrl+C to shut down.
+2021-03-30 Info Hosting environment: Development
+2021-03-30 Info Content root path: F:\Projects\Github\THSRLazyBird\THSRCrawler
+2021-03-30 Info Request starting HTTP/2 GET https://localhost:44312/ - -
+2021-03-30 Info Executing endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)'
+2021-03-30 Info Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller THSRCrawler.HomeController (THSRCrawler).
+2021-03-30 Info Executing ViewResult, running view Index.
+2021-03-30 Info Executed ViewResult - view Index executed in 268.5799ms.
+2021-03-30 Info Executed action THSRCrawler.HomeController.Index (THSRCrawler) in 512.0689ms
+2021-03-30 Info Executed endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)'
+2021-03-30 Info Request finished HTTP/2 GET https://localhost:44312/ - - - 200 - text/html;+charset=utf-8 633.4912ms
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:15.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:15.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:16.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:16.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:17.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:17.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:18.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:18.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:19.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:19.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:20.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Fatal Failed running THSRCrawler.ModifyTripJob
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:26.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Fatal Failed running THSRCrawler.ModifyTripJob
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:32.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Fatal Failed running THSRCrawler.ModifyTripJob
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:38.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Fatal Failed running THSRCrawler.ModifyTripJob
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:44.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Fatal Failed running THSRCrawler.ModifyTripJob
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:50.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:50.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:51.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:51.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:52.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:52.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:53.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:53.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:54.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:54.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:55.
+2021-03-30 Info Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:55.
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:52:56.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Fatal Failed running THSRCrawler.ModifyTripJob
+2021-03-30 Info Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:53:02.
+2021-03-30 14:53:03.5841 Info FileTarget(Name=debug-all): Deleting old archive file: 'F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\logs\archives\Info\log.00001.txt'.
+2021-03-30 14:53:03.5986 Info FileTarget(Name=debug-all): Archiving F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\logs\log.Info.2021-03-30.txt to F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\logs\archives\Info\log.00005.txt
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's still running.
+2021-03-30 Info Ignoring `THSRCrawler.ModifyTripJob` task. It's s

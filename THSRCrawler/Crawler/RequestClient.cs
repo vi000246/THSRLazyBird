@@ -33,6 +33,7 @@ namespace THSRCrawler
             _clientFactory = clientFactory;
 
             _client = _clientFactory.CreateClient("HttpClientWithSSLUntrusted");
+            // _client.Timeout = TimeSpan.FromSeconds(5);//預設timeout是100秒, 在沒用代理的情況，縮短timeoue也沒用，會被擋
             _client.BaseAddress = new Uri(BaseUrl);
             _config = config;
             _client.DefaultRequestHeaders.Connection.Add("Keep-Alive");
@@ -209,13 +210,25 @@ namespace THSRCrawler
         //debug用，看有沒有回傳需要的cookie
         private HttpResponseMessage GetResponseAndSetCookie(HttpRequestMessage request)
         {
-            var response = _client.Send(request);
-            var cookieHeaders = response.Headers.Where(pair => pair.Key == "Set-Cookie");
-            // foreach (var value in cookieHeaders.SelectMany(header => header.Value))
-            // {
-            // }
+            try
+            {
+                var response = _client.Send(request);
+                var cookieHeaders = response.Headers.Where(pair => pair.Key == "Set-Cookie");
+                // foreach (var value in cookieHeaders.SelectMany(header => header.Value))
+                // {
+                // }
+                return response;
 
-            return response;
+            }
+            catch (TaskCanceledException ex)
+            {
+                throw new ArgumentException("HttpClient已取消request"+ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("HttpClient發生問題"+ex.Message);
+            }
+
         }
 
 

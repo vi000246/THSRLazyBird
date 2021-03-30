@@ -47,7 +47,7 @@
     ],
     "//IsEnableSchedule": "是否啟動排程",
     "IsEnableSchedule": true,
-    "//GreedyModeRunAt": "搶票模式，在指定時間啟動排程，每秒跑一次，只有設定正確時間格式才會啟動",
+    "//GreedyModeRunAt": "**暫不支援，執行太快會被ban ip,等代理池專案寫好再做** 搶票模式，在指定時間啟動排程，每秒跑一次，只有設定正確時間格式才會啟動",
     "GreedyModeRunAt": "格式 yyyy/mm/dd hh:mm:ss",
     "//MaxETA": "該車次最大的行車時間，單位(分鐘)，設太小的話會搜尋不到車次",
     "MaxETA": 120

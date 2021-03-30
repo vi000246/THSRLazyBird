@@ -32,6 +32,7 @@ namespace THSRCrawler
         }
         public void init()
         {
+            _logger.LogDebug("開始執行訂票流程...");
             var configs = _config.ticketOrders;
             foreach (var config in configs)
             {
@@ -41,21 +42,24 @@ namespace THSRCrawler
                 
                 if (!orderInfo.isTripEditable)
                 {
-                    _logger.LogInformation($"此訂位代號:{config.OrderId} 無法變更行程");
+                    _logger.LogDebug($"此訂位代號:{config.OrderId} 無法變更行程");
                     return;
                 }
                 _validation.validConfigDateTime(config,orderInfo);
 
                 if (_validation.haveToDateFunc(config))
                 {
-                    ModifyTrip(CrawlerModels.ModifyTripType.To, config, orderInfo);
+                    var result = ModifyTrip(CrawlerModels.ModifyTripType.To, config, orderInfo);
+                    _logger.LogDebug($"去程執行結果:{result}");
                 }
                 if (orderInfo.isRoundTrip && _validation.haveBackDateFunc(config))
                 {
-                    ModifyTrip(CrawlerModels.ModifyTripType.Back, config, orderInfo);
+                    var result = ModifyTrip(CrawlerModels.ModifyTripType.Back, config, orderInfo);
+                    _logger.LogDebug($"回程執行結果:{result}");
                 }
 
             }
+            _logger.LogDebug("訂票流程執行成功!");
         }
 
         public CrawlerModels.orderPageInfo post_search_order_form(string IdCard,string OrderId)
@@ -75,8 +79,10 @@ namespace THSRCrawler
             return orderInfo;
         }
 
-        public void ModifyTrip(CrawlerModels.ModifyTripType tripType,TicketOrders config,CrawlerModels.orderPageInfo orderInfo)
+        public CrawlerModels.modifyResult ModifyTrip(CrawlerModels.ModifyTripType tripType,TicketOrders config,CrawlerModels.orderPageInfo orderInfo)
         {
+            CrawlerModels.modifyResult result = CrawlerModels.modifyResult.fail;
+
             try
             {
                 var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
@@ -100,19 +106,22 @@ namespace THSRCrawler
                     var matchTrip = _tripCompare.FindMatchTrip(trips.ToList(), tripInfo,formatDate.tripDateTime);
                     if (!string.IsNullOrEmpty(matchTrip))
                     {
-                        string result = _requestClient.post_modifyTrip_form(matchTrip);
-                        if (_htmlParser.ModifyOrderResult(result) == CrawlerModels.modifyResult.needConfirm)
+                        string modifyResultHtml = _requestClient.post_modifyTrip_form(matchTrip);
+                        result = _htmlParser.ModifyOrderResult(modifyResultHtml);
+                        if (result == CrawlerModels.modifyResult.needConfirm)
                         {
                             string confirmResult = _requestClient.post_confirm_form();
-                            _htmlParser.CheckPageError(confirmResult);
+                            result = _htmlParser.ModifyOrderResult(confirmResult);
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {
                 _logger.LogInformation(ex.Message);
             }
+            return result;
 
         }
 

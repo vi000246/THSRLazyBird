@@ -103,23 +103,24 @@ namespace THSRCrawler
                 // options.AddPingTask(siteRootUrl: "https://localhost:5001");
 
 
-                //如果有設定搶票模式，會在指定時間後每秒跑一次排程
-                //***********程式的interval是1000毫秒,可能要再測一下，*************
-                if (!string.IsNullOrEmpty(config.GreedyModeRunAt))
-                {
-                    var msg = $"搶票模式設定為 {config.GreedyModeRunAt} 啟動\r\n";
-                    if (DateTime.TryParse(config.GreedyModeRunAt, out DateTime GreedyTimeRunAt))
-                    {
-                        msg+= "搶票模式已啟動";
-                        options.AddScheduledTask<ModifyTripJob>(utcNow => utcNow > GreedyTimeRunAt.ToUniversalTime());
-                    }
-                    notify.SendMsg(msg);//這裡的notify 還沒有build service,會執行到嗎?
-                }
-                else
-                {
-                    //每分鐘跑更改高鐵行程的job
-                    options.AddScheduledTask<ModifyTripJob>(utcNow => utcNow.Second == 1);
-                }
+                //如果有設定搶票模式，會在指定時間後開始執行排程
+                //設定執行間隔一分鐘會被ban,先暫時用10分鐘
+                // if (!string.IsNullOrEmpty(config.GreedyModeRunAt))
+                // {
+                //     var msg = $"搶票模式設定為 {config.GreedyModeRunAt} 啟動\r\n";
+                //     if (DateTime.TryParse(config.GreedyModeRunAt, out DateTime GreedyTimeRunAt))
+                //     {
+                //         msg+= "搶票模式已啟動";
+                //         options.AddScheduledTask<ModifyTripJob>(utcNow => 
+                //             utcNow > GreedyTimeRunAt.ToUniversalTime() &&
+                //             utcNow.Second ==1);
+                //     }
+                //     notify.SendMsg(msg);//這裡的notify 還沒有build service,會執行到嗎?
+                // }
+                // else
+                // {
+                    options.AddScheduledTask<ModifyTripJob>(utcNow => utcNow.Minute % 5 == 0);
+                // }
 
                 //定時跑未付款通知
                 options.AddScheduledTask<UnPaidAlertJob>(utcNow => utcNow.Hour == 22 && utcNow.Minute == 0 && utcNow.Second ==0);

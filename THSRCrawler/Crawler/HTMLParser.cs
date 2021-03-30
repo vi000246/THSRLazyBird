@@ -71,6 +71,8 @@ namespace THSRCrawler
         {
             var dom = _parser.ParseDocument(html);
             CheckPageError(dom);
+            var mainContent = dom.GetElementById("content");
+            ValidSessionExpire(mainContent);
             var content = dom.QuerySelector(".payment_title");
             switch (content.InnerHtml)
             {
@@ -117,6 +119,7 @@ namespace THSRCrawler
 
         public void ValidSessionExpire(IElement content)
         {
+            if (content == null) return;
             var txt = content.QuerySelectorAll(".standard_text");
             if (txt.Length == 0) return;
             if (txt.First().InnerHtml.Contains("無法繼續提供您訂票的服務"))

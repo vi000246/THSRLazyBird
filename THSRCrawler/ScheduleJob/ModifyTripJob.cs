@@ -31,7 +31,6 @@ namespace THSRCrawler
                 return;
             }
 
-            _logger.LogInformation("Running ModifyTripJob.");
             _crawler.init();
         }
     }

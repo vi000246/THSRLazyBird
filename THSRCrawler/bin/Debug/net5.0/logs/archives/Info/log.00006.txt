@@ -1,0 +1,71 @@
+[14:53:03.5841][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:04.5882][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:05.5813][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:06.5751][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:07.5674][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:08.5850][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:53:08. 
+[14:53:09.5784][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:10.5812][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:11.5756][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:12.5801][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:13.5770][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:14.5822][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:53:14. 
+[14:53:15.5759][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:16.5782][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:17.5763][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:18.5750][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:19.5807][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:20.5767][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:53:20. 
+[14:53:21.5690][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:22.5819][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:23.5759][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:24.5789][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:25.5787][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:26.5733][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:53:26. 
+[14:53:27.5817][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:28.5797][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:29.5782][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:30.5682][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:31.5729][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:32.5730][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:53:32. 
+[14:53:33.5833][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:34.5822][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:35.5694][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:36.5681][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:37.5761][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:38.5751][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:53:38. 
+[14:53:39.5724][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:40.5689][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:53:41.5800][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Ignoring `THSRCrawler.ModifyTripJob` task. It's still running. 
+[14:54:45.7538][Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager][Info] - User profile is available. Using 'C:\Users\yich.lin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+[14:54:46.1620][Microsoft.Hosting.Lifetime][Info] - Application started. Press Ctrl+C to shut down. 
+[14:54:46.1620][Microsoft.Hosting.Lifetime][Info] - Hosting environment: Development 
+[14:54:46.1879][Microsoft.Hosting.Lifetime][Info] - Content root path: F:\Projects\Github\THSRLazyBird\THSRCrawler 
+[14:54:46.2192][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request starting HTTP/2 GET https://localhost:44312/ - - 
+[14:54:46.2514][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executing endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)' 
+[14:54:46.2973][Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker][Info] - Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller THSRCrawler.HomeController (THSRCrawler). 
+[14:54:46.5515][Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor][Info] - Executing ViewResult, running view Index. 
+[14:54:46.8777][Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor][Info] - Executed ViewResult - view Index executed in 328.5378ms. 
+[14:54:46.8829][Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker][Info] - Executed action THSRCrawler.HomeController.Index (THSRCrawler) in 581.2617ms 
+[14:54:46.8829][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executed endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)' 
+[14:54:46.9148][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request finished HTTP/2 GET https://localhost:44312/ - - - 200 - text/html;+charset=utf-8 696.4740ms 
+[14:54:50.9460][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:54:50. 
+[14:54:51.3100][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:54:50. 
+[14:55:00.9363][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:00. 
+[14:55:01.2794][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:00. 
+[14:55:10.9362][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:10. 
+[14:55:11.3083][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:10. 
+[14:55:20.9484][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:20. 
+[14:55:21.2891][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:20. 
+[14:55:30.9419][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:30. 
+[14:55:31.3259][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:30. 
+[14:55:40.9439][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:40. 
+[14:55:41.2905][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:40. 
+[14:55:50.9386][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:50. 
+[14:55:51.2863][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:55:50. 
+[14:56:00.9377][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:56:00. 
+[14:56:01.2791][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:56:00. 
+[14:56:10.9562][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:56:10. 
+[14:56:11.3831][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:56:10. 
+[14:56:20.9435][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:56:20. 
+[14:56:30.9410][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 06:56:30. 

@@ -1,0 +1,72 @@
+[14:52:26.1051][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[14:52:32.1909][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[14:52:38.1830][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[14:52:44.1359][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[14:52:50.1606][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[14:53:02.0697][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[14:53:08.1481][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[14:53:14.1445][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[14:53:20.1232][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: HttpClient已取消requestThe request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+   at THSRCrawler.RequestClient.GetResponseAndSetCookie(HttpRequestMessage request) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 225
+   at THSRCrawler.RequestClient.GetHTML(String url) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 167
+   at THSRCrawler.RequestClient.GoTo_search_order_page() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\RequestClient.cs:line 46
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 70
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
