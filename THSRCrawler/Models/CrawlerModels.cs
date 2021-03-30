@@ -59,6 +59,7 @@ namespace THSRCrawler
             //付款期限 格式mm/dd
             public string paymentDeadLine { get; set; }
             public List<tripInfo> trips { get; set; } = new List<tripInfo>();
+            public string nextStepUrl { get; set; }
         }
         
         //用來儲存目前訂位紀錄的行程

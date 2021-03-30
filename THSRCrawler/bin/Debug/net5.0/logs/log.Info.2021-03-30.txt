@@ -1,12 +1,34 @@
-[15:39:04.8315][Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager][Info] - User profile is available. Using 'C:\Users\yich.lin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
-[15:39:05.2288][Microsoft.Hosting.Lifetime][Info] - Application started. Press Ctrl+C to shut down. 
-[15:39:05.2328][Microsoft.Hosting.Lifetime][Info] - Hosting environment: Development 
-[15:39:05.2768][Microsoft.Hosting.Lifetime][Info] - Content root path: F:\Projects\Github\THSRLazyBird\THSRCrawler 
-[15:39:05.3104][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request starting HTTP/2 GET https://localhost:44312/ - - 
-[15:39:05.3417][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executing endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)' 
-[15:39:05.3983][Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker][Info] - Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller THSRCrawler.HomeController (THSRCrawler). 
-[15:39:05.6678][Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor][Info] - Executing ViewResult, running view Index. 
-[15:39:05.9359][Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor][Info] - Executed ViewResult - view Index executed in 271.3918ms. 
-[15:39:05.9359][Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker][Info] - Executed action THSRCrawler.HomeController.Index (THSRCrawler) in 538.7535ms 
-[15:39:05.9359][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executed endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)' 
-[15:39:05.9693][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request finished HTTP/2 GET https://localhost:44312/ - - - 200 - text/html;+charset=utf-8 659.9147ms 
+[16:23:18.4476][Microsoft.Hosting.Lifetime][Info] - Hosting environment: Development 
+[16:23:18.4699][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request starting HTTP/1.1 GET https://localhost:44312/ - - 
+[16:23:18.4699][Microsoft.Hosting.Lifetime][Info] - Content root path: F:\Projects\Github\THSRLazyBird\THSRCrawler 
+[16:23:18.5182][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executing endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)' 
+[16:23:18.5827][Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker][Info] - Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller THSRCrawler.HomeController (THSRCrawler). 
+[16:23:18.8257][Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor][Info] - Executing ViewResult, running view Index. 
+[16:23:19.0866][Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor][Info] - Executed ViewResult - view Index executed in 266.2955ms. 
+[16:23:19.0866][Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker][Info] - Executed action THSRCrawler.HomeController.Index (THSRCrawler) in 503.8436ms 
+[16:23:19.0967][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executed endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)' 
+[16:23:19.0967][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request finished HTTP/1.1 GET https://localhost:44312/ - - - 200 - text/html;+charset=utf-8 631.6528ms 
+[16:35:53.5271][Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager][Info] - User profile is available. Using 'C:\Users\yich.lin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+[16:35:53.8382][Microsoft.Hosting.Lifetime][Info] - Application started. Press Ctrl+C to shut down. 
+[16:35:53.8637][Microsoft.Hosting.Lifetime][Info] - Hosting environment: Development 
+[16:35:53.8637][Microsoft.Hosting.Lifetime][Info] - Content root path: F:\Projects\Github\THSRLazyBird\THSRCrawler 
+[16:35:53.9076][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request starting HTTP/2 GET https://localhost:44312/ - - 
+[16:35:53.9359][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executing endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)' 
+[16:35:53.9851][Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker][Info] - Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller THSRCrawler.HomeController (THSRCrawler). 
+[16:35:54.2170][Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor][Info] - Executing ViewResult, running view Index. 
+[16:35:54.5542][Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor][Info] - Executed ViewResult - view Index executed in 340.3171ms. 
+[16:35:54.5542][Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker][Info] - Executed action THSRCrawler.HomeController.Index (THSRCrawler) in 570.1512ms 
+[16:35:54.5674][Microsoft.AspNetCore.Routing.EndpointMiddleware][Info] - Executed endpoint 'THSRCrawler.HomeController.Index (THSRCrawler)' 
+[16:35:54.5872][Microsoft.AspNetCore.Hosting.Diagnostics][Info] - Request finished HTTP/2 GET https://localhost:44312/ - - - 200 - text/html;+charset=utf-8 680.0467ms 
+[16:35:54.7418][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:54. 
+[16:35:55.0682][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:54. 
+[16:35:55.6922][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:55. 
+[16:35:55.9886][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:55. 
+[16:35:56.6900][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:56. 
+[16:35:57.0007][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:56. 
+[16:35:57.6877][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:57. 
+[16:35:57.9758][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:57. 
+[16:35:58.6954][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:58. 
+[16:35:59.0048][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:58. 
+[16:35:59.6772][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Start running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:59. 
+[16:35:59.9838][DNTScheduler.Core.ScheduledTasksCoordinator][Info] - Finished running `THSRCrawler.ModifyTripJob` task @ 2021/3/30 上午 08:35:59. 

@@ -37,7 +37,7 @@ namespace THSRCrawler
             foreach (var config in configs)
             {
                 _validation.validOrderIdAndIdCard(config);
-
+ 
                 var orderInfo = post_search_order_form(config.IdCard, config.OrderId);
                 
                 if (!orderInfo.isTripEditable)
@@ -67,8 +67,9 @@ namespace THSRCrawler
             CrawlerModels.orderPageInfo orderInfo = null;
             try
             {
-                _requestClient.GoTo_search_order_page();
-                var html = _requestClient.post_search_order_form(IdCard, OrderId);
+                var orderPageHtml = _requestClient.GoTo_search_order_page();
+                var searchOrderUrl = _htmlParser.GetNextStepUrl(orderPageHtml);
+                var html = _requestClient.post_search_order_form(IdCard, OrderId, searchOrderUrl);
                 orderInfo = _htmlParser.GetOrderInformation(html);
             }
             catch (CritialPageErrorException ex)
@@ -85,13 +86,15 @@ namespace THSRCrawler
 
             try
             {
-                var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
+                var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form(orderInfo.nextStepUrl);
                 //判斷去/回程是否可更改
                 var OrderStatus = _htmlParser.CheckModifyFormIsAvailable(modifyTripPageHtml);
                 _validation.validOrderStatus(tripType,OrderStatus);
+                var searchTripUrl = _htmlParser.GetNextStepUrl(modifyTripPageHtml);
 
                 var formatDate = _config.GetValidOrderDate(config, tripType,orderInfo);
-                var html = _requestClient.post_search_trip_form(tripType, formatDate);
+                var html = _requestClient.post_search_trip_form(tripType,searchTripUrl, formatDate);
+                var modifyOrderUrl = _htmlParser.GetNextStepUrl(html);
                 var trips = _htmlParser.GetTripsPerPageAndHandleError(html, tripType);
                 if (trips != null && trips.Count() >= 0)
                 {
@@ -106,11 +109,12 @@ namespace THSRCrawler
                     var matchTrip = _tripCompare.FindMatchTrip(trips.ToList(), tripInfo,formatDate.tripDateTime);
                     if (!string.IsNullOrEmpty(matchTrip))
                     {
-                        string modifyResultHtml = _requestClient.post_modifyTrip_form(matchTrip);
+                        string modifyResultHtml = _requestClient.post_modifyTrip_form(matchTrip, modifyOrderUrl, tripType);
                         result = _htmlParser.ModifyOrderResult(modifyResultHtml);
                         if (result == CrawlerModels.modifyResult.needConfirm)
                         {
-                            string confirmResult = _requestClient.post_confirm_form();
+                            var confirmOrderUrl = _htmlParser.GetNextStepUrl(modifyResultHtml);
+                            string confirmResult = _requestClient.post_confirm_form(confirmOrderUrl);
                             result = _htmlParser.ModifyOrderResult(confirmResult);
                         }
                     }

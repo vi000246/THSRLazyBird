@@ -1,0 +1,84 @@
+[16:00:25.0929][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:26.9785][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:27.8590][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:28.7532][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:29.6554][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:30.5147][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:31.4069][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:32.3366][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:33.3683][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:34.3372][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:35.3269][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34
+[16:00:36.3547][DNTScheduler.Core.ScheduledTasksCoordinator][Fatal] - Failed running THSRCrawler.ModifyTripJob 
+System.ArgumentException: Session已過期，請重新嘗試
+   at THSRCrawler.HTMLParser.ValidSessionExpire(IElement content) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 127
+   at THSRCrawler.HTMLParser.GetOrderInformation(String html) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\HTMLParser.cs:line 33
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 41
+   at THSRCrawler.ModifyTripJob.RunAsync() in F:\Projects\Github\THSRLazyBird\THSRCrawler\ScheduleJob\ModifyTripJob.cs:line 34

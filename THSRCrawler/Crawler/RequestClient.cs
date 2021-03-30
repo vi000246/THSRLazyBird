@@ -41,13 +41,13 @@ namespace THSRCrawler
         }
         
         //第一次進到頁面,取得相關cookie
-        public void GoTo_search_order_page()
+        public string GoTo_search_order_page()
         {
-            var LoginPage = GetHTML("/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
+            return GetHTML("/IMINT/?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History");
         }
 
         //輸入訂位代號跟身份證字號，取得訂位紀錄的付款頁面
-        public string post_search_order_form(string IdCard,string OrderId)
+        public string post_search_order_form(string IdCard,string OrderId,string url)
         {
                 var content = new List<KeyValuePair<string, string>>();
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryForm:hf:0"), ""));
@@ -63,14 +63,14 @@ namespace THSRCrawler
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:toTrainIDInputField"), ""));
                 content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("SelectPNRView:divCaptcha:securityCode"), ""));
                 var cookies = _cookieContainer.GetCookies(new Uri(BaseUrl+"IMINT"));
-                var url = $"/IMINT/;{cookies.FirstOrDefault(x=>x.Name == "JSESSIONID")}?wicket:interface=:0:HistoryForm::IFormSubmitListener";
+                if (string.IsNullOrEmpty(url)) url = $"/IMINT/;{cookies.FirstOrDefault(x=>x.Name == "JSESSIONID")}?wicket:interface=:0:HistoryForm::IFormSubmitListener";
                 var html = PostForm(url, content);
                 return html;
         }
 
         //輸入要更改的日期跟時間,取得該時段的車票
 
-        public string post_search_trip_form(CrawlerModels.ModifyTripType tripType,(string tripDate,string tripTime,DateTime tripDateTime) formatDate)
+        public string post_search_trip_form(CrawlerModels.ModifyTripType tripType,string url,(string tripDate,string tripTime,DateTime tripDateTime) formatDate)
         {
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS1Form:hf:0"), ""));
@@ -92,7 +92,8 @@ namespace THSRCrawler
             }
 
             content.Add(new KeyValuePair<string, string>("SubmitButton", "開始查詢"));
-            var url = $"/IMINT/?wicket:interface=:2:HistoryDetailsModifyTripS1Form::IFormSubmitListener";
+            if(string.IsNullOrEmpty(url)) 
+                url = $"/IMINT/?wicket:interface=:2:HistoryDetailsModifyTripS1Form::IFormSubmitListener";
             var html = PostForm(url, content);
             return html;
         }
@@ -112,7 +113,7 @@ namespace THSRCrawler
         }
 
         //送出變更行程表單 buttonName是該車次的radio button name
-        public string post_modifyTrip_form(string buttonName)
+        public string post_modifyTrip_form(string buttonName,string url, CrawlerModels.ModifyTripType tripType)
         {
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsModifyTripS2Form:hf:0"), ""));
@@ -121,34 +122,37 @@ namespace THSRCrawler
             content.Add(new KeyValuePair<string, string>("ticketTakeStatus", "5"));
 
             //輸入該車次的radio button name
-            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TrainQueryDataViewPanel:TrainGroup"), buttonName));
+            string panelType = tripType == CrawlerModels.ModifyTripType.Back ? "2" : "";
+            string buttonColumn = $"TrainQueryDataViewPanel{panelType}:TrainGroup";
+            content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString(buttonColumn), buttonName));
             content.Add(new KeyValuePair<string, string>("SubmitButton", "確認車次"));
-            var url = $"/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form::IFormSubmitListener";
+            if(string.IsNullOrEmpty(url)) url = $"/IMINT/?wicket:interface=:7:HistoryDetailsModifyTripS2Form::IFormSubmitListener";
             var html = PostForm(url, content);
             return html;
         }
 
-        public string post_confirm_form()
+        public string post_confirm_form(string url)
         {
             var content = new List<KeyValuePair<string, string>>();
             content.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsPaidModifyForm:hf:0"), ""));
             content.Add(new KeyValuePair<string, string>("agree", "on"));
             content.Add(new KeyValuePair<string, string>("confirmButton", "下一步"));
 
-            var url = $"/IMINT/?wicket:interface=:10:HistoryDetailsPaidModifyForm::IFormSubmitListener";
+            if (string.IsNullOrEmpty(url)) url = $"/IMINT/?wicket:interface=:8:HistoryDetailsPaidModifyForm::IFormSubmitListener";
             var html = PostForm(url, content);
             return html;
         }
 
         //進到變更行程頁面
-        public string GoTo_modifyTrip_form()
+        public string GoTo_modifyTrip_form(string url)
         {
             var clickChangtTripButton = new List<KeyValuePair<string, string>>();
             clickChangtTripButton.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("HistoryDetailsForm:hf:0"), ""));
             clickChangtTripButton.Add(new KeyValuePair<string, string>("ShowCarDiff", "1"));
             clickChangtTripButton.Add(new KeyValuePair<string, string>("isStudentInfo", "0"));
             clickChangtTripButton.Add(new KeyValuePair<string, string>(Uri.EscapeUriString("TicketProcessButtonPanel:ModifyTripButton"), "變更行程"));
-            var html = PostForm("/IMINT/?wicket:interface=:1:HistoryDetailsForm::IFormSubmitListener", clickChangtTripButton);
+            if (string.IsNullOrEmpty(url)) url = "/IMINT/?wicket:interface=:1:HistoryDetailsForm::IFormSubmitListener";
+            var html = PostForm(url, clickChangtTripButton);
 
             return html;
         }

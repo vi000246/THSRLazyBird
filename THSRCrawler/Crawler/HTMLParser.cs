@@ -55,6 +55,8 @@ namespace THSRCrawler
             }
             result.isRoundTrip = result.trips.Any(x => x.tripType == "回程");
             result.isTripEditable = dom.QuerySelector("input[value='變更行程']") != null ;
+            var form = dom.QuerySelector("form");
+            result.nextStepUrl = form.GetAttribute("action");
             var paymentRow = dom.QuerySelector(".table_details  tr  td:contains('交易狀態')");
             var paymentDetail = paymentRow.NextElementSibling.QuerySelectorAll("span > span").Select(x=>x.TextContent);
             result.isAlreadPaid = paymentDetail.Any(x=>x== "已付款");
@@ -84,6 +86,13 @@ namespace THSRCrawler
 
             return CrawlerModels.modifyResult.fail;
 
+        }
+
+        public string GetNextStepUrl(string html)
+        {
+            var dom = _parser.ParseDocument(html);
+            var form = dom.QuerySelector("form");
+            return form.GetAttribute("action");
         }
 
         public CrawlerModels.modifyTripPageInfo GetModifyPageInformation(string html)
