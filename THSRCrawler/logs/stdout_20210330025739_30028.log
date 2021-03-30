@@ -1,0 +1,16 @@
+2021-03-30 10:57:49.2139 Info Message Template Auto Format enabled
+2021-03-30 10:57:49.2798 Info Loading assembly: NLog.Web.AspNetCore
+2021-03-30 10:57:49.4266 Info Adding target FileTarget(Name=debug-all)
+2021-03-30 10:57:49.4266 Info Adding target ConsoleTarget(Name=Console)
+2021-03-30 10:57:49.5244 Info Validating config: TargetNames=debug-all, Console, ConfigItems=28, FilePath=F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\NLog.config
+2021-03-30 Fatal 身份證字號:R124190739
+訂位代號:06201782
+ 查無訂位紀錄或您的訂位紀錄不適用於本系統查詢
+2021-03-30 Info {"Guid":"4f6744e5-e3bb-49b5-b03e-56a9c9b14c00","Url":"https://notify-api.line.me/api/notify","Method":{"Method":"POST"},"Headers":[{"Key":"Authorization","Value":["Bearer GlGQ0MWesGjJH60qGeOFaoOmnQDiWl8QCSS7ZiMV8Xs"]}],"Content":{"Headers":[{"Key":"Content-Type","Value":["application/x-www-form-urlencoded"]}]},"Query":{"message":"\r\n\r\n高鐵頁面錯誤訊息:\r\n身份證字號:R124190739\r\n訂位代號:06201782\r\n 查無訂位紀錄或您的訂位紀錄不適用於本系統查詢"}}
+2021-03-30 Info Start processing HTTP request POST https://notify-api.line.me/api/notify
+2021-03-30 Info Sending HTTP request POST https://notify-api.line.me/api/notify
+2021-03-30 10:58:11.6275 Info Shutdown() called. Logger closing...
+2021-03-30 10:58:11.6275 Info Closing old configuration.
+2021-03-30 10:58:11.6812 Info Logger has been closed down.
+2021-03-30 10:58:11.7170 Info AppDomain Shutting down. Logger closing...
+2021-03-30 10:58:11.7170 Info Logger has been shut down.

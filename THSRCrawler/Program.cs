@@ -28,9 +28,10 @@ namespace THSRCrawler
                 var services = serviceScope.ServiceProvider;
 
                 var myDependency = services.GetRequiredService<Crawler>();
+                notify = services.GetRequiredService<INotify>();
+
                 // //入口寫在這裡 以後註解掉，只用schedule跑
                 myDependency.init();
-                notify = services.GetRequiredService<INotify>();
                 host.Run();
 
             }
@@ -53,7 +54,7 @@ namespace THSRCrawler
             }
             catch (Exception e)
             {
-                logger.Error(e.Message);
+                logger.Error(e);
                 notify.SendMsg(e.Message);
                 throw;
             }

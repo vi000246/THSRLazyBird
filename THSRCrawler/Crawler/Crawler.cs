@@ -60,9 +60,17 @@ namespace THSRCrawler
 
         public CrawlerModels.orderPageInfo post_search_order_form(string IdCard,string OrderId)
         {
-            _requestClient.GoTo_search_order_page();
-            var html = _requestClient.post_search_order_form(IdCard, OrderId);
-            var orderInfo = _htmlParser.GetOrderInformation(html);
+            CrawlerModels.orderPageInfo orderInfo = null;
+            try
+            {
+                _requestClient.GoTo_search_order_page();
+                var html = _requestClient.post_search_order_form(IdCard, OrderId);
+                orderInfo = _htmlParser.GetOrderInformation(html);
+            }
+            catch (CritialPageErrorException ex)
+            {
+                throw new CritialPageErrorException($"身份證字號:{IdCard}\r\n訂位代號:{OrderId}\r\n {ex.Message}");
+            }
 
             return orderInfo;
         }
@@ -74,23 +82,7 @@ namespace THSRCrawler
                 var modifyTripPageHtml = _requestClient.GoTo_modifyTrip_form();
                 //判斷去/回程是否可更改
                 var OrderStatus = _htmlParser.CheckModifyFormIsAvailable(modifyTripPageHtml);
-                if (OrderStatus == CrawlerModels.orderStatus.BothCannot)
-                {
-                    throw new ArgumentException("無法修改行程");
-                }
-
-                if (tripType == CrawlerModels.ModifyTripType.To)
-                {
-                    if(OrderStatus == CrawlerModels.orderStatus.onlyBack)
-                        throw new ArgumentException("無法修改去程");
-                }
-                else if(tripType == CrawlerModels.ModifyTripType.Back)
-                {
-                    if(OrderStatus == CrawlerModels.orderStatus.onlyTo)
-                        throw new ArgumentException("無法修改回程");
-
-                }
-
+                _validation.validOrderStatus(tripType,OrderStatus);
 
                 var formatDate = _config.GetValidOrderDate(config, tripType,orderInfo);
                 var html = _requestClient.post_search_trip_form(tripType, formatDate);
@@ -111,14 +103,15 @@ namespace THSRCrawler
                         string result = _requestClient.post_modifyTrip_form(matchTrip);
                         if (_htmlParser.ModifyOrderResult(result) == CrawlerModels.modifyResult.needConfirm)
                         {
-                            _requestClient.post_confirm_form();
+                            string confirmResult = _requestClient.post_confirm_form();
+                            _htmlParser.CheckPageError(confirmResult);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                //這裡不需要處理例外，就讓程式繼續跑
+                _logger.LogInformation(ex.Message);
             }
 
         }

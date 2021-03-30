@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LexLibrary.Line.NotifyBot;
 using LexLibrary.Line.NotifyBot.Models;
+using Microsoft.Extensions.Options;
 using THSRCrawler.CustomException;
 
 namespace THSRCrawler
@@ -13,10 +14,10 @@ namespace THSRCrawler
         private readonly LineNotifyBotApi _lineNotifyBotApi;
         private readonly Config _config;
 
-        public LineNotify(LineNotifyBotApi _lineNotifyBotApi,Config _config)
+        public LineNotify(LineNotifyBotApi _lineNotifyBotApi, IOptions<Config> _config)
         {
             this._lineNotifyBotApi = _lineNotifyBotApi;
-            this._config = _config;
+            this._config = _config.Value;
         }
 
         public void SendMsg(string message,string title=null)
@@ -30,7 +31,7 @@ namespace THSRCrawler
                     _lineNotifyBotApi.Notify(new NotifyRequestDTO
                     {
                         AccessToken = accessToken,
-                        Message = title + message
+                        Message = $"{title}:\r\n{message}"
                     });
                 }
             }

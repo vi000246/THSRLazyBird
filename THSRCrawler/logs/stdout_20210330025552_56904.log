@@ -1,0 +1,16 @@
+2021-03-30 10:56:02.1491 Info Message Template Auto Format enabled
+2021-03-30 10:56:02.1950 Info Loading assembly: NLog.Web.AspNetCore
+2021-03-30 10:56:02.3611 Info Adding target FileTarget(Name=debug-all)
+2021-03-30 10:56:02.3623 Info Adding target ConsoleTarget(Name=Console)
+2021-03-30 10:56:02.4781 Info Validating config: TargetNames=debug-all, Console, ConfigItems=28, FilePath=F:\Projects\Github\THSRLazyBird\THSRCrawler\bin\Debug\net5.0\NLog.config
+2021-03-30 Fatal IDCard:R124190739 OrderId:06201782 查無訂位紀錄或您的訂位紀錄不適用於本系統查詢
+2021-03-30 Info {"Guid":"23a461c3-cc3f-499e-9ddf-94b5bbe6169f","Url":"https://notify-api.line.me/api/notify","Method":{"Method":"POST"},"Headers":[{"Key":"Authorization","Value":["Bearer GlGQ0MWesGjJH60qGeOFaoOmnQDiWl8QCSS7ZiMV8Xs"]}],"Content":{"Headers":[{"Key":"Content-Type","Value":["application/x-www-form-urlencoded"]}]},"Query":{"message":"\r\n\r\n高鐵頁面錯誤訊息:\r\nIDCard:R124190739 OrderId:06201782 查無訂位紀錄或您的訂位紀錄不適用於本系統查詢"}}
+2021-03-30 Info Start processing HTTP request POST https://notify-api.line.me/api/notify
+2021-03-30 Info Sending HTTP request POST https://notify-api.line.me/api/notify
+Unhandled exception. THSRCrawler.CritialPageErrorException: IDCard:R124190739 OrderId:06201782 查無訂位紀錄或您的訂位紀錄不適用於本系統查詢
+   at THSRCrawler.Crawler.post_search_order_form(String IdCard, String OrderId) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 72
+   at THSRCrawler.Crawler.init() in F:\Projects\Github\THSRLazyBird\THSRCrawler\Crawler\Crawler.cs:line 40
+   at THSRCrawler.Program.Main(String[] args) in F:\Projects\Github\THSRLazyBird\THSRCrawler\Program.cs:line 34
+2021-03-30 10:56:18.5169 Info Shutdown() called. Logger closing...
+2021-03-30 10:56:18.5169 Info Closing old configuration.
+2021-03-30 10:56:18.5503 Info Logger has been closed down.

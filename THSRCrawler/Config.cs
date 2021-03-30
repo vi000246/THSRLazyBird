@@ -15,6 +15,7 @@ namespace THSRCrawler
         public Notify notify { get; set; }
         public bool IsEnableSchedule { get; set; }
         public int MaxETA { get; set; }
+        public string GreedyModeRunAt { get; set; }
 
         private readonly ILogger<ModifyTripJob> _logger;
 

@@ -92,14 +92,19 @@ namespace THSRCrawler
         }
 
 
-        public void CheckPageError(IHtmlDocument dom)
+        public void CheckPageError(string html)
+        {
+            var dom = _parser.ParseDocument(html);
+            CheckPageError(dom);
+        }
+
+        private void CheckPageError(IHtmlDocument dom)
         {
             var msg = "";
             var mainContent = dom.GetElementsByClassName("feedbackPanelERROR");
             if (mainContent.Any())
             {
                 msg = mainContent.First().FirstElementChild.TextContent;
-                _logger.LogInformation(msg);
                 if (msg.Contains("查無訂位紀錄"))
                 {
                     throw new CritialPageErrorException(msg);

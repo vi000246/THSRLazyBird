@@ -53,6 +53,26 @@ namespace THSRCrawler
 
         }
 
+        public void validOrderStatus(CrawlerModels.ModifyTripType tripType,CrawlerModels.orderStatus OrderStatus)
+        {
+            if (OrderStatus == CrawlerModels.orderStatus.BothCannot)
+            {
+                throw new ArgumentException("無法修改行程");
+            }
+
+            if (tripType == CrawlerModels.ModifyTripType.To)
+            {
+                if (OrderStatus == CrawlerModels.orderStatus.onlyBack)
+                    throw new ArgumentException("無法修改去程");
+            }
+            else if (tripType == CrawlerModels.ModifyTripType.Back)
+            {
+                if (OrderStatus == CrawlerModels.orderStatus.onlyTo)
+                    throw new ArgumentException("無法修改回程");
+
+            }
+        }
+
         public void validOrderIdAndIdCard(TicketOrders config)
         {
             if (string.IsNullOrEmpty(config.OrderId) || string.IsNullOrEmpty(config.IdCard))

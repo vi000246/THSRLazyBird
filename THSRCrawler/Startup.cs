@@ -22,17 +22,18 @@ using NETCore.MailKit.Infrastructure.Internal;
 using NLog;
 using THSRCrawler.ScheduleJob;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+using Microsoft.Extensions.Options;
 
 namespace THSRCrawler
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
 
         }
-        public IConfiguration Configuration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -41,6 +42,22 @@ namespace THSRCrawler
             var container = new CookieContainer();
             services.AddSingleton(container);
 
+            //注入需要的class
+            services.AddTransient<RequestClient>();
+            services.AddTransient<Crawler>();
+            services.AddTransient<Config>();
+            services.AddTransient<HTMLParser>();
+            services.AddTransient<Validation>();
+            services.AddTransient<TripCompare>();
+            services.AddTransient<LineNotifyBotApi>();
+            services.AddTransient<LineNotifyBotSetting>();
+            services.AddTransient<IHtmlParser,HtmlParser>();
+            services.AddTransient<INotify, LineNotify>();
+            //config註冊
+            var configSection =
+                Configuration.GetSection("Config");
+
+            services.Configure<Config>(configSection);
             //http client的設定
             services.AddHttpClient("HttpClientWithSSLUntrusted").ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
             {
@@ -59,25 +76,12 @@ namespace THSRCrawler
                 UseCookies = true,
             });
 
-            //schedule設定
-            services.AddDNTScheduler(options =>
-            {
-                // 好像是用來讓heroku之類的server keep alive的
-                // options.AddPingTask(siteRootUrl: "https://localhost:5001");
+            //build完service，可以用GetService拿出instance
+            var sp = services.BuildServiceProvider();
 
-                options.AddScheduledTask<ModifyTripJob>(utcNow => utcNow.Second == 1);
-                options.AddScheduledTask<UnPaidAlertJob>(utcNow => utcNow.Hour == 22 && utcNow.Minute == 0 && utcNow.Second ==0);
-            });
-            var config = new Config();
+            var notify = sp.GetService<INotify>();
+            var config = sp.GetService<IOptions<Config>>().Value;
 
-            Configuration.GetSection("Config").Bind(config);
-            //config註冊
-            var configSection =
-                Configuration.GetSection("Config");
-            services.Configure<Config>(configSection);
-
-            //addMvc好像過時了，找時間再來研究
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //line notify套件
             
             services.AddLineNotifyBot(new LineNotifyBotSetting
@@ -90,6 +94,38 @@ namespace THSRCrawler
                 StatusApi = "https://notify-api.line.me/api/status",
                 RevokeApi = "https://notify-api.line.me/api/revoke"
             });
+
+
+            //schedule設定
+            services.AddDNTScheduler(options =>
+            {
+                // 好像是用來讓heroku之類的server keep alive的
+                // options.AddPingTask(siteRootUrl: "https://localhost:5001");
+
+
+                //如果有設定搶票模式，會在指定時間後每秒跑一次排程
+                //***********程式的interval是1000毫秒,可能要再測一下，*************
+                if (!string.IsNullOrEmpty(config.GreedyModeRunAt))
+                {
+                    var msg = $"搶票模式設定為 {config.GreedyModeRunAt} 啟動\r\n";
+                    if (DateTime.TryParse(config.GreedyModeRunAt, out DateTime GreedyTimeRunAt))
+                    {
+                        msg+= "搶票模式已啟動";
+                        options.AddScheduledTask<ModifyTripJob>(utcNow => utcNow > GreedyTimeRunAt.ToUniversalTime());
+                    }
+                    notify.SendMsg(msg);//這裡的notify 還沒有build service,會執行到嗎?
+                }
+                else
+                {
+                    //每分鐘跑更改高鐵行程的job
+                    options.AddScheduledTask<ModifyTripJob>(utcNow => utcNow.Second == 1);
+                }
+
+                //定時跑未付款通知
+                options.AddScheduledTask<UnPaidAlertJob>(utcNow => utcNow.Hour == 22 && utcNow.Minute == 0 && utcNow.Second ==0);
+            });
+                       //addMvc好像過時了，找時間再來研究
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMailKit(optionBuilder =>
             {
                 optionBuilder.UseMailKit(new MailKitOptions()
@@ -106,14 +142,6 @@ namespace THSRCrawler
                     Security = true
                 });
             });
-            services.AddTransient<RequestClient>();
-            services.AddTransient<Crawler>();
-            services.AddTransient<Config>();
-            services.AddTransient<HTMLParser>();
-            services.AddTransient<Validation>();
-            services.AddTransient<TripCompare>();
-            services.AddTransient<IHtmlParser,HtmlParser>();
-            services.AddTransient<INotify, LineNotify>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
