@@ -42,7 +42,7 @@ namespace THSRCrawler
                 
                 if (!orderInfo.isTripEditable)
                 {
-                    _logger.LogDebug($"此訂位代號:{config.OrderId} 無法變更行程");
+                    _logger.LogDebug($"訂位代號:{config.OrderId} 無法變更行程");
                     return;
                 }
                 _validation.validConfigDateTime(config,orderInfo);
@@ -50,12 +50,12 @@ namespace THSRCrawler
                 if (_validation.haveToDateFunc(config))
                 {
                     var result = ModifyTrip(CrawlerModels.ModifyTripType.To, config, orderInfo);
-                    _logger.LogDebug($"去程執行結果:{result}");
+                    _logger.LogDebug($"訂位代號:{config.OrderId} 去程執行結果:{result}");
                 }
                 if (orderInfo.isRoundTrip && _validation.haveBackDateFunc(config))
                 {
                     var result = ModifyTrip(CrawlerModels.ModifyTripType.Back, config, orderInfo);
-                    _logger.LogDebug($"回程執行結果:{result}");
+                    _logger.LogDebug($"訂位代號:{config.OrderId} 回程執行結果:{result}");
                 }
 
             }
